@@ -23,8 +23,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="ar" dir="rtl">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+      </head>
+      <body 
+        className={`${geistSans.variable} ${geistMono.variable}`}
+        style={{
+          margin: 0,
+          padding: 0,
+          width: '100vw',
+          minHeight: '100vh',
+          overflow: 'hidden auto',
+        }}
+      >
         {children}
       </body>
     </html>

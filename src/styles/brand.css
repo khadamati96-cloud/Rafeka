@@ -229,6 +229,22 @@ body {
   .logo-mobile {
     display: block;
   }
+  
+  /* تقليل المسافة بين عناصر الهيدر في الجوال */
+  nav > div:last-child {
+    gap: var(--spacing-sm) !important;
+  }
+  
+  /* إزالة أي هوامش في الجوال */
+  header {
+    margin: 0 !important;
+    top: 0 !important;
+  }
+  
+  body, html {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
 }
 
 /* كلاسات الكارد */

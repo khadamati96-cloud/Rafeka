@@ -13,13 +13,12 @@ const Header: React.FC = () => {
   return (
     <header 
       style={{
-        backgroundColor: 'var(--bg-primary)',
+        background: 'linear-gradient(to right, rgba(220, 38, 38, 0.5) 0%, rgba(220, 38, 38, 0.2) 25%, var(--bg-primary) 45%)',
         borderBottom: '1px solid var(--border-color)',
         position: 'sticky',
         top: 0,
         zIndex: 1000,
         backdropFilter: 'blur(10px)',
-        marginTop: '20px',
       }}
     >
       <div className="container">

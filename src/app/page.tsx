@@ -2,6 +2,7 @@
 
 import { Text } from '@/components/ui/BrandComponents';
 import Header from '@/components/ui/Header';
+import HeroSection from '@/components/ui/HeroSection';
 import { LanguageProvider, useLanguage } from '@/providers/LanguageProvider';
 
 function HomeContent() {
@@ -10,14 +11,17 @@ function HomeContent() {
   return (
     <>
       <Header />
+      <HeroSection />
+      
+      {/* باقي الأقسام ممكن تضاف هنا */}
       <div style={{
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 'calc(100vh - 90px)', // طرح ارتفاع الهيدر + المسافة من فوق
+        height: '50vh',
         backgroundColor: 'var(--bg-primary)'
       }}>
-        <Text size="5xl" color="brand" as="h1">
+        <Text size="2xl" color="secondary" as="h2">
           {t('mainTitle')}
         </Text>
       </div>
