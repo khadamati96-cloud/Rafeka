@@ -289,7 +289,30 @@ const VideoSection: React.FC = () => {
                   e.currentTarget.style.background = 'rgba(220, 38, 38, 0.9)';
                 }}
               >
-                {isPlaying ? '⏸️' : '▶️'}
+                {isPlaying ? (
+                  // أيقونة الإيقاف
+                  <svg 
+                    width="24" 
+                    height="24" 
+                    viewBox="0 0 24 24" 
+                    fill="none"
+                    style={{ color: 'black' }}
+                  >
+                    <rect x="6" y="4" width="4" height="16" fill="black" />
+                    <rect x="14" y="4" width="4" height="16" fill="black" />
+                  </svg>
+                ) : (
+                  // أيقونة التشغيل
+                  <svg 
+                    width="24" 
+                    height="24" 
+                    viewBox="0 0 24 24" 
+                    fill="none"
+                    style={{ color: 'black', marginLeft: '2px' }}
+                  >
+                    <polygon points="8,5 19,12 8,19" fill="black" />
+                  </svg>
+                )}
               </button>
             </div>
           )}
