@@ -191,6 +191,46 @@ body {
   width: auto;
 }
 
+/* إعدادات الشعار للشاشات المختلفة */
+.logo-mobile {
+  display: none;
+}
+
+.logo-desktop {
+  display: block;
+}
+
+/* إعدادات الهيدر للجوال */
+@media (max-width: 768px) {
+  /* إخفاء القائمة والزر للشاشات الكبيرة */
+  .desktop-nav {
+    display: none !important;
+  }
+  
+  .desktop-contact {
+    display: none !important;
+  }
+  
+  /* إظهار زر القائمة */
+  .mobile-menu-btn {
+    display: block !important;
+  }
+  
+  /* إظهار قائمة الجوال */
+  .mobile-nav {
+    display: block !important;
+  }
+  
+  /* عرض الشعار المبسط */
+  .logo-desktop {
+    display: none;
+  }
+  
+  .logo-mobile {
+    display: block;
+  }
+}
+
 /* كلاسات الكارد */
 .card {
   background-color: var(--bg-card);
@@ -220,10 +260,20 @@ body {
   .mobile-menu-btn {
     display: flex !important;
   }
+  
+  /* تقليل المسافات في الشاشات الصغيرة */
+  header {
+    margin-top: 10px !important;
+  }
 }
 
 @media (min-width: 769px) {
   .mobile-menu-btn {
     display: none !important;
+  }
+  
+  /* التأكد من أن النصوص تبقى في سطر واحد */
+  .nav-menu li {
+    white-space: nowrap;
   }
 }

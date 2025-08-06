@@ -123,12 +123,23 @@ export const Logo: React.FC<LogoProps> = ({
   const src = type === 'logo' ? '/logo.png' : '/name.png';
   
   return (
-    <img 
-      src={src}
-      alt="رافقة"
-      className={`${sizeClass} ${className}`}
-      {...props}
-    />
+    <>
+      {/* الشعار للشاشات الكبيرة */}
+      <img 
+        src={src}
+        alt="رافقة"
+        className={`${sizeClass} ${className} logo-desktop`}
+        {...props}
+      />
+      
+      {/* الشعار للجوال */}
+      <img 
+        src="/logo2.png"
+        alt="رافقة"
+        className={`${sizeClass} ${className} logo-mobile`}
+        {...props}
+      />
+    </>
   );
 };
 

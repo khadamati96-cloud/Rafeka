@@ -1,4 +1,7 @@
+'use client';
+
 import { useState, CSSProperties } from 'react';
+import { useLanguage } from '../../providers/LanguageProvider';
 
 // Hook لتأثيرات الهوفر
 export const useHoverEffect = (
@@ -22,20 +25,25 @@ export const useHoverEffect = (
 interface NavLinkProps {
   href: string;
   children: React.ReactNode;
+  onClick?: () => void;
 }
 
-export const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
+export const NavLink: React.FC<NavLinkProps> = ({ href, children, onClick }) => {
+  const { language } = useLanguage();
+  
   const hoverProps = useHoverEffect(
     {
       color: 'var(--text-primary)',
       textDecoration: 'none',
-      fontFamily: 'var(--font-arabic)',
+      fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
       fontSize: 'var(--text-base)',
       fontWeight: '500',
       transition: 'all var(--transition-normal)',
       padding: 'var(--spacing-sm) var(--spacing-md)',
       borderRadius: 'var(--radius-md)',
       backgroundColor: 'transparent',
+      whiteSpace: 'nowrap',
+      display: 'inline-block',
     },
     {
       color: 'var(--brand-red)',
@@ -45,7 +53,16 @@ export const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
   );
 
   return (
-    <a href={href} {...hoverProps}>
+    <a 
+      href={href} 
+      {...hoverProps}
+      onClick={(e) => {
+        if (onClick) {
+          e.preventDefault();
+          onClick();
+        }
+      }}
+    >
       {children}
     </a>
   );
