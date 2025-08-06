@@ -7,7 +7,6 @@ import { useLanguage } from '../../providers/LanguageProvider';
 const TestimonialsSection: React.FC = () => {
   const { language } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlay, setIsAutoPlay] = useState(true);
 
   const testimonials = [
     {
@@ -52,235 +51,151 @@ const TestimonialsSection: React.FC = () => {
     }
   ];
 
-  // التحكم التلقائي في السلايدات
+  // التقليب التلقائي البسيط
   useEffect(() => {
-    if (!isAutoPlay) return;
-
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
-        prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 5000); // تغيير كل 5 ثوانٍ
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
 
     return () => clearInterval(interval);
-  }, [isAutoPlay, testimonials.length]);
+  }, [testimonials.length]);
 
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index);
-  };
-
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <span
-        key={i}
-        style={{
-          color: i < rating ? '#FFD700' : '#444',
-          fontSize: '1.2rem',
-          marginRight: '2px',
-        }}
-      >
-        ★
-      </span>
-    ));
-  };
+  const currentTestimonial = testimonials[currentIndex];
 
   return (
-    <section 
-      style={{
-        position: 'relative',
-        padding: 'var(--spacing-4xl) var(--spacing-lg)',
-        marginTop: '60px',
-        background: 'var(--bg-primary)',
-        overflow: 'hidden',
-      }}
-      onMouseEnter={() => setIsAutoPlay(false)}
-      onMouseLeave={() => setIsAutoPlay(true)}
-    >
-      {/* خلفية بسيطة */}
-      <div 
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'var(--bg-primary)',
-          pointerEvents: 'none',
-        }}
-      />
-
+    <section style={{
+      padding: 'var(--spacing-4xl) var(--spacing-lg)',
+      background: 'var(--bg-primary)',
+    }}>
       <div className="container" style={{ 
-        maxWidth: '1400px',
+        maxWidth: '1200px',
         margin: '0 auto',
-        position: 'relative',
-        zIndex: 2,
       }}>
-        {/* العنوان الرئيسي */}
+        {/* العنوان */}
         <div style={{
           textAlign: 'center',
           marginBottom: 'var(--spacing-3xl)',
         }}>
           <Text 
             size="3xl" 
-            color="primary" 
             as="h2"
             style={{
               fontWeight: 'bold',
-              marginBottom: 'var(--spacing-lg)',
               fontSize: 'clamp(2rem, 5vw, 3rem)',
               fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-              background: 'linear-gradient(135deg, var(--text-primary) 0%, var(--brand-red) 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
+              color: 'var(--text-primary)',
+              marginBottom: 'var(--spacing-md)',
             }}
           >
             {language === 'ar' ? 'شهادات العملاء' : 'Client Testimonials'}
           </Text>
           <Text 
-            size="lg" 
-            color="secondary"
+            size="lg"
             style={{
               fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-              fontSize: 'clamp(1rem, 2vw, 1.25rem)',
               color: 'var(--text-secondary)',
-              opacity: 0.9,
             }}
           >
             {language === 'ar' ? 'نتائج حقيقية، وآراء حقيقية' : 'Real Results, Real Opinions'}
           </Text>
         </div>
 
-        {/* حاوية السلايدات */}
-        <div 
-          className="testimonial-container"
-          style={{
-            position: 'relative',
-            maxWidth: '900px',
-            margin: '0 auto',
-            overflow: 'hidden',
-            borderRadius: 'var(--radius-xl)',
-            background: 'rgba(255, 255, 255, 0.02)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            backdropFilter: 'blur(15px)',
-          }}
-        >
-          {/* السلايدات */}
-          <div 
-            style={{
-              display: 'flex',
-              transform: `translateX(${language === 'ar' ? currentIndex * 100 : currentIndex * -100}%)`,
-              transition: 'transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)',
-            }}
-          >
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="testimonial-slide"
+        {/* صندوق الشهادة */}
+        <div style={{
+          maxWidth: '800px',
+          margin: '0 auto',
+          background: 'rgba(255, 255, 255, 0.03)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          borderRadius: '20px',
+          padding: 'var(--spacing-3xl)',
+          textAlign: 'center',
+        }}>
+          {/* النجوم */}
+          <div style={{ marginBottom: 'var(--spacing-lg)' }}>
+            {Array.from({ length: 5 }, (_, i) => (
+              <span
+                key={i}
                 style={{
-                  minWidth: '100%',
-                  padding: 'var(--spacing-3xl)',
-                  textAlign: 'center',
-                  position: 'relative',
+                  color: '#FFD700',
+                  fontSize: '1.5rem',
+                  marginRight: '4px',
                 }}
               >
-                {/* أيقونة الاقتباس */}
-                <div 
-                  style={{
-                    fontSize: '3rem',
-                    color: 'var(--brand-red)',
-                    marginBottom: 'var(--spacing-lg)',
-                    opacity: 0.3,
-                  }}
-                >
-                  "
-                </div>
-
-                {/* محتوى الشهادة */}
-                <div className="testimonial-quote">
-                  <Text 
-                    size="lg"
-                    style={{
-                      fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-                      fontSize: 'clamp(1.125rem, 2.5vw, 1.375rem)',
-                      lineHeight: '1.8',
-                      color: 'var(--text-primary)',
-                      marginBottom: 'var(--spacing-xl)',
-                      fontStyle: 'italic',
-                    }}
-                  >
-                    {language === 'ar' ? testimonial.contentAr : testimonial.contentEn}
-                  </Text>
-                </div>
-
-                {/* النجوم */}
-                <div className="star-rating" style={{ marginBottom: 'var(--spacing-lg)' }}>
-                  {renderStars(testimonial.rating)}
-                </div>
-
-                {/* معلومات العميل */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 'var(--spacing-md)',
-                }}>
-                  <div 
-                    style={{
-                      width: '60px',
-                      height: '60px',
-                      borderRadius: '50%',
-                      background: 'linear-gradient(135deg, var(--brand-red), var(--brand-red-light))',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '1.5rem',
-                      border: '2px solid rgba(255, 255, 255, 0.1)',
-                    }}
-                  >
-                    {testimonial.image}
-                  </div>
-                  <div style={{ textAlign: language === 'ar' ? 'right' : 'left' }}>
-                    <Text 
-                      size="lg"
-                      style={{
-                        fontWeight: 'bold',
-                        color: 'var(--text-primary)',
-                        marginBottom: '4px',
-                        fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-                      }}
-                    >
-                      {language === 'ar' ? testimonial.nameAr : testimonial.nameEn}
-                    </Text>
-                    <Text 
-                      size="sm"
-                      style={{
-                        color: 'var(--text-secondary)',
-                        fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-                      }}
-                    >
-                      {language === 'ar' ? testimonial.titleAr : testimonial.titleEn}
-                    </Text>
-                  </div>
-                </div>
-              </div>
+                ★
+              </span>
             ))}
+          </div>
+
+          {/* النص */}
+          <Text 
+            size="xl"
+            style={{
+              fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
+              fontSize: 'clamp(1.125rem, 2.5vw, 1.5rem)',
+              lineHeight: '1.7',
+              color: 'var(--text-primary)',
+              marginBottom: 'var(--spacing-xl)',
+              fontStyle: 'italic',
+            }}
+          >
+            "{language === 'ar' ? currentTestimonial.contentAr : currentTestimonial.contentEn}"
+          </Text>
+
+          {/* معلومات العميل */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 'var(--spacing-md)',
+          }}>
+            <div style={{
+              width: '60px',
+              height: '60px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, var(--brand-red), var(--brand-red-light))',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '1.8rem',
+            }}>
+              {currentTestimonial.image}
+            </div>
+            <div style={{ textAlign: 'left' }}>
+              <Text 
+                size="lg"
+                style={{
+                  fontWeight: 'bold',
+                  color: 'var(--text-primary)',
+                  marginBottom: '4px',
+                  fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
+                }}
+              >
+                {language === 'ar' ? currentTestimonial.nameAr : currentTestimonial.nameEn}
+              </Text>
+              <Text 
+                size="sm"
+                style={{
+                  color: 'var(--text-secondary)',
+                  fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
+                }}
+              >
+                {language === 'ar' ? currentTestimonial.titleAr : currentTestimonial.titleEn}
+              </Text>
+            </div>
           </div>
         </div>
 
-        {/* نقاط التنقل */}
-        <div 
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: 'var(--spacing-sm)',
-            marginTop: 'var(--spacing-xl)',
-          }}
-        >
+        {/* النقاط */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: 'var(--spacing-sm)',
+          marginTop: 'var(--spacing-xl)',
+        }}>
           {testimonials.map((_, index) => (
             <button
               key={index}
-              onClick={() => goToSlide(index)}
+              onClick={() => setCurrentIndex(index)}
               style={{
                 width: currentIndex === index ? '30px' : '12px',
                 height: '12px',

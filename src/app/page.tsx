@@ -10,6 +10,7 @@ import WhyChooseUsSection from '@/components/ui/WhyChooseUsSection';
 import StatsSection from '@/components/ui/StatsSection';
 import TestimonialsSection from '@/components/ui/TestimonialsSection';
 import NewProjectSection from '@/components/ui/NewProjectSection';
+import Footer from '@/components/ui/Footer';
 
 import { LanguageProvider, useLanguage } from '@/providers/LanguageProvider';
 
@@ -27,20 +28,7 @@ function HomeContent() {
       <StatsSection />
       <TestimonialsSection />
       <NewProjectSection />
-     
-      
-      {/* باقي الأقسام ممكن تضاف هنا */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '50vh',
-        backgroundColor: 'var(--bg-primary)'
-      }}>
-        <Text size="2xl" color="secondary" as="h2">
-          {t('mainTitle')}
-        </Text>
-      </div>
+      <Footer />
     </>
   );
 }
