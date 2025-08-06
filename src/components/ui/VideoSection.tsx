@@ -224,6 +224,7 @@ const VideoSection: React.FC = () => {
           {/* الفيديو */}
           <video
             ref={videoRef}
+            poster="/video.png"
             style={{
               width: '100%',
               height: 'auto',
