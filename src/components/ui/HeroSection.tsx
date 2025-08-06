@@ -1,25 +1,87 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Text, Button } from './BrandComponents';
 import { useLanguage } from '../../providers/LanguageProvider';
 
 const HeroSection: React.FC = () => {
   const { t, language } = useLanguage();
+  const [isVisible, setIsVisible] = useState(false);
+  const [animatedStats, setAnimatedStats] = useState({
+    satisfaction: 0,
+    campaigns: 0
+  });
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // مراقبة ظهور القسم
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // تحريك الأرقام
+  useEffect(() => {
+    if (isVisible) {
+      // تحريك نسبة الرضا
+      const satisfactionAnimation = setInterval(() => {
+        setAnimatedStats(prev => {
+          if (prev.satisfaction < 98) {
+            return { ...prev, satisfaction: prev.satisfaction + 1 };
+          }
+          clearInterval(satisfactionAnimation);
+          return prev;
+        });
+      }, 30);
+
+      // تحريك عدد الحملات
+      const campaignsAnimation = setInterval(() => {
+        setAnimatedStats(prev => {
+          if (prev.campaigns < 766) {
+            return { ...prev, campaigns: prev.campaigns + 15 };
+          }
+          clearInterval(campaignsAnimation);
+          return { ...prev, campaigns: 766 };
+        });
+      }, 25);
+
+      return () => {
+        clearInterval(satisfactionAnimation);
+        clearInterval(campaignsAnimation);
+      };
+    }
+  }, [isVisible]);
 
   return (
     <section 
+      ref={sectionRef}
       style={{
-        minHeight: 'calc(100vh - 70px)', // طرح ارتفاع الهيدر
+        minHeight: '80vh', // زيادة الارتفاع عشان الإحصائيات
         background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.3) 0%, rgba(220, 38, 38, 0.1) 30%, var(--bg-primary) 50%)',
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
-        padding: 'var(--spacing-2xl) var(--spacing-lg)',
+        padding: 'var(--spacing-xl) var(--spacing-lg)',
       }}
     >
-      <div className="container" style={{ textAlign: 'center', maxWidth: '800px' }}>
+      <div className="container" style={{ 
+        textAlign: 'center', 
+        maxWidth: '900px',
+        padding: 'var(--spacing-lg) var(--spacing-md)',
+      }}>
         {/* العنوان الرئيسي */}
         <Text 
           size="5xl" 
@@ -28,7 +90,8 @@ const HeroSection: React.FC = () => {
           style={{
             fontWeight: 'bold',
             marginBottom: 'var(--spacing-lg)',
-            lineHeight: '1.2',
+            lineHeight: '1.1',
+            fontSize: 'clamp(2.5rem, 6vw, 4rem)',
             fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
           }}
         >
@@ -56,6 +119,7 @@ const HeroSection: React.FC = () => {
             lineHeight: '1.6',
             maxWidth: '600px',
             margin: '0 auto var(--spacing-xl) auto',
+            fontSize: 'clamp(1.125rem, 2.5vw, 1.5rem)',
             fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
           }}
         >
@@ -77,27 +141,117 @@ const HeroSection: React.FC = () => {
         {/* زر من نحن */}
         <Button 
           variant="primary"
+          className="hero-about-btn"
           style={{
-            fontSize: 'var(--text-lg)',
-            padding: 'var(--spacing-lg) var(--spacing-2xl)',
+            fontSize: 'var(--text-xl)',
+            padding: 'var(--spacing-sm) var(--spacing-lg)',
             fontWeight: '600',
-            borderRadius: 'var(--radius-lg)',
-            boxShadow: '0 4px 15px rgba(220, 38, 38, 0.3)',
-            transition: 'all var(--transition-normal)',
+            borderRadius: 'var(--radius-md)',
+            transition: 'all 0.3s ease',
             fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow = '0 6px 20px rgba(220, 38, 38, 0.4)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 4px 15px rgba(220, 38, 38, 0.3)';
+            position: 'relative',
+            overflow: 'hidden',
+            border: 'none',
+            marginBottom: 'var(--spacing-2xl)',
           }}
           onClick={() => console.log('من نحن')}
         >
           {language === 'ar' ? 'من نحن' : 'About Us'}
         </Button>
+
+        {/* الإحصائيات */}
+        <div 
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: 'var(--spacing-lg)',
+            maxWidth: '600px',
+            margin: '0 auto',
+            width: '100%',
+          }}
+        >
+          {/* نسبة رضا العملاء */}
+          <div 
+            className="stat-card"
+            style={{
+              padding: 'var(--spacing-lg)',
+              borderRadius: 'var(--radius-lg)',
+              background: 'rgba(220, 38, 38, 0.05)',
+              border: '1px solid rgba(220, 38, 38, 0.15)',
+              transition: 'all 0.3s ease',
+              transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+              opacity: isVisible ? 1 : 0,
+              transitionDelay: '0.2s',
+              textAlign: 'center',
+            }}
+          >
+            <div style={{ marginBottom: 'var(--spacing-sm)' }}>
+              <Text 
+                size="3xl" 
+                color="brand" 
+                style={{
+                  fontWeight: 'bold',
+                  fontFamily: 'var(--font-english)',
+                  lineHeight: '1',
+                  fontSize: 'clamp(2rem, 5vw, 3rem)',
+                }}
+              >
+                {animatedStats.satisfaction}%
+              </Text>
+            </div>
+            <Text 
+              size="lg" 
+              color="primary"
+              style={{
+                fontWeight: '500',
+                fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
+              }}
+            >
+              {language === 'ar' ? 'نسبة رضا العملاء' : 'Customer Satisfaction'}
+            </Text>
+          </div>
+
+          {/* عدد الحملات الناجحة */}
+          <div 
+            className="stat-card"
+            style={{
+              padding: 'var(--spacing-lg)',
+              borderRadius: 'var(--radius-lg)',
+              background: 'rgba(220, 38, 38, 0.05)',
+              border: '1px solid rgba(220, 38, 38, 0.15)',
+              transition: 'all 0.3s ease',
+              transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+              opacity: isVisible ? 1 : 0,
+              transitionDelay: '0.4s',
+              textAlign: 'center',
+            }}
+          >
+            <div style={{ marginBottom: 'var(--spacing-sm)' }}>
+              <Text 
+                size="3xl" 
+                color="brand" 
+                style={{
+                  fontWeight: 'bold',
+                  fontFamily: 'var(--font-english)',
+                  lineHeight: '1',
+                  fontSize: 'clamp(2rem, 5vw, 3rem)',
+                }}
+              >
+                +{animatedStats.campaigns}
+              </Text>
+            </div>
+            <Text 
+              size="lg" 
+              color="primary"
+              style={{
+                fontWeight: '500',
+                fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
+              }}
+            >
+              {language === 'ar' ? 'حملة ناجحة تم تنفيذها' : 'Successful Campaigns'}
+            </Text>
+          </div>
+        </div>
       </div>
       
       {/* شعاع إضافي في الخلفية */}

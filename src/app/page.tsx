@@ -3,6 +3,7 @@
 import { Text } from '@/components/ui/BrandComponents';
 import Header from '@/components/ui/Header';
 import HeroSection from '@/components/ui/HeroSection';
+
 import { LanguageProvider, useLanguage } from '@/providers/LanguageProvider';
 
 function HomeContent() {
@@ -12,6 +13,7 @@ function HomeContent() {
     <>
       <Header />
       <HeroSection />
+     
       
       {/* باقي الأقسام ممكن تضاف هنا */}
       <div style={{
