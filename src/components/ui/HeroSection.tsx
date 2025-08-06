@@ -66,6 +66,7 @@ const HeroSection: React.FC = () => {
   return (
     <section 
       ref={sectionRef}
+      className="hero-section"
       style={{
         minHeight: '80vh', // زيادة الارتفاع عشان الإحصائيات
         background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.3) 0%, rgba(220, 38, 38, 0.1) 30%, var(--bg-primary) 50%)',
@@ -77,7 +78,7 @@ const HeroSection: React.FC = () => {
         padding: 'var(--spacing-xl) var(--spacing-lg)',
       }}
     >
-      <div className="container" style={{ 
+      <div className="container hero-container" style={{ 
         textAlign: 'center', 
         maxWidth: '900px',
         padding: 'var(--spacing-lg) var(--spacing-md)',
@@ -87,6 +88,7 @@ const HeroSection: React.FC = () => {
           size="5xl" 
           color="primary" 
           as="h1"
+          className="hero-title"
           style={{
             fontWeight: 'bold',
             marginBottom: 'var(--spacing-lg)',
@@ -114,6 +116,7 @@ const HeroSection: React.FC = () => {
         <Text 
           size="lg" 
           color="secondary"
+          className="hero-description"
           style={{
             marginBottom: 'var(--spacing-xl)',
             lineHeight: '1.6',
@@ -161,6 +164,7 @@ const HeroSection: React.FC = () => {
 
         {/* الإحصائيات */}
         <div 
+          className="stats-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
@@ -254,7 +258,7 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
       
-      {/* شعاع إضافي في الخلفية */}
+      {/* شعاع إضافي في الخلفية مع كسر في النهاية */}
       <div 
         style={{
           position: 'absolute',
@@ -265,6 +269,20 @@ const HeroSection: React.FC = () => {
           background: 'radial-gradient(ellipse at top left, rgba(220, 38, 38, 0.15) 0%, transparent 50%)',
           pointerEvents: 'none',
           zIndex: -1,
+        }}
+      />
+      
+      {/* كسر الشعاع في النهاية للانتقال للقسم التالي */}
+      <div 
+        style={{
+          position: 'absolute',
+          bottom: '-1px',
+          left: 0,
+          width: '100%',
+          height: '50px',
+          background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.2) 0%, rgba(220, 38, 38, 0.1) 50%, transparent 100%)',
+          clipPath: 'polygon(0 0, 100% 0, 85% 100%, 0% 100%)',
+          zIndex: 1,
         }}
       />
     </section>

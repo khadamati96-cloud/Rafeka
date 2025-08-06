@@ -3,6 +3,9 @@
 import { Text } from '@/components/ui/BrandComponents';
 import Header from '@/components/ui/Header';
 import HeroSection from '@/components/ui/HeroSection';
+import LogosSection from '@/components/ui/LogosSection';
+import ServicesSection from '@/components/ui/ServicesSection';
+import VideoSection from '@/components/ui/VideoSection';
 
 import { LanguageProvider, useLanguage } from '@/providers/LanguageProvider';
 
@@ -13,6 +16,9 @@ function HomeContent() {
     <>
       <Header />
       <HeroSection />
+      <LogosSection />
+      <ServicesSection />
+      <VideoSection />
      
       
       {/* باقي الأقسام ممكن تضاف هنا */}

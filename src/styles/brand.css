@@ -41,7 +41,8 @@
   --spacing-md: 1rem;
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
-  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
   
   /* الخطوط */
   --font-arabic: 'ExpoArabic', 'Cairo', 'Noto Sans Arabic', Arial, sans-serif;
@@ -413,5 +414,282 @@ body {
     --text-2xl: 2.25rem;
     --text-xl: 1.75rem;
     --text-lg: 1.375rem;
+  }
+}
+
+/* ========== أنيميشن للشعاع المتوهج ========== */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+/* ========== أنيميشن للجزيئات المتحركة ========== */
+@keyframes float-particle {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translateY(-10px) translateX(5px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-5px) translateX(-3px);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(-15px) translateX(7px);
+    opacity: 0.9;
+  }
+}
+
+/* ========== أنيميشن للشعارات ========== */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.logo-item {
+  animation: float 6s ease-in-out infinite;
+}
+
+.logo-item:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.logo-item:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.logo-item:nth-child(4) {
+  animation-delay: 1.5s;
+}
+
+.logo-item:nth-child(5) {
+  animation-delay: 2s;
+}
+
+.logo-item:nth-child(6) {
+  animation-delay: 2.5s;
+}
+
+/* تحسينات للجوال */
+@media (max-width: 768px) {
+  .logo-item {
+    padding: var(--spacing-md) !important;
+    min-height: 80px !important;
+    animation: none; /* إيقاف الأنيميشن العائم على الجوال */
+  }
+  
+  .logo-item img {
+    max-width: 100px !important;
+    max-height: 50px !important;
+  }
+  
+  /* تحسين شبكة الشعارات للجوال */
+  .logos-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: var(--spacing-md) !important;
+  }
+  
+  /* تحسين شبكة الخدمات للجوال - كل خدمة في صف منفصل */
+  .services-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--spacing-lg) !important;
+  }
+  
+  .service-card {
+    margin: 0 auto !important;
+    max-width: 350px !important; /* حد أقصى للعرض للحصول على مظهر أفضل */
+    padding: var(--spacing-lg) !important; /* زيادة المسافة الداخلية */
+    min-height: 320px !important; /* زيادة الارتفاع لمظهر أفضل */
+  }
+  
+  .service-card:active {
+    transform: scale(0.98) !important;
+    transition: transform 0.1s ease !important;
+  }
+}
+
+/* تحسينات للشاشات المتوسطة (التابلت) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: var(--spacing-xl) !important;
+  }
+  
+  .service-card {
+    padding: var(--spacing-xl) !important;
+  }
+}
+
+/* تأثيرات اللمس للجوال */
+@media (max-width: 768px) {
+  .logo-item:active {
+    transform: scale(0.95) !important;
+    background: rgba(220, 38, 38, 0.1) !important;
+    transition: all 0.1s ease !important;
+  }
+}
+
+/* تحسينات محاذاة الهيرو للجوال */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: var(--spacing-lg) var(--spacing-sm) !important;
+    text-align: center !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .hero-container {
+    margin: 0 auto !important;
+    padding: 0 var(--spacing-sm) !important;
+    width: 100% !important;
+    max-width: none !important;
+    text-align: center !important;
+  }
+  
+  .hero-title {
+    text-align: center !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+  }
+  
+  .hero-description {
+    text-align: center !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+  }
+  
+  .stats-grid {
+    justify-content: center !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+  }
+  
+  .stat-card {
+    text-align: center !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* ========== تصميم كروت الخدمات الفخمة ========== */
+.service-card {
+  position: relative;
+  perspective: 1000px;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(220, 38, 38, 0.1) 50%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-card:hover {
+  transform: translateY(-10px) scale(1.02) !important;
+  border-color: rgba(220, 38, 38, 0.3) !important;
+  box-shadow: 0 20px 40px rgba(220, 38, 38, 0.2) !important;
+}
+
+/* تأثيرات النص المتدرجة */
+.gradient-text {
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--brand-red) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* تحسين الأزرار في كروت الخدمات */
+.service-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.service-btn:hover::before {
+  left: 100%;
+}
+
+/* ========== أنيميشن للفيديو ========== */
+@keyframes pulse-border {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  33% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  66% {
+    transform: translateY(10px) translateX(-10px);
+  }
+}
+
+/* تحسينات للفيديو على الجوال */
+@media (max-width: 768px) {
+  .video-container {
+    margin: 0 var(--spacing-sm) !important;
+    border-radius: 16px !important;
+  }
+  
+  .video-controls button {
+    width: 60px !important;
+    height: 60px !important;
+    font-size: 20px !important;
   }
 }
