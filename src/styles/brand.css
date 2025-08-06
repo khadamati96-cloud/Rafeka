@@ -276,11 +276,6 @@ body {
   .mobile-menu-btn {
     display: flex !important;
   }
-  
-  /* تقليل المسافات في الشاشات الصغيرة */
-  header {
-    margin-top: 10px !important;
-  }
 }
 
 @media (min-width: 769px) {

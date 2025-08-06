@@ -19,6 +19,8 @@ const Header: React.FC = () => {
         top: 0,
         zIndex: 1000,
         backdropFilter: 'blur(10px)',
+        margin: 0,
+        padding: 0,
       }}
     >
       <div className="container">
