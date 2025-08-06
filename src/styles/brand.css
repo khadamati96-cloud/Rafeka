@@ -869,6 +869,75 @@ body {
   }
 }
 
+/* ========== تأثيرات قسم المشروع الجديد ========== */
+/* تأثير الإضاءة للزر */
+.button-glow:hover {
+  width: 300px !important;
+  height: 300px !important;
+}
+
+/* أنيميشن التموج للزر */
+@keyframes button-ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
+}
+
+/* تحسينات قسم المشروع الجديد للجوال */
+@media (max-width: 768px) {
+  .new-project-section {
+    padding: var(--spacing-3xl) var(--spacing-md) !important;
+    min-height: 60vh !important;
+  }
+  
+  .new-project-btn {
+    min-width: 200px !important;
+    padding: var(--spacing-md) var(--spacing-xl) !important;
+    font-size: 1rem !important;
+  }
+  
+  .new-project-title {
+    font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
+    margin-bottom: var(--spacing-lg) !important;
+  }
+  
+  .new-project-description {
+    font-size: clamp(1rem, 3vw, 1.2rem) !important;
+    padding: 0 var(--spacing-sm) !important;
+  }
+  
+  .new-project-badge {
+    font-size: 0.8rem !important;
+    padding: var(--spacing-xs) var(--spacing-md) !important;
+  }
+}
+
+/* تأثير النقر للجوال */
+@media (max-width: 768px) {
+  .new-project-btn:active {
+    transform: scale(0.95) !important;
+    transition: transform 0.1s ease !important;
+  }
+  
+  .new-project-btn:active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: button-ripple 0.6s linear;
+  }
+}
+
 /* تأثير التحويم للإحصائيات */
 .stats-grid > div:hover .stat-hover-effect {
   opacity: 1;

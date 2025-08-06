@@ -169,7 +169,7 @@ const TestimonialsSection: React.FC = () => {
           <div 
             style={{
               display: 'flex',
-              transform: `translateX(${language === 'ar' ? currentIndex * 100 : currentIndex * -100}%)`,
+              transform: `translateX(${currentIndex * -100}%)`,
               transition: 'transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)',
             }}
           >
@@ -211,6 +211,12 @@ const TestimonialsSection: React.FC = () => {
                   >
                     {language === 'ar' ? testimonial.contentAr : testimonial.contentEn}
                   </Text>
+                  {/* Debug: تحقق من وجود المحتوى */}
+                  {process.env.NODE_ENV === 'development' && (
+                    <div style={{ fontSize: '10px', color: 'red', marginTop: '5px' }}>
+                      Debug: {language} - Content: {(language === 'ar' ? testimonial.contentAr : testimonial.contentEn)?.substring(0, 50)}...
+                    </div>
+                  )}
                 </div>
 
                 {/* النجوم */}
