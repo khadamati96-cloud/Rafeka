@@ -167,8 +167,8 @@ const HeroSection: React.FC = () => {
           className="stats-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: 'var(--spacing-lg)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: 'var(--spacing-xl)',
             maxWidth: '600px',
             margin: '0 auto',
             width: '100%',
@@ -178,15 +178,20 @@ const HeroSection: React.FC = () => {
           <div 
             className="stat-card"
             style={{
-              padding: 'var(--spacing-lg)',
+              padding: 'var(--spacing-xl)',
               borderRadius: 'var(--radius-lg)',
-              background: 'rgba(220, 38, 38, 0.05)',
-              border: '1px solid rgba(220, 38, 38, 0.15)',
+              background: 'rgba(220, 38, 38, 0.08)',
+              border: '1px solid rgba(220, 38, 38, 0.2)',
               transition: 'all 0.3s ease',
               transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
               opacity: isVisible ? 1 : 0,
               transitionDelay: '0.2s',
               textAlign: 'center',
+              minHeight: '140px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
           >
             <div style={{ marginBottom: 'var(--spacing-sm)' }}>
@@ -209,6 +214,8 @@ const HeroSection: React.FC = () => {
               style={{
                 fontWeight: '500',
                 fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
+                fontSize: 'clamp(0.875rem, 3vw, 1rem)',
+                lineHeight: '1.3',
               }}
             >
               {language === 'ar' ? 'نسبة رضا العملاء' : 'Customer Satisfaction'}
@@ -219,15 +226,20 @@ const HeroSection: React.FC = () => {
           <div 
             className="stat-card"
             style={{
-              padding: 'var(--spacing-lg)',
+              padding: 'var(--spacing-xl)',
               borderRadius: 'var(--radius-lg)',
-              background: 'rgba(220, 38, 38, 0.05)',
-              border: '1px solid rgba(220, 38, 38, 0.15)',
+              background: 'rgba(220, 38, 38, 0.08)',
+              border: '1px solid rgba(220, 38, 38, 0.2)',
               transition: 'all 0.3s ease',
               transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
               opacity: isVisible ? 1 : 0,
               transitionDelay: '0.4s',
               textAlign: 'center',
+              minHeight: '140px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
           >
             <div style={{ marginBottom: 'var(--spacing-sm)' }}>
@@ -250,9 +262,11 @@ const HeroSection: React.FC = () => {
               style={{
                 fontWeight: '500',
                 fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
+                fontSize: 'clamp(0.875rem, 3vw, 1rem)',
+                lineHeight: '1.3',
               }}
             >
-              {language === 'ar' ? 'حملة ناجحة تم تنفيذها' : 'Successful Campaigns'}
+              {language === 'ar' ? 'حملات  تم تنفيذها' : 'Successful Campaigns'}
             </Text>
           </div>
         </div>
