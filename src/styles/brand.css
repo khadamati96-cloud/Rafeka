@@ -693,3 +693,39 @@ body {
     font-size: 20px !important;
   }
 }
+
+/* شبكة مميزات "لماذا تختارنا" */
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+}
+
+@media (min-width: 768px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* تأثير التحويم لبطاقات المميزات */
+.features-grid > div:hover .hover-effect {
+  opacity: 1;
+}
+
+/* تحسينات مميزات "لماذا تختارنا" للجوال */
+@media (max-width: 767px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  
+  .features-grid > div {
+    padding: var(--spacing-lg) !important;
+  }
+}

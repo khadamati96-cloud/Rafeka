@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Text } from './BrandComponents';
 import { useLanguage } from '../../providers/LanguageProvider';
-import VideoProtection from '../../lib/videoProtection';
 
 const VideoSection: React.FC = () => {
   const { language } = useLanguage();
@@ -33,29 +32,17 @@ const VideoSection: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  // تحميل الفيديو بنظام الحماية المتطور
+  // تحميل الفيديو
   useEffect(() => {
     if (isVisible && videoRef.current && !videoLoaded) {
-      const loadSecureVideo = async () => {
-        try {
-          setIsLoading(true);
-          const videoProtection = VideoProtection.getInstance();
-          const secureVideoUrl = await videoProtection.createSecureBlob();
-          
-          if (videoRef.current) {
-            videoRef.current.src = secureVideoUrl;
-            setVideoLoaded(true);
-            setIsLoading(false);
-            setVideoError(false);
-          }
-        } catch (error) {
-          console.error('خطأ في تحميل الفيديو:', error);
-          setVideoError(true);
-          setIsLoading(false);
-        }
-      };
-
-      loadSecureVideo();
+      setIsLoading(true);
+      // استخدام الرابط مباشرة بدون fetch لتجنب مشاكل CORS
+      const videoUrl = 'https://storage.googleapis.com/maintenanceapp-public/users/VideoCo.mp4';
+      
+      if (videoRef.current) {
+        videoRef.current.src = videoUrl;
+        setVideoLoaded(true);
+      }
     }
   }, [isVisible, videoLoaded]);
 
@@ -254,7 +241,10 @@ const VideoSection: React.FC = () => {
             }}
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
-            onError={() => setVideoError(true)}
+            onError={() => {
+              setVideoError(true);
+              setIsLoading(false);
+            }}
             // منع التحميل المباشر
             onContextMenu={(e) => e.preventDefault()}
             controlsList="nodownload nofullscreen noremoteplayback"
@@ -330,32 +320,6 @@ const VideoSection: React.FC = () => {
               animation: isVisible ? 'pulse-dot 2s ease-in-out infinite 1s' : 'none',
             }}
           />
-        </div>
-
-        {/* وصف تحت الفيديو */}
-        <div style={{
-          textAlign: 'center',
-          marginTop: 'var(--spacing-xl)',
-          transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-          opacity: isVisible ? 1 : 0,
-          transition: 'all 1s ease',
-          transitionDelay: '0.6s',
-        }}>
-          <Text 
-            size="lg" 
-            color="secondary"
-            style={{
-              fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-              fontSize: 'clamp(0.875rem, 1.8vw, 1rem)',
-              lineHeight: '1.6',
-              fontStyle: 'italic',
-            }}
-          >
-            {language === 'ar' 
-              ? '💡 فيديو توضيحي يعرض قدراتنا وخبراتنا في تقديم حلول رقمية متكاملة'
-              : '💡 Demonstration video showcasing our capabilities and expertise in delivering comprehensive digital solutions'
-            }
-          </Text>
         </div>
       </div>
 

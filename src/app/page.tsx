@@ -6,6 +6,7 @@ import HeroSection from '@/components/ui/HeroSection';
 import LogosSection from '@/components/ui/LogosSection';
 import ServicesSection from '@/components/ui/ServicesSection';
 import VideoSection from '@/components/ui/VideoSection';
+import WhyChooseUsSection from '@/components/ui/WhyChooseUsSection';
 
 import { LanguageProvider, useLanguage } from '@/providers/LanguageProvider';
 
@@ -19,6 +20,7 @@ function HomeContent() {
       <LogosSection />
       <ServicesSection />
       <VideoSection />
+      <WhyChooseUsSection />
      
       
       {/* باقي الأقسام ممكن تضاف هنا */}

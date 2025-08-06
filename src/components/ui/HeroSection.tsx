@@ -266,23 +266,9 @@ const HeroSection: React.FC = () => {
           left: 0,
           width: '100%',
           height: '100%',
-          background: 'radial-gradient(ellipse at top left, rgba(220, 38, 38, 0.15) 0%, transparent 50%)',
+          background: 'radial-gradient(ellipse at top left, rgba(220, 38, 38, 0.05) 0%, transparent 50%)',
           pointerEvents: 'none',
           zIndex: -1,
-        }}
-      />
-      
-      {/* كسر الشعاع في النهاية للانتقال للقسم التالي */}
-      <div 
-        style={{
-          position: 'absolute',
-          bottom: '-1px',
-          left: 0,
-          width: '100%',
-          height: '50px',
-          background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.2) 0%, rgba(220, 38, 38, 0.1) 50%, transparent 100%)',
-          clipPath: 'polygon(0 0, 100% 0, 85% 100%, 0% 100%)',
-          zIndex: 1,
         }}
       />
     </section>
