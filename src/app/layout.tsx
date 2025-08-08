@@ -26,6 +26,24 @@ export default function RootLayout({
     <html lang="ar" dir="rtl">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var saved = localStorage.getItem('language');
+                  var lang = (saved === 'ar' || saved === 'en') ? saved : 'ar';
+                  document.documentElement.lang = lang;
+                  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                } catch (e) {
+                  // fallback للحالات النادرة
+                  document.documentElement.lang = 'ar';
+                  document.documentElement.dir = 'rtl';
+                }
+              })();
+            `
+          }}
+        />
       </head>
       <body 
         className={`${geistSans.variable} ${geistMono.variable}`}

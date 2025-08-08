@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Language, translations, TranslationKey } from '../lib/translations';
 
 interface LanguageContextType {
@@ -25,13 +25,34 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('ar');
+  // قراءة اللغة من localStorage مباشرة (بدون وميض)
+  const [language, setLanguage] = useState<Language>(() => {
+    // إذا كنا على الكلاينت، اقرأ من localStorage فوراً
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('language') as Language;
+      return (saved === 'ar' || saved === 'en') ? saved : 'ar';
+    }
+    return 'ar';
+  });
+
+  // تحديث الـ HTML عند تغيير اللغة أو التحميل الأولي
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.lang = language;
+      
+      // تحديث الـ CSS custom property للـ direction
+      document.documentElement.style.setProperty('--text-direction', language === 'ar' ? 'rtl' : 'ltr');
+    }
+  }, [language]);
 
   const toggleLanguage = () => {
-    setLanguage(prev => prev === 'ar' ? 'en' : 'ar');
-    // تحديث direction في الـ HTML
-    document.documentElement.dir = language === 'ar' ? 'ltr' : 'rtl';
-    document.documentElement.lang = language === 'ar' ? 'en' : 'ar';
+    const newLanguage = language === 'ar' ? 'en' : 'ar';
+    setLanguage(newLanguage);
+    // حفظ اللغة في localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('language', newLanguage);
+    }
   };
 
   const t = (key: TranslationKey): string => {
