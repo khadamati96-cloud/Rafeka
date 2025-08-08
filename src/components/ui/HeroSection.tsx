@@ -68,7 +68,7 @@ const HeroSection: React.FC = () => {
       ref={sectionRef}
       className="hero-section"
       style={{
-        minHeight: '80vh', // زيادة الارتفاع عشان الإحصائيات
+        minHeight: '80vh',
         background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.3) 0%, rgba(220, 38, 38, 0.1) 30%, var(--bg-primary) 50%)',
         display: 'flex',
         flexDirection: 'column',
@@ -76,8 +76,53 @@ const HeroSection: React.FC = () => {
         justifyContent: 'center',
         position: 'relative',
         padding: 'var(--spacing-xl) var(--spacing-lg)',
-      }}
-    >
+      }}>
+      {/* صورة الخلفية للموبايل فقط */}
+      <div 
+        className="hero-mobile-bg"
+        style={{
+          position: 'absolute',
+          top: '20%',
+          left: 0,
+          width: '100%',
+          height: '80%',
+          backgroundImage: 'url(/heromobile.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.3,
+          zIndex: 2,
+          display: 'none',
+          pointerEvents: 'none',
+        }}
+      />
+
+      {/* ميديا كويري للجوال */}
+      <style>{`
+        @media (max-width: 768px) {
+          .hero-section {
+            padding-top: 4rem !important;
+            min-height: 70vh !important;
+            justify-content: flex-start !important;
+            padding-bottom: 2rem !important;
+          }
+          .hero-container {
+            margin-top: 1rem !important;
+            position: relative !important;
+            z-index: 3 !important;
+          }
+          .hero-title {
+            margin-bottom: 1rem !important;
+          }
+          .hero-description {
+            margin-bottom: 1.5rem !important;
+          }
+          .hero-mobile-bg {
+            display: block !important;
+          }
+        }
+      `}</style>
+   
       <div className="container hero-container" style={{ 
         textAlign: 'center', 
         maxWidth: '900px',
