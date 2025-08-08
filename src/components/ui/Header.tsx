@@ -85,7 +85,7 @@ const Header: React.FC = () => {
               <NavLink href="/about">{t('about')}</NavLink>
             </li>
             <li style={{ whiteSpace: 'nowrap' }}>
-              <NavLink href="#services">{t('services')}</NavLink>
+              <NavLink href="/services">{t('services')}</NavLink>
             </li>
             <li style={{ whiteSpace: 'nowrap' }}>
               <NavLink href="#portfolio">{t('portfolio')}</NavLink>
@@ -245,7 +245,7 @@ const Header: React.FC = () => {
               </li>
               <li>
                 <a
-                  href="#services"
+                  href="/services"
                   className="sidebar-link"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
