@@ -17,7 +17,17 @@ const ServicesSection: React.FC = () => {
       titleEn: 'Web Development',
       descriptionAr: 'نصمم ونطور مواقع إلكترونية متطورة وسريعة الاستجابة تعكس هوية علامتك التجارية بأحدث التقنيات',
       descriptionEn: 'We design and develop advanced, responsive websites that reflect your brand identity using the latest technologies',
-  icon: '/web.svg',
+      icon: (
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="3" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="2"/>
+          <path d="M3 8H21" stroke="currentColor" strokeWidth="2"/>
+          <circle cx="6.5" cy="5.5" r="0.5" fill="currentColor"/>
+          <circle cx="8.5" cy="5.5" r="0.5" fill="currentColor"/>
+          <circle cx="10.5" cy="5.5" r="0.5" fill="currentColor"/>
+          <path d="M8 11H16M8 13H14" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M3 19H21" stroke="currentColor" strokeWidth="2"/>
+        </svg>
+      ),
       gradient: 'linear-gradient(135deg, #DC2626 0%, #B91C1C 100%)',
       delay: '0s'
     },
@@ -27,7 +37,18 @@ const ServicesSection: React.FC = () => {
       titleEn: 'Digital Marketing',
       descriptionAr: 'استراتيجيات تسويقية مبتكرة ومدروسة لزيادة الوصول والمبيعات عبر جميع المنصات الرقمية',
       descriptionEn: 'Innovative and strategic marketing approaches to increase reach and sales across all digital platforms',
-  icon: '/DigitalMarketing.svg',
+      icon: (
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+          <path d="M3 12L21 12" stroke="currentColor" strokeWidth="2"/>
+          <path d="M3 6L21 6" stroke="currentColor" strokeWidth="2"/>
+          <path d="M3 18L21 18" stroke="currentColor" strokeWidth="2"/>
+          <circle cx="12" cy="12" r="2" fill="currentColor"/>
+          <path d="M16 8L20 4M20 8L16 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          <path d="M8 16L4 20M4 16L8 20" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          <circle cx="18" cy="6" r="1" fill="currentColor"/>
+          <circle cx="6" cy="18" r="1" fill="currentColor"/>
+        </svg>
+      ),
       gradient: 'linear-gradient(135deg, #DC2626 0%, #EF4444 100%)',
       delay: '0.2s'
     },
@@ -37,7 +58,18 @@ const ServicesSection: React.FC = () => {
       titleEn: 'Social Media Management',
       descriptionAr: 'إدارة شاملة واحترافية لحساباتك على منصات التواصل الاجتماعي مع محتوى جذاب ومؤثر',
       descriptionEn: 'Comprehensive and professional management of your social media accounts with engaging and impactful content',
-  icon: '/SocialMediaManagement.svg',
+      icon: (
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+          <circle cx="18" cy="6" r="3" stroke="currentColor" strokeWidth="2"/>
+          <circle cx="6" cy="18" r="3" stroke="currentColor" strokeWidth="2"/>
+          <circle cx="12" cy="12" r="2" stroke="currentColor" strokeWidth="2"/>
+          <path d="M8.5 16.5L10.5 14.5" stroke="currentColor" strokeWidth="2"/>
+          <path d="M13.5 9.5L15.5 7.5" stroke="currentColor" strokeWidth="2"/>
+          <path d="M9 15L15 9" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2"/>
+          <circle cx="18" cy="18" r="1" fill="currentColor"/>
+          <circle cx="6" cy="6" r="1" fill="currentColor"/>
+        </svg>
+      ),
       gradient: 'linear-gradient(135deg, #B91C1C 0%, #DC2626 100%)',
       delay: '0.4s'
     },
@@ -47,7 +79,13 @@ const ServicesSection: React.FC = () => {
       titleEn: 'Brand Design & Development',
       descriptionAr: 'تصميم هوية بصرية متكاملة ومميزة تعبر عن قيم علامتك التجارية وتترك انطباعاً لا يُنسى',
       descriptionEn: 'Complete and distinctive visual identity design that expresses your brand values and leaves an unforgettable impression',
-  icon: '/BrandDesignandDevelopment.svg',
+      icon: (
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="2"/>
+          <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M12 9V15M9 12H15" stroke="currentColor" strokeWidth="1"/>
+        </svg>
+      ),
       gradient: 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)',
       delay: '0.6s'
     }
@@ -174,10 +212,36 @@ const ServicesSection: React.FC = () => {
                 cursor: 'pointer',
                 overflow: 'hidden',
               }}
-              onMouseEnter={() => setHoveredService(service.id)}
-              onMouseLeave={() => setHoveredService(null)}
-              onTouchStart={() => setHoveredService(service.id)}
-              onTouchEnd={() => setTimeout(() => setHoveredService(null), 2000)}
+              onMouseEnter={(e) => {
+                setHoveredService(service.id);
+                const icon = e.currentTarget.querySelector('.service-icon') as HTMLElement;
+                if (icon) {
+                  icon.style.color = '#000000';
+                }
+              }}
+              onMouseLeave={(e) => {
+                setHoveredService(null);
+                const icon = e.currentTarget.querySelector('.service-icon') as HTMLElement;
+                if (icon) {
+                  icon.style.color = 'var(--text-primary)';
+                }
+              }}
+              onTouchStart={(e) => {
+                setHoveredService(service.id);
+                const icon = e.currentTarget.querySelector('.service-icon') as HTMLElement;
+                if (icon) {
+                  icon.style.color = '#000000';
+                }
+              }}
+              onTouchEnd={(e) => {
+                setTimeout(() => {
+                  setHoveredService(null);
+                  const icon = e.currentTarget.querySelector('.service-icon') as HTMLElement;
+                  if (icon) {
+                    icon.style.color = 'var(--text-primary)';
+                  }
+                }, 2000);
+              }}
             >
               {/* تأثير الخلفية المتحركة */}
               <div 
@@ -214,15 +278,18 @@ const ServicesSection: React.FC = () => {
               {/* محتوى الكارد */}
               <div style={{ position: 'relative', zIndex: 2 }}>
                 {/* الأيقونة */}
-                  <div style={{
-                    fontSize: 'clamp(2.5rem, 5vw, 3rem)', // زيادة حجم الأيقونة للجوال
+                <div 
+                  className="service-icon"
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                     marginBottom: 'var(--spacing-lg)',
-                    textAlign: 'center',
-                    color: '#000', // جعل لون الأيقونة أسود
+                    color: 'var(--text-primary)',
                     transform: hoveredService === service.id ? 'scale(1.2) rotate(10deg)' : 'scale(1)',
-                    transition: 'transform 0.5s ease',
+                    transition: 'all 0.5s ease',
                   }}>
-                  <img src={service.icon} alt={language === 'ar' ? service.titleAr : service.titleEn} style={{width: '3rem', height: '3rem', objectFit: 'contain', filter: 'brightness(0)' }} />
+                  {service.icon}
                 </div>
 
                 {/* العنوان */}
