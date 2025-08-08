@@ -17,7 +17,7 @@ const ServicesSection: React.FC = () => {
       titleEn: 'Web Development',
       descriptionAr: 'نصمم ونطور مواقع إلكترونية متطورة وسريعة الاستجابة تعكس هوية علامتك التجارية بأحدث التقنيات',
       descriptionEn: 'We design and develop advanced, responsive websites that reflect your brand identity using the latest technologies',
-      icon: '🌐',
+  icon: '/web.svg',
       gradient: 'linear-gradient(135deg, #DC2626 0%, #B91C1C 100%)',
       delay: '0s'
     },
@@ -27,7 +27,7 @@ const ServicesSection: React.FC = () => {
       titleEn: 'Digital Marketing',
       descriptionAr: 'استراتيجيات تسويقية مبتكرة ومدروسة لزيادة الوصول والمبيعات عبر جميع المنصات الرقمية',
       descriptionEn: 'Innovative and strategic marketing approaches to increase reach and sales across all digital platforms',
-      icon: '📈',
+  icon: '/DigitalMarketing.svg',
       gradient: 'linear-gradient(135deg, #DC2626 0%, #EF4444 100%)',
       delay: '0.2s'
     },
@@ -37,7 +37,7 @@ const ServicesSection: React.FC = () => {
       titleEn: 'Social Media Management',
       descriptionAr: 'إدارة شاملة واحترافية لحساباتك على منصات التواصل الاجتماعي مع محتوى جذاب ومؤثر',
       descriptionEn: 'Comprehensive and professional management of your social media accounts with engaging and impactful content',
-      icon: '📱',
+  icon: '/SocialMediaManagement.svg',
       gradient: 'linear-gradient(135deg, #B91C1C 0%, #DC2626 100%)',
       delay: '0.4s'
     },
@@ -47,7 +47,7 @@ const ServicesSection: React.FC = () => {
       titleEn: 'Brand Design & Development',
       descriptionAr: 'تصميم هوية بصرية متكاملة ومميزة تعبر عن قيم علامتك التجارية وتترك انطباعاً لا يُنسى',
       descriptionEn: 'Complete and distinctive visual identity design that expresses your brand values and leaves an unforgettable impression',
-      icon: '🎨',
+  icon: '/BrandDesignandDevelopment.svg',
       gradient: 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)',
       delay: '0.6s'
     }
@@ -214,14 +214,15 @@ const ServicesSection: React.FC = () => {
               {/* محتوى الكارد */}
               <div style={{ position: 'relative', zIndex: 2 }}>
                 {/* الأيقونة */}
-                <div style={{
-                  fontSize: 'clamp(2.5rem, 5vw, 3rem)', // زيادة حجم الأيقونة للجوال
-                  marginBottom: 'var(--spacing-lg)',
-                  textAlign: 'center',
-                  transform: hoveredService === service.id ? 'scale(1.2) rotate(10deg)' : 'scale(1)',
-                  transition: 'transform 0.5s ease',
-                }}>
-                  {service.icon}
+                  <div style={{
+                    fontSize: 'clamp(2.5rem, 5vw, 3rem)', // زيادة حجم الأيقونة للجوال
+                    marginBottom: 'var(--spacing-lg)',
+                    textAlign: 'center',
+                    color: '#000', // جعل لون الأيقونة أسود
+                    transform: hoveredService === service.id ? 'scale(1.2) rotate(10deg)' : 'scale(1)',
+                    transition: 'transform 0.5s ease',
+                  }}>
+                  <img src={service.icon} alt={language === 'ar' ? service.titleAr : service.titleEn} style={{width: '3rem', height: '3rem', objectFit: 'contain', filter: 'brightness(0)' }} />
                 </div>
 
                 {/* العنوان */}
