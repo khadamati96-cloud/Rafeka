@@ -45,6 +45,9 @@ export default function RootLayout({
             `
           }}
         />
+        {process.env.NODE_ENV === 'development' && (
+          <script src="http://localhost:8097"></script>
+        )}
       </head>
       <body 
         className={`${geistSans.variable} ${geistMono.variable}`}
