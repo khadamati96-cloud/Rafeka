@@ -8,6 +8,7 @@ interface LanguageContextType {
   toggleLanguage: () => void;
   t: (key: TranslationKey) => string;
   dir: 'rtl' | 'ltr';
+  isLoaded: boolean;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -25,26 +26,36 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  // قراءة اللغة من localStorage مباشرة (بدون وميض)
-  const [language, setLanguage] = useState<Language>(() => {
-    // إذا كنا على الكلاينت، اقرأ من localStorage فوراً
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('language') as Language;
-      return (saved === 'ar' || saved === 'en') ? saved : 'ar';
-    }
-    return 'ar';
-  });
+  const [language, setLanguage] = useState<Language>('ar');
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  // تحديث الـ HTML عند تغيير اللغة أو التحميل الأولي
+  // تحميل اللغة من localStorage عند التحميل
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    const saved = localStorage.getItem('language') as Language;
+    const initialLanguage = (saved === 'ar' || saved === 'en') ? saved : 'ar';
+    setLanguage(initialLanguage);
+    setIsLoaded(true);
+    
+    // تحديث الـ HTML
+    document.documentElement.dir = initialLanguage === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = initialLanguage;
+    document.documentElement.setAttribute('data-lang', initialLanguage);
+    
+    // تحديث الـ CSS custom property للـ direction
+    document.documentElement.style.setProperty('--text-direction', initialLanguage === 'ar' ? 'rtl' : 'ltr');
+  }, []);
+
+  // تحديث الـ HTML عند تغيير اللغة
+  useEffect(() => {
+    if (isLoaded) {
       document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
       document.documentElement.lang = language;
+      document.documentElement.setAttribute('data-lang', language);
       
       // تحديث الـ CSS custom property للـ direction
       document.documentElement.style.setProperty('--text-direction', language === 'ar' ? 'rtl' : 'ltr');
     }
-  }, [language]);
+  }, [language, isLoaded]);
 
   const toggleLanguage = () => {
     const newLanguage = language === 'ar' ? 'en' : 'ar';
@@ -66,6 +77,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     toggleLanguage,
     t,
     dir,
+    isLoaded,
   };
 
   return (

@@ -7,8 +7,29 @@ import LanguageToggle from './LanguageToggle';
 import { useLanguage } from '../../providers/LanguageProvider';
 
 const Header: React.FC = () => {
-  const { t, dir } = useLanguage();
+  const { t, dir, isLoaded } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // عدم إظهار المحتوى حتى يتم تحميل اللغة
+  if (!isLoaded) {
+    return (
+      <header 
+        style={{
+          background: 'linear-gradient(to right, rgba(220, 38, 38, 0.5) 0%, rgba(220, 38, 38, 0.2) 25%, var(--bg-primary) 45%)',
+          borderBottom: '1px solid var(--border-color)',
+          position: 'sticky',
+          top: 0,
+          zIndex: 1000,
+          backdropFilter: 'blur(10px)',
+          margin: 0,
+          padding: 0,
+          height: '70px',
+        }}
+      >
+        <div className="container" style={{ height: '100%' }}></div>
+      </header>
+    );
+  }
 
   return (
     <header 

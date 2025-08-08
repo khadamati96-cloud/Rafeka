@@ -5,7 +5,23 @@ import { Text } from './BrandComponents';
 import { useLanguage } from '../../providers/LanguageProvider';
 
 const Footer: React.FC = () => {
-  const { language } = useLanguage();
+  const { language, isLoaded } = useLanguage();
+
+  // عدم إظهار المحتوى حتى يتم تحميل اللغة
+  if (!isLoaded) {
+    return (
+      <footer style={{
+        background: 'var(--bg-secondary)',
+        borderTop: '1px solid var(--border-color)',
+        padding: 'var(--spacing-xl) 0',
+        marginTop: 'auto',
+      }}>
+        <div className="container" style={{ textAlign: 'center' }}>
+          <div style={{ height: '100px' }}></div>
+        </div>
+      </footer>
+    );
+  }
 
   const socialLinks = [
     {

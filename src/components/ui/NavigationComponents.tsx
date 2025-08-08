@@ -29,7 +29,21 @@ interface NavLinkProps {
 }
 
 export const NavLink: React.FC<NavLinkProps> = ({ href, children, onClick }) => {
-  const { language } = useLanguage();
+  const { language, isLoaded } = useLanguage();
+  
+  // عدم إظهار المحتوى حتى يتم تحميل اللغة
+  if (!isLoaded) {
+    return (
+      <a href={href} onClick={onClick} style={{
+        display: 'inline-block',
+        padding: 'var(--spacing-sm) var(--spacing-md)',
+        color: 'transparent',
+        textDecoration: 'none',
+      }}>
+        {children}
+      </a>
+    );
+  }
   
   const hoverProps = useHoverEffect(
     {

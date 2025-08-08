@@ -5,7 +5,19 @@ import { useLanguage } from '../../providers/LanguageProvider';
 import { useHoverEffect } from './NavigationComponents';
 
 const LanguageToggle: React.FC = () => {
-  const { language, toggleLanguage } = useLanguage();
+  const { language, toggleLanguage, isLoaded } = useLanguage();
+
+  // عدم إظهار المحتوى حتى يتم تحميل اللغة
+  if (!isLoaded) {
+    return (
+      <div style={{
+        width: '40px',
+        height: '40px',
+        borderRadius: 'var(--radius-md)',
+        backgroundColor: 'transparent',
+      }}></div>
+    );
+  }
 
   const hoverProps = useHoverEffect(
     {

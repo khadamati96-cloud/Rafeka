@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl">
+    <html suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <script
@@ -35,10 +35,11 @@ export default function RootLayout({
                   var lang = (saved === 'ar' || saved === 'en') ? saved : 'ar';
                   document.documentElement.lang = lang;
                   document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                  document.documentElement.setAttribute('data-lang', lang);
                 } catch (e) {
-                  // fallback للحالات النادرة
                   document.documentElement.lang = 'ar';
                   document.documentElement.dir = 'rtl';
+                  document.documentElement.setAttribute('data-lang', 'ar');
                 }
               })();
             `
