@@ -12,42 +12,42 @@ const WhyChooseUsSection: React.FC = () => {
 
   const features = [
     {
-      icon: '🎯',
+  icon: '/customer.svg',
       titleAr: 'محورنا العميل',
       titleEn: 'Client-Focused',
       descriptionAr: 'العملاء أولويتنا، نركز على التواصل والشفافية والتعاون لتحقيق النجاح المستدام',
       descriptionEn: 'Our clients are our priority, we focus on communication, transparency and collaboration to achieve sustainable success'
     },
     {
-      icon: '⚡',
+  icon: '/Customizedsolutions.svg',
       titleAr: 'حلول مخصصة',
       titleEn: 'Custom Solutions',
       descriptionAr: 'نقوم بإنشاء استراتيجيات مخصصة لتلبية احتياجات وأهداف كل عميل',
       descriptionEn: 'We create customized strategies to meet the needs and goals of each client'
     },
     {
-      icon: '🏆',
+  icon: '/Provenexperience.svg',
       titleAr: 'خبرة مثبتة',
       titleEn: 'Proven Experience',
       descriptionAr: 'وكالة رفيقة تقدم تسويقًا رقميًا ناجحًا باستخدام أحدث الاتجاهات والتقنيات',
       descriptionEn: 'Rafeka agency delivers successful digital marketing using the latest trends and technologies'
     },
     {
-      icon: '🎨',
+  icon: '/Distinctivecreativity.svg',
       titleAr: 'إبداع متميز',
       titleEn: 'Distinguished Creativity',
       descriptionAr: 'نمزج بين الاستراتيجية والإبداع لنصنع حملات جذابة تقوي علامتك التجارية',
       descriptionEn: 'We blend strategy and creativity to create engaging campaigns that strengthen your brand'
     },
     {
-      icon: '📊',
+  icon: '/Wefocusonresults.svg',
       titleAr: 'نركز على النتائج',
       titleEn: 'Results-Focused',
       descriptionAr: 'نحقق نتائج قابلة للقياس باستخدام البيانات لتحسين الأداء وضمان العائد الاستثماري',
       descriptionEn: 'We achieve measurable results using data to improve performance and ensure ROI'
     },
     {
-      icon: '🚀',
+  icon: '/Innovativestrategies.svg',
       titleAr: 'استراتيجيات مبتكرة',
       titleEn: 'Innovative Strategies',
       descriptionAr: 'نعتمد على الابتكار والإبداع لتطوير استراتيجيات مدفوعة بالنمو',
@@ -212,7 +212,7 @@ const WhyChooseUsSection: React.FC = () => {
                   transitionDelay: `${index * 0.1 + 0.3}s`,
                 }}
               >
-                {feature.icon}
+                <img src={feature.icon} alt={language === 'ar' ? feature.titleAr : feature.titleEn} style={{width: '3rem', height: '3rem', objectFit: 'contain', filter: 'brightness(0)' }} />
               </div>
 
               {/* العنوان */}
