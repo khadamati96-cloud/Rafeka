@@ -245,26 +245,54 @@ function ServicesContent() {
         {
           titleAr: 'خبرة في السوق المحلي والعالمي',
           titleEn: 'Experience in local and global markets',
-          iconAr: '🌍',
-          iconEn: '🌍'
+          icon: (
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+              <path d="M12 2C12 2 8 6 8 12C8 18 12 22 12 22" stroke="currentColor" strokeWidth="2"/>
+              <path d="M12 2C12 2 16 6 16 12C16 18 12 22 12 22" stroke="currentColor" strokeWidth="2"/>
+              <path d="M2 12H22" stroke="currentColor" strokeWidth="2"/>
+              <path d="M5 7H19" stroke="currentColor" strokeWidth="1.5"/>
+              <path d="M5 17H19" stroke="currentColor" strokeWidth="1.5"/>
+            </svg>
+          )
         },
         {
           titleAr: 'حلول مخصصة لكل عميل',
           titleEn: 'Customized solutions for each client',
-          iconAr: '⚙️',
-          iconEn: '⚙️'
+          icon: (
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2"/>
+              <path d="M19.4 15C19.1 14.6 18.7 14.2 18.2 13.9" stroke="currentColor" strokeWidth="2"/>
+              <path d="M4.6 9C4.9 9.4 5.3 9.8 5.8 10.1" stroke="currentColor" strokeWidth="2"/>
+              <path d="M19.4 9C19.1 9.4 18.7 9.8 18.2 10.1" stroke="currentColor" strokeWidth="2"/>
+              <path d="M4.6 15C4.9 14.6 5.3 14.2 5.8 13.9" stroke="currentColor" strokeWidth="2"/>
+              <path d="M12 1V3" stroke="currentColor" strokeWidth="2"/>
+              <path d="M12 21V23" stroke="currentColor" strokeWidth="2"/>
+              <path d="M22 12H20" stroke="currentColor" strokeWidth="2"/>
+              <path d="M4 12H2" stroke="currentColor" strokeWidth="2"/>
+            </svg>
+          )
         },
         {
           titleAr: 'التزام بالمواعيد والجودة',
           titleEn: 'Commitment to deadlines and quality',
-          iconAr: '✅',
-          iconEn: '✅'
+          icon: (
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none"/>
+            </svg>
+          )
         },
         {
           titleAr: 'دعم فني متواصل',
           titleEn: 'Continuous technical support',
-          iconAr: '🔧',
-          iconEn: '🔧'
+          icon: (
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+              <path d="M14.7 6.3C16.2 7.8 16.2 10.2 14.7 11.7L11.7 14.7C10.2 16.2 7.8 16.2 6.3 14.7C4.8 13.2 4.8 10.8 6.3 9.3L9.3 6.3" stroke="currentColor" strokeWidth="2"/>
+              <path d="M9.3 17.7C7.8 16.2 7.8 13.8 9.3 12.3L12.3 9.3C13.8 7.8 16.2 7.8 17.7 9.3C19.2 10.8 19.2 13.2 17.7 14.7L14.7 17.7" stroke="currentColor" strokeWidth="2"/>
+              <path d="M14 10L10 14" stroke="currentColor" strokeWidth="2"/>
+            </svg>
+          )
         }
       ]
     },
@@ -546,30 +574,55 @@ function ServicesContent() {
                 style={{
                   display: 'flex',
                   alignItems: 'center',
+                  gap: 'var(--spacing-md)',
                   padding: 'var(--spacing-lg)',
                   background: 'rgba(255, 255, 255, 0.03)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '15px',
-                  transition: 'all 0.3s ease',
+                  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                   opacity: whyUsVisible ? 1 : 0,
                   transform: whyUsVisible ? 'translateY(0)' : 'translateY(20px)',
                   transitionDelay: `${index * 0.2}s`,
+                  cursor: 'pointer',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)';
-                  e.currentTarget.style.borderColor = 'rgba(220, 38, 38, 0.3)';
+                  const card = e.currentTarget;
+                  const icon = card.querySelector('.why-us-icon') as HTMLElement;
+                  
+                  card.style.transform = 'translateY(-10px) scale(1.02)';
+                  card.style.borderColor = 'rgba(220, 38, 38, 0.4)';
+                  card.style.boxShadow = '0 20px 40px rgba(220, 38, 38, 0.15)';
+                  card.style.background = 'rgba(255, 255, 255, 0.06)';
+                  
+                  if (icon) {
+                    icon.style.transform = 'rotate(10deg) scale(1.1)';
+                    icon.style.color = 'var(--brand-red)';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                  const card = e.currentTarget;
+                  const icon = card.querySelector('.why-us-icon') as HTMLElement;
+                  
+                  card.style.transform = whyUsVisible ? 'translateY(0)' : 'translateY(20px)';
+                  card.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                  card.style.boxShadow = 'none';
+                  card.style.background = 'rgba(255, 255, 255, 0.03)';
+                  
+                  if (icon) {
+                    icon.style.transform = 'rotate(0deg) scale(1)';
+                    icon.style.color = 'var(--text-primary)';
+                  }
                 }}
               >
-                <div style={{
-                  fontSize: '2rem',
-                  marginRight: language === 'ar' ? 'var(--spacing-lg)' : '0',
-                  marginLeft: language === 'en' ? 'var(--spacing-lg)' : '0',
-                }}>
-                  {language === 'ar' ? reason.iconAr : reason.iconEn}
+                <div 
+                  className="why-us-icon"
+                  style={{
+                    color: 'var(--text-primary)',
+                    transition: 'all 0.3s ease',
+                    display: 'inline-block',
+                    flexShrink: 0,
+                  }}>
+                  {reason.icon}
                 </div>
                 
                 <Text 
