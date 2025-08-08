@@ -289,7 +289,10 @@ function AboutContent() {
                 fontWeight: 'bold',
                 fontSize: 'clamp(2rem, 4vw, 3rem)',
                 fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-                color: 'var(--text-primary)',
+                background: 'linear-gradient(135deg, var(--text-primary) 0%, var(--brand-red) 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
                 marginBottom: 'var(--spacing-lg)',
               }}
             >
