@@ -246,6 +246,28 @@ export default function ServicesClient() {
 					<Link href="/#contact" style={{ textDecoration: 'none' }}>
 						<Button variant="primary" style={{ padding: 'var(--spacing-md) var(--spacing-xl)', fontWeight: 600 }}>{t(servicesData.cta.buttonAr, servicesData.cta.buttonEn)}</Button>
 					</Link>
+					{/* زر واتساب مباشر */}
+					<a
+						href={`https://wa.me/905380330087?text=${encodeURIComponent(language === 'ar' ? 'مرحبا، أود البدء الآن.' : 'Hello, I want to start now.')}`}
+						target="_blank"
+						rel="noopener noreferrer"
+						style={{ textDecoration: 'none' }}
+					>
+						<Button
+							variant="secondary"
+							style={{
+								padding: 'var(--spacing-md) var(--spacing-xl)',
+								fontWeight: 600,
+								display: 'flex',
+								alignItems: 'center',
+								gap: '8px'
+							}}
+							aria-label={language === 'ar' ? 'تواصل واتساب' : 'WhatsApp Chat'}
+						>
+							<span style={{ fontSize: '18px' }}>💬</span>
+							{language === 'ar' ? 'واتساب' : 'WhatsApp'}
+						</Button>
+					</a>
 					<Link href="/" style={{ textDecoration: 'none' }}>
 						<Button variant="secondary" style={{ padding: 'var(--spacing-md) var(--spacing-xl)', fontWeight: 600 }}>{t('الصفحة الرئيسية','Home')}</Button>
 					</Link>

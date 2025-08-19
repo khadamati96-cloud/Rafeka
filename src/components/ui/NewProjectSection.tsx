@@ -120,7 +120,7 @@ const NewProjectSection: React.FC = () => {
             color: 'var(--brand-red)',
             fontWeight: '600',
           }}>
-            <span style={{ fontSize: '1.2rem' }}>🚀</span>
+            
             {language === 'ar' ? 'متاحون لمشروع جديد' : 'Available for New Project'}
           </div>
         </div>
