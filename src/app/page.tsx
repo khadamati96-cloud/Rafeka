@@ -1,4 +1,12 @@
 'use client';
+import type { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'الصفحة الرئيسية | Home',
+  description: 'Rafeka Agency | وكالة رافقة - حلول تطوير مواقع، تسويق رقمي، إدارة سوشيال ميديا، تصميم وهوية، وذكاء اصطناعي.',
+  alternates: { canonical: '/' },
+  keywords: ['Rafeka','وكالة رافقة','تطوير مواقع','التسويق الرقمي','Social Media','هوية بصرية','AI','Branding','Web agency'],
+  openGraph: { title: 'Rafeka Agency | الصفحة الرئيسية', description: 'حلول رقمية متكاملة تدعم نمو علامتك.', type: 'website' }
+};
 
 import { Text } from '@/components/ui/BrandComponents';
 import Header from '@/components/ui/Header';
@@ -19,6 +27,19 @@ function HomeContent() {
   
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context':'https://schema.org',
+            '@type':'WebPage',
+            name:'Rafeka Home',
+            inLanguage:'ar',
+            description:'وكالة رافقة - حلول رقمية شاملة.',
+            url:'/'
+          })
+        }}
+      />
       <Header />
       <HeroSection />
       <LogosSection />

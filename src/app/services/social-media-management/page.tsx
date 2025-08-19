@@ -1,4 +1,12 @@
 'use client';
+import type { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Social Media Management | إدارة السوشيال ميديا',
+  description: 'Strategic social media management, content creation, engagement & analytics. إدارة السوشيال ميديا باحتراف وتحليل التفاعل.',
+  alternates: { canonical: '/services/social-media-management' },
+  keywords: ['social media management','إدارة السوشيال ميديا','Rafeka','community management'],
+  openGraph: { title: 'Social Media Management | إدارة السوشيال ميديا', description: 'Content, engagement, optimization & reporting excellence.', type: 'article' }
+};
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/providers/LanguageProvider';
 import { Text, Button } from '@/components/ui/BrandComponents';
@@ -36,6 +44,21 @@ const SMMContent: React.FC = () => {
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context':'https://schema.org',
+            '@type':'Service',
+            name:'Social Media Management',
+            alternateName:'إدارة السوشيال ميديا',
+            serviceType:'SocialMediaManagement',
+            provider:{ '@type':'Organization', name:'Rafeka Agency' },
+            areaServed:'Worldwide',
+            availableChannel:{ '@type':'ServiceChannel', serviceUrl:'/services/social-media-management' }
+          })
+        }}
+      />
       <section style={{ padding:'clamp(3rem,6vw,5rem) var(--spacing-lg)', background:'linear-gradient(135deg, rgba(220,38,38,0.35) 0%, rgba(220,38,38,0.08) 45%, var(--bg-primary) 75%)', textAlign:'center', position:'relative' }}>
         <div style={{ maxWidth: 1000, margin:'0 auto' }}>
           <Text as='h1' size='4xl' style={{ fontWeight:'bold', fontSize:'clamp(2.25rem,5vw,3.5rem)', background:'linear-gradient(135deg,var(--text-primary),var(--brand-red))', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', marginBottom:'var(--spacing-xl)' }}>

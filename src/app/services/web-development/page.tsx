@@ -1,6 +1,18 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import type { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Web Development | تطوير المواقع',
+  description: 'High-performance, secure, scalable web development solutions. حلول تطوير مواقع عالية الأداء وآمنة وقابلة للتوسع.',
+  alternates: { canonical: '/services/web-development' },
+  keywords: ['web development','تطوير مواقع','Rafeka','وكالة رافقة','Next.js agency'],
+  openGraph: {
+    title: 'Web Development | تطوير المواقع',
+    description: 'High-performance web platforms with SEO, performance & security.',
+    type: 'article'
+  }
+};
 import { useLanguage } from '@/providers/LanguageProvider';
 import { Text, Button } from '@/components/ui/BrandComponents';
 import Link from 'next/link';
@@ -95,6 +107,21 @@ const WebDevContent: React.FC = () => {
 
   return (
     <main style={{ position: 'relative', overflow: 'hidden' }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context':'https://schema.org',
+            '@type':'Service',
+            name: 'Web Development',
+            alternateName: 'تطوير المواقع',
+            serviceType: 'WebDevelopment',
+            provider: { '@type':'Organization', name:'Rafeka Agency' },
+            areaServed: 'Worldwide',
+            availableChannel: { '@type':'ServiceChannel', serviceUrl:'/services/web-development' }
+          })
+        }}
+      />
       {/* Hero */}
       <section
         style={{

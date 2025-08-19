@@ -1,4 +1,12 @@
 'use client';
+import type { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Digital Marketing | التسويق الرقمي',
+  description: 'Data-driven digital marketing, SEO, paid media, conversion optimization. تسويق رقمي قائم على البيانات وتحسين محركات البحث والإعلانات.',
+  alternates: { canonical: '/services/digital-marketing' },
+  keywords: ['digital marketing','التسويق الرقمي','SEO','Rafeka','PPC agency'],
+  openGraph: { title: 'Digital Marketing | التسويق الرقمي', description: 'Full-funnel growth marketing & advanced analytics.', type: 'article' }
+};
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/providers/LanguageProvider';
 import { Text, Button } from '@/components/ui/BrandComponents';
@@ -29,6 +37,21 @@ const DMContent: React.FC = () => {
 
   return (
     <main style={{ position:'relative' }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context':'https://schema.org',
+            '@type':'Service',
+            name:'Digital Marketing',
+            alternateName:'التسويق الرقمي',
+            serviceType:'DigitalMarketing',
+            provider:{ '@type':'Organization', name:'Rafeka Agency' },
+            areaServed:'Worldwide',
+            availableChannel:{ '@type':'ServiceChannel', serviceUrl:'/services/digital-marketing' }
+          })
+        }}
+      />
       <section style={{
         padding: 'clamp(3rem,6vw,5rem) var(--spacing-lg)',
         background: 'linear-gradient(135deg, rgba(220,38,38,0.35) 0%, rgba(220,38,38,0.08) 45%, var(--bg-primary) 75%)',

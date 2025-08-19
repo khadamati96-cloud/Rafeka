@@ -1,4 +1,12 @@
 'use client';
+import type { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'خدماتنا | Our Services',
+  description: 'مجموعة خدمات رافقة: تطوير مواقع، تسويق رقمي، هوية بصرية، ذكاء اصطناعي، دعم فني واستضافة.',
+  alternates: { canonical: '/services' },
+  keywords: ['خدمات رقمية','digital services','Rafeka services','وكالة رافقة','web development','digital marketing','brand design','AI solutions'],
+  openGraph: { title: 'خدمات رافقة | Rafeka Services', description: 'حلول رقمية متكاملة متوافقة مع أهدافك.', type: 'website' }
+};
 
 import React, { useState, useEffect } from 'react';
 import { Text } from '../../components/ui/BrandComponents';
@@ -308,6 +316,23 @@ function ServicesContent() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context':'https://schema.org',
+            '@type':'CollectionPage',
+            name:'Rafeka Services',
+            description:'صفحة تجمع خدمات تطوير الويب والتسويق والهوية والذكاء الاصطناعي.',
+            hasPart:[
+              { '@type':'Service', name:'Web Development', url:'/services/web-development' },
+              { '@type':'Service', name:'Digital Marketing', url:'/services/digital-marketing' },
+              { '@type':'Service', name:'Social Media Management', url:'/services/social-media-management' },
+              { '@type':'Service', name:'Brand Design', url:'/services/brand-design' }
+            ]
+          })
+        }}
+      />
       <Header />
       
       {/* قسم البطل - العنوان الرئيسي */}
