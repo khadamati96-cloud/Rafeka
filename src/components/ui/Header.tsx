@@ -88,12 +88,6 @@ const Header: React.FC = () => {
               <NavLink href="/services">{t('services')}</NavLink>
             </li>
             <li style={{ whiteSpace: 'nowrap' }}>
-              <NavLink href="#portfolio">{t('portfolio')}</NavLink>
-            </li>
-            <li style={{ whiteSpace: 'nowrap' }}>
-              <NavLink href="#partnerships">{t('partnerships')}</NavLink>
-            </li>
-            <li style={{ whiteSpace: 'nowrap' }}>
               <NavLink href="#contact">{t('contact')}</NavLink>
             </li>
           </ul>
@@ -250,24 +244,6 @@ const Header: React.FC = () => {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {t('services')}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#portfolio"
-                  className="sidebar-link"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {t('portfolio')}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#partnerships"
-                  className="sidebar-link"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {t('partnerships')}
                 </a>
               </li>
               <li>

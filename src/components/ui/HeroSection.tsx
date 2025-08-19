@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { Text, Button } from './BrandComponents';
 import { useLanguage } from '../../providers/LanguageProvider';
 
 const HeroSection: React.FC = () => {
   const { t, language } = useLanguage();
+  const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
   const [animatedStats, setAnimatedStats] = useState({
     satisfaction: 0,
@@ -202,7 +204,8 @@ const HeroSection: React.FC = () => {
             border: 'none',
             marginBottom: 'var(--spacing-2xl)',
           }}
-          onClick={() => console.log('من نحن')}
+          onClick={() => router.push('/about')}
+          aria-label={language === 'ar' ? 'الانتقال إلى صفحة من نحن' : 'Go to About Us page'}
         >
           {language === 'ar' ? 'من نحن' : 'About Us'}
         </Button>
