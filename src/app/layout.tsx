@@ -55,6 +55,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="theme-color" content="#0b0b0d" />
+  <meta name="google-site-verification" content="fzUF5NPGE7hf4h-O2nWxnSi2xODjkfiXVjn8d6V3y8o" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="alternate" hrefLang="ar" href={siteBaseUrl + '/'} />
         <link rel="alternate" hrefLang="en" href={siteBaseUrl + '/'} />
