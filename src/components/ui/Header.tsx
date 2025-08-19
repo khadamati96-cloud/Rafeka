@@ -1,13 +1,26 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { Logo, Button } from './BrandComponents';
 import { NavLink } from './NavigationComponents';
 import LanguageToggle from './LanguageToggle';
 import { useLanguage } from '../../providers/LanguageProvider';
 
 const Header: React.FC = () => {
-  const { t, dir, isLoaded } = useLanguage();
+  const { t, dir, isLoaded, language } = useLanguage();
+  const whatsappNumber = '905380330087';
+  const handleWhatsApp = () => {
+    const msg = encodeURIComponent(
+      language === 'ar'
+        ? 'مرحبا، أود التحدث معكم بخصوص خدماتكم.'
+        : 'Hello, I would like to talk about your services.'
+    );
+    const url = `https://wa.me/${whatsappNumber}?text=${msg}`;
+    if (typeof window !== 'undefined') {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  };
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // عدم إظهار المحتوى حتى يتم تحميل اللغة
@@ -56,11 +69,10 @@ const Header: React.FC = () => {
           }}
         >
           {/* الشعار */}
-          <div style={{ 
-            display: 'flex', 
-            alignItems: 'center',
-          }}>
-            <Logo type="name" size="normal" />
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Link href="/" aria-label={t('home')} style={{ display:'inline-flex', textDecoration:'none' }}>
+              <Logo type="name" size="normal" />
+            </Link>
           </div>
 
           {/* قائمة التنقل - للشاشات الكبيرة */}
@@ -113,7 +125,8 @@ const Header: React.FC = () => {
                   fontWeight: '600',
                   whiteSpace: 'nowrap',
                 }}
-                onClick={() => console.log('تواصل معنا')}
+                onClick={handleWhatsApp}
+                aria-label={language === 'ar' ? 'تواصل عبر واتساب' : 'Contact via WhatsApp'}
               >
                 {t('contactUs')}
               </Button>
@@ -187,7 +200,9 @@ const Header: React.FC = () => {
             alignItems: 'center',
             background: 'linear-gradient(to left, rgba(220, 38, 38, 0.1) 0%, transparent 50%)',
           }}>
-            <Logo type="name" size="normal" />
+            <Link href="/" aria-label={t('home')} style={{ display:'inline-flex' }} onClick={() => setIsMobileMenuOpen(false)}>
+              <Logo type="name" size="normal" />
+            </Link>
             <button 
               onClick={() => setIsMobileMenuOpen(false)}
               style={{
@@ -286,9 +301,10 @@ const Header: React.FC = () => {
                 display: 'block',
               }}
               onClick={() => {
-                console.log('تواصل معنا');
+                handleWhatsApp();
                 setIsMobileMenuOpen(false);
               }}
+              aria-label={language === 'ar' ? 'تواصل عبر واتساب' : 'Contact via WhatsApp'}
             >
               {t('contactUs')}
             </Button>
