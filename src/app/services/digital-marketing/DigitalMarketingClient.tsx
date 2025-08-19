@@ -36,7 +36,7 @@ export default function DigitalMarketingClient(){
       <div style={{textAlign:'center',marginBottom:'var(--spacing-6xl)'}}>
         <Text as='h2' size='2xl' style={{fontWeight:700,marginBottom:'var(--spacing-lg)'}}>{t('ابدأ تسريع النمو','Your growth acceleration starts here')}</Text>
         <div style={{display:'flex',justifyContent:'center',gap:'var(--spacing-lg)',flexWrap:'wrap'}}>
-          <Link href="/#contact" style={{textDecoration:'none'}}><Button variant='primary' style={{padding:'var(--spacing-md) var(--spacing-xl)',fontWeight:600}}>{t('تواصل معنا','Contact Us')}</Button></Link>
+          <Link href="/contact" style={{textDecoration:'none'}}><Button variant='primary' style={{padding:'var(--spacing-md) var(--spacing-xl)',fontWeight:600}}>{t('تواصل معنا','Contact Us')}</Button></Link>
           <Link href="/services" style={{textDecoration:'none'}}><Button variant='secondary' style={{padding:'var(--spacing-md) var(--spacing-xl)',fontWeight:600}}>{t('رجوع للخدمات','Back to Services')}</Button></Link>
         </div>
       </div>

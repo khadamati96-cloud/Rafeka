@@ -100,7 +100,7 @@ const Header: React.FC = () => {
               <NavLink href="/services">{t('services')}</NavLink>
             </li>
             <li style={{ whiteSpace: 'nowrap' }}>
-              <NavLink href="#contact">{t('contact')}</NavLink>
+              <NavLink href="/contact">{t('contact')}</NavLink>
             </li>
           </ul>
 
@@ -262,13 +262,13 @@ const Header: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <a
-                  href="#contact"
+                <Link
+                  href="/contact"
                   className="sidebar-link"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {t('contact')}
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

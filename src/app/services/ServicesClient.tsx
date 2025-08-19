@@ -243,7 +243,7 @@ export default function ServicesClient() {
 				<Text as="h2" size="3xl" style={{ fontWeight: 800, marginBottom: 'var(--spacing-lg)' }}>{t(servicesData.cta.titleAr, servicesData.cta.titleEn)}</Text>
 				<Text size="lg" style={{ maxWidth: 760, margin: '0 auto var(--spacing-2xl)', lineHeight: 1.7, color: 'var(--text-secondary)' }}>{t(servicesData.cta.subtitleAr, servicesData.cta.subtitleEn)}</Text>
 				<div style={{ display: 'flex', gap: 20, justifyContent: 'center', flexWrap: 'wrap' }}>
-					<Link href="/#contact" style={{ textDecoration: 'none' }}>
+					<Link href="/contact" style={{ textDecoration: 'none' }}>
 						<Button variant="primary" style={{ padding: 'var(--spacing-md) var(--spacing-xl)', fontWeight: 600 }}>{t(servicesData.cta.buttonAr, servicesData.cta.buttonEn)}</Button>
 					</Link>
 					{/* زر واتساب مباشر */}
