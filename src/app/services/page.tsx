@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-// @ts-expect-error pending TS resolution of local client component
-import ServicesClient from './ServicesClient';
+import ServicesClient from '@/app/services/ServicesClient';
 import { LanguageProvider } from '@/providers/LanguageProvider';
 
 export const metadata: Metadata = {

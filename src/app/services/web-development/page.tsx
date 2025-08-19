@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   openGraph: { title: 'Web Development | تطوير المواقع', description: 'High-performance web platforms with SEO, performance & security.', type: 'article' }
 };
 
-// @ts-expect-error pending TS resolution of local client component
-import WebDevelopmentClient from './WebDevelopmentClient';
+import WebDevelopmentClient from '@/app/services/web-development/WebDevelopmentClient';
 
 export default function WebDevelopmentPage() { return <WebDevelopmentClient />; }

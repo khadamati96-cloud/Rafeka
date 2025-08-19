@@ -6,6 +6,5 @@ export const metadata: Metadata = {
   keywords: ['social media management','إدارة السوشيال ميديا','Rafeka','community management'],
   openGraph: { title: 'Social Media Management | إدارة السوشيال ميديا', description: 'Content, engagement, optimization & reporting excellence.', type: 'article' }
 };
-// @ts-expect-error - client component local file (ensure tsconfig includes app directory)
-import SocialMediaClient from './SocialMediaClient';
+import SocialMediaClient from '@/app/services/social-media-management/SocialMediaClient';
 export default function SocialMediaManagementPage(){ return <SocialMediaClient />; }

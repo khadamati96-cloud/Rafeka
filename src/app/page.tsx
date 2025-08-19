@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { LanguageProvider } from '@/providers/LanguageProvider';
-// @ts-expect-error pending TS resolution of local client component
-import HomeContent from './HomeContent';
+import HomeContent from '@/app/HomeContent';
 
 export const metadata: Metadata = {
   title: 'الصفحة الرئيسية | Home',
