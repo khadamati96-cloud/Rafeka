@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import { LanguageProvider, useLanguage } from '@/providers/LanguageProvider';
+import { useLanguage } from '@/providers/LanguageProvider';
 import { Text, Button } from '@/components/ui/BrandComponents';
 import Link from 'next/link';
 
@@ -45,16 +45,16 @@ const BrandContent: React.FC = () => {
 
   return (
     <main>
-      <section style={{ padding:'clamp(3rem,6vw,5rem) var(--spacing-lg)', background:'linear-gradient(135deg, rgba(168,85,247,0.3), rgba(0,0,0,0.4))', textAlign:'center', position:'relative' }}>
+      <section style={{ padding:'clamp(3rem,6vw,5rem) var(--spacing-lg)', background:'linear-gradient(135deg, rgba(220,38,38,0.35) 0%, rgba(220,38,38,0.08) 45%, var(--bg-primary) 75%)', textAlign:'center', position:'relative' }}>
         <div style={{ maxWidth: 1000, margin:'0 auto' }}>
-          <Text as='h1' size='4xl' style={{ fontWeight:'bold', fontSize:'clamp(2.25rem,5vw,3.5rem)', background:'linear-gradient(135deg,var(--text-primary),var(--brand-purple,var(--text-secondary)))', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', marginBottom:'var(--spacing-xl)' }}>
+          <Text as='h1' size='4xl' style={{ fontWeight:'bold', fontSize:'clamp(2.25rem,5vw,3.5rem)', background:'linear-gradient(135deg,var(--text-primary) 0%,var(--brand-red) 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', marginBottom:'var(--spacing-xl)' }}>
             {t('تصميم وتطوير الهوية', 'Brand Design & Development')}
           </Text>
           <Text size='xl' color='secondary' style={{ maxWidth:700, margin:'0 auto', fontSize:'clamp(1.05rem,2.2vw,1.35rem)', lineHeight:1.6 }}>
             {t('نبني هويات محمية، أنظمة تصميم قابلة للتوسع، ورسائل متسقة تدفع القيمة وتخلق ثقة طويلة الأمد.', 'We craft defensible identities, scalable design systems and coherent messaging that drive value and long-term trust.')}
           </Text>
         </div>
-        <div style={{ position:'absolute', inset:0, background:'radial-gradient(circle at 15% 70%, rgba(168,85,247,0.18), transparent 60%)' }}/>
+        <div style={{ position:'absolute', inset:0, background:'radial-gradient(circle at 15% 22%, rgba(220,38,38,0.16), transparent 62%)' }}/>
       </section>
       <section ref={ref} style={{ padding:'var(--spacing-4xl) var(--spacing-lg)', maxWidth:1200, margin:'0 auto' }}>
         {/* Pillars */}
@@ -83,13 +83,61 @@ const BrandContent: React.FC = () => {
         {/* Process */}
         <div style={{ marginBottom:'var(--spacing-5xl)' }}>
           <Text as='h2' size='3xl' style={{ fontWeight:'bold', textAlign:'center', marginBottom:'var(--spacing-3xl)', background:'linear-gradient(135deg,var(--text-primary),var(--brand-purple,var(--text-secondary)))', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>{t('منهجية العمل', 'Process Framework')}</Text>
-          <ol style={{ listStyle:'none', counterReset:'step', padding:0, margin:0, display:'grid', gap:'var(--spacing-xl)', gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))' }}>
-            {process.map((s,i)=> (
-              <li key={i} style={{ position:'relative', background:'rgba(255,255,255,0.04)', border:'1px solid rgba(255,255,255,0.1)', padding:'var(--spacing-xl) var(--spacing-lg)', borderRadius:20, transform: visible ? 'translateY(0)' : 'translateY(50px)', opacity: visible ? 1 : 0, transition:'all .85s ease', transitionDelay:`${i*0.1}s` }}>
-                <div style={{ position:'absolute', top:12, insetInlineStart:12, width:34, height:34, borderRadius:'50%', background:'linear-gradient(135deg,var(--brand-purple,#9333ea),transparent)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:14, fontWeight:600, color:'var(--text-primary)' }}>{i+1}</div>
-                <Text size='sm' style={{ fontWeight:600, paddingInlineStart: language==='ar'?0:0 }}>{s}</Text>
-              </li>
-            ))}
+          <ol style={{ listStyle:'none', padding:0, margin:0, display:'grid', gap:'var(--spacing-xl)', gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))' }}>
+            {process.map((s,i)=> {
+              const delay = `${i*0.1}s`;
+              return (
+                <li
+                  key={i}
+                  style={{
+                    background:'rgba(255,255,255,0.04)',
+                    border:'1px solid rgba(255,255,255,0.1)',
+                    padding:'var(--spacing-lg)',
+                    borderRadius:20,
+                    display:'flex',
+                    alignItems:'center',
+                    gap:'var(--spacing-md)',
+                    direction: language === 'ar' ? 'rtl' : 'ltr',
+                    transform: visible ? 'translateY(0)' : 'translateY(50px)',
+                    opacity: visible ? 1 : 0,
+                    transition:'all .85s ease',
+                    transitionDelay: delay,
+                    minHeight: 90
+                  }}
+                >
+                  <div
+                    style={{
+                      flexShrink:0,
+                      width:46,
+                      height:46,
+                      borderRadius:'50%',
+                      background:'linear-gradient(135deg,var(--brand-purple,#9333ea) 0%, rgba(147,51,234,0.25) 100%)',
+                      display:'flex',
+                      alignItems:'center',
+                      justifyContent:'center',
+                      fontSize:15,
+                      fontWeight:700,
+                      color:'var(--text-primary)',
+                      boxShadow:'0 4px 14px -4px rgba(147,51,234,0.5)',
+                      backdropFilter:'blur(4px)'
+                    }}
+                  >
+                    {i+1}
+                  </div>
+                  <Text
+                    size='sm'
+                    style={{
+                      fontWeight:600,
+                      lineHeight:1.5,
+                      flex:1,
+                      fontSize:'0.9rem'
+                    }}
+                  >
+                    {s}
+                  </Text>
+                </li>
+              );
+            })}
           </ol>
         </div>
         {/* CTA */}
@@ -105,10 +153,4 @@ const BrandContent: React.FC = () => {
   );
 };
 
-export default function BrandDesignPage(){
-  return (
-    <LanguageProvider>
-      <BrandContent />
-    </LanguageProvider>
-  );
-}
+export default function BrandDesignPage(){ return <BrandContent />; }

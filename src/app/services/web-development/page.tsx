@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { LanguageProvider, useLanguage } from '@/providers/LanguageProvider';
+import { useLanguage } from '@/providers/LanguageProvider';
 import { Text, Button } from '@/components/ui/BrandComponents';
 import Link from 'next/link';
 
@@ -99,7 +99,7 @@ const WebDevContent: React.FC = () => {
       <section
         style={{
           padding: 'clamp(3rem,6vw,5rem) var(--spacing-lg)',
-          background: 'linear-gradient(135deg, rgba(220,38,38,0.35) 0%, rgba(220,38,38,0.08) 40%, var(--bg-primary) 70%)',
+          background: 'linear-gradient(135deg, rgba(220,38,38,0.35) 0%, rgba(220,38,38,0.08) 45%, var(--bg-primary) 75%)',
           textAlign: 'center',
           position: 'relative'
         }}
@@ -128,7 +128,7 @@ const WebDevContent: React.FC = () => {
         <div style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(circle at 15% 20%, rgba(220,38,38,0.15), transparent 60%)',
+          background: 'radial-gradient(circle at 15% 22%, rgba(220,38,38,0.16), transparent 62%)',
           pointerEvents: 'none'
         }} />
       </section>
@@ -386,10 +386,4 @@ const WebDevContent: React.FC = () => {
   );
 };
 
-export default function WebDevelopmentPage() {
-  return (
-    <LanguageProvider>
-      <WebDevContent />
-    </LanguageProvider>
-  );
-}
+export default function WebDevelopmentPage() { return <WebDevContent />; }

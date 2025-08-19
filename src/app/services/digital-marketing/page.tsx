@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import { LanguageProvider, useLanguage } from '@/providers/LanguageProvider';
+import { useLanguage } from '@/providers/LanguageProvider';
 import { Text, Button } from '@/components/ui/BrandComponents';
 import Link from 'next/link';
 
@@ -31,7 +31,7 @@ const DMContent: React.FC = () => {
     <main style={{ position:'relative' }}>
       <section style={{
         padding: 'clamp(3rem,6vw,5rem) var(--spacing-lg)',
-        background: 'linear-gradient(135deg, rgba(220,38,38,0.3), rgba(0,0,0,0.4))',
+        background: 'linear-gradient(135deg, rgba(220,38,38,0.35) 0%, rgba(220,38,38,0.08) 45%, var(--bg-primary) 75%)',
         textAlign: 'center', position:'relative'
       }}>
         <div style={{ maxWidth: 1000, margin:'0 auto' }}>
@@ -42,7 +42,7 @@ const DMContent: React.FC = () => {
             {t('نصمم وننفذ حملات تسويق رقمية متكاملة تركز على النمو، جذب العملاء، ورفع معدل التحويل.', 'We design and execute integrated digital growth campaigns focused on acquisition, activation and conversion uplift.')}
           </Text>
         </div>
-        <div style={{ position:'absolute', inset:0, background:'radial-gradient(circle at 20% 25%, rgba(220,38,38,0.18), transparent 60%)' }}/>
+  <div style={{ position:'absolute', inset:0, background:'radial-gradient(circle at 15% 20%, rgba(220,38,38,0.15), transparent 60%)' }}/>
       </section>
       <section ref={ref} style={{ padding:'var(--spacing-4xl) var(--spacing-lg)', maxWidth:1200, margin:'0 auto' }}>
         {/* Pillars */}
@@ -101,10 +101,4 @@ const DMContent: React.FC = () => {
   );
 };
 
-export default function DigitalMarketingPage(){
-  return (
-    <LanguageProvider>
-      <DMContent />
-    </LanguageProvider>
-  );
-}
+export default function DigitalMarketingPage(){ return <DMContent />; }

@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Text } from './BrandComponents';
 import { useLanguage } from '../../providers/LanguageProvider';
+import Link from 'next/link';
 
 const ServicesSection: React.FC = () => {
   const { language } = useLanguage();
@@ -13,6 +14,7 @@ const ServicesSection: React.FC = () => {
   const services = [
     {
       id: 1,
+      href: '/services/web-development',
       titleAr: 'تطوير المواقع الإلكترونية',
       titleEn: 'Web Development',
       descriptionAr: 'نصمم ونطور مواقع إلكترونية متطورة وسريعة الاستجابة تعكس هوية علامتك التجارية بأحدث التقنيات',
@@ -33,6 +35,7 @@ const ServicesSection: React.FC = () => {
     },
     {
       id: 2,
+      href: '/services/digital-marketing',
       titleAr: 'التسويق الرقمي',
       titleEn: 'Digital Marketing',
       descriptionAr: 'استراتيجيات تسويقية مبتكرة ومدروسة لزيادة الوصول والمبيعات عبر جميع المنصات الرقمية',
@@ -54,6 +57,7 @@ const ServicesSection: React.FC = () => {
     },
     {
       id: 3,
+      href: '/services/social-media-management',
       titleAr: 'إدارة وسائل التواصل الاجتماعي',
       titleEn: 'Social Media Management',
       descriptionAr: 'إدارة شاملة واحترافية لحساباتك على منصات التواصل الاجتماعي مع محتوى جذاب ومؤثر',
@@ -75,6 +79,7 @@ const ServicesSection: React.FC = () => {
     },
     {
       id: 4,
+      href: '/services/brand-design',
       titleAr: 'تصميم وتطوير العلامات التجارية',
       titleEn: 'Brand Design & Development',
       descriptionAr: 'تصميم هوية بصرية متكاملة ومميزة تعبر عن قيم علامتك التجارية وتترك انطباعاً لا يُنسى',
@@ -192,9 +197,11 @@ const ServicesSection: React.FC = () => {
             alignItems: 'stretch',
           }}
         >
-          {services.map((service, index) => (
-            <div
+          {services.map((service) => (
+            <Link
               key={service.id}
+              href={service.href}
+              aria-label={language === 'ar' ? service.titleAr : service.titleEn}
               className="service-card"
               style={{
                 position: 'relative',
@@ -211,39 +218,22 @@ const ServicesSection: React.FC = () => {
                 transitionDelay: service.delay,
                 cursor: 'pointer',
                 overflow: 'hidden',
+                textDecoration: 'none',
+                outline: 'none'
               }}
               onMouseEnter={(e) => {
                 setHoveredService(service.id);
                 const icon = e.currentTarget.querySelector('.service-icon') as HTMLElement;
-                if (icon) {
-                  icon.style.color = '#000000';
-                }
+                if (icon) icon.style.color = '#000000';
               }}
               onMouseLeave={(e) => {
                 setHoveredService(null);
                 const icon = e.currentTarget.querySelector('.service-icon') as HTMLElement;
-                if (icon) {
-                  icon.style.color = 'var(--text-primary)';
-                }
+                if (icon) icon.style.color = 'var(--text-primary)';
               }}
-              onTouchStart={(e) => {
-                setHoveredService(service.id);
-                const icon = e.currentTarget.querySelector('.service-icon') as HTMLElement;
-                if (icon) {
-                  icon.style.color = '#000000';
-                }
-              }}
-              onTouchEnd={(e) => {
-                setTimeout(() => {
-                  setHoveredService(null);
-                  const icon = e.currentTarget.querySelector('.service-icon') as HTMLElement;
-                  if (icon) {
-                    icon.style.color = 'var(--text-primary)';
-                  }
-                }, 2000);
-              }}
+              onFocus={() => setHoveredService(service.id)}
+              onBlur={() => setHoveredService(null)}
             >
-              {/* تأثير الخلفية المتحركة */}
               <div 
                 style={{
                   position: 'absolute',
@@ -257,8 +247,6 @@ const ServicesSection: React.FC = () => {
                   borderRadius: '20px',
                 }}
               />
-
-              {/* شعاع متحرك */}
               <div 
                 style={{
                   position: 'absolute',
@@ -274,10 +262,7 @@ const ServicesSection: React.FC = () => {
                   filter: 'blur(10px)',
                 }}
               />
-
-              {/* محتوى الكارد */}
               <div style={{ position: 'relative', zIndex: 2 }}>
-                {/* الأيقونة */}
                 <div 
                   className="service-icon"
                   style={{
@@ -291,8 +276,6 @@ const ServicesSection: React.FC = () => {
                   }}>
                   {service.icon}
                 </div>
-
-                {/* العنوان */}
                 <Text 
                   size="xl" 
                   color="primary" 
@@ -302,20 +285,18 @@ const ServicesSection: React.FC = () => {
                     marginBottom: 'var(--spacing-md)',
                     textAlign: 'center',
                     fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-                    fontSize: 'clamp(1.125rem, 3vw, 1.375rem)', // تحسين حجم العنوان
+                    fontSize: 'clamp(1.125rem, 3vw, 1.375rem)',
                     lineHeight: '1.3',
                   }}
                 >
                   {language === 'ar' ? service.titleAr : service.titleEn}
                 </Text>
-
-                {/* الوصف */}
                 <Text 
                   size="lg" 
                   color="secondary"
                   style={{
                     fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-                    fontSize: 'clamp(1rem, 2.2vw, 1.125rem)', // تحسين حجم الوصف
+                    fontSize: 'clamp(1rem, 2.2vw, 1.125rem)',
                     lineHeight: '1.6',
                     textAlign: 'center',
                     transform: hoveredService === service.id ? 'translateY(-5px)' : 'translateY(0)',
@@ -324,45 +305,20 @@ const ServicesSection: React.FC = () => {
                 >
                   {language === 'ar' ? service.descriptionAr : service.descriptionEn}
                 </Text>
-
-                {/* زر التفاصيل */}
                 <div style={{
                   marginTop: 'var(--spacing-lg)',
                   textAlign: 'center',
                   opacity: hoveredService === service.id ? 1 : 0,
                   transform: hoveredService === service.id ? 'translateY(0)' : 'translateY(20px)',
                   transition: 'all 0.3s ease',
+                  fontSize: '.75rem',
+                  letterSpacing: '.5px',
+                  fontWeight: 600,
+                  color: 'var(--text-primary)'
                 }}>
-                  <button
-                    style={{
-                      padding: 'var(--spacing-sm) var(--spacing-lg)',
-                      background: service.gradient,
-                      border: 'none',
-                      borderRadius: '50px',
-                      color: 'white',
-                      fontWeight: 'bold',
-                      cursor: 'pointer',
-                      fontSize: '0.9rem',
-                      fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-                      transition: 'transform 0.2s ease',
-                    }}
-                    onMouseEnter={(e) => {
-                      if (window.innerWidth > 768) {
-                        e.currentTarget.style.transform = 'scale(1.05)';
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (window.innerWidth > 768) {
-                        e.currentTarget.style.transform = 'scale(1)';
-                      }
-                    }}
-                  >
-                    {language === 'ar' ? 'اعرف المزيد' : 'Learn More'}
-                  </button>
+                  {language === 'ar' ? 'اضغط للمزيد' : 'Tap / Click for details'}
                 </div>
               </div>
-
-              {/* جزيئات متحركة */}
               {hoveredService === service.id && (
                 <>
                   <div 
@@ -403,7 +359,7 @@ const ServicesSection: React.FC = () => {
                   />
                 </>
               )}
-            </div>
+            </Link>
           ))}
         </div>
 
