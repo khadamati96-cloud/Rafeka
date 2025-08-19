@@ -28,8 +28,12 @@ const NewProjectSection: React.FC = () => {
   }, []);
 
   const handleStartProject = () => {
-    // سيتم تفعيل هذه الوظيفة لاحقاً
-    console.log('زر البدء سيتم تفعيله لاحقاً');
+    const phone = '905380330087'; // بدون علامة + لرابط wa.me
+    const message = language === 'ar'
+      ? 'مرحباً، أود تحديد مكالمة لمناقشة مشروع جديد.'
+      : 'Hello, I would like to schedule a call to discuss a new project.';
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
   };
 
   return (
@@ -184,6 +188,7 @@ const NewProjectSection: React.FC = () => {
         }}>
           <button
             onClick={handleStartProject}
+            aria-label={language === 'ar' ? 'حدد موعد مكالمة عبر واتساب' : 'Schedule a WhatsApp call'}
             style={{
               background: 'linear-gradient(135deg, var(--brand-red) 0%, rgba(220, 38, 38, 0.8) 100%)',
               border: '2px solid transparent',
