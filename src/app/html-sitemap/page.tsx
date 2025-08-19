@@ -3,10 +3,12 @@ import { LanguageProvider, useLanguage } from '@/providers/LanguageProvider';
 import Header from '@/components/ui/Header';
 import Footer from '@/components/ui/Footer';
 import { Text } from '@/components/ui/BrandComponents';
+import type { Metadata } from 'next';
 
-export const metadata = {
-  title: 'خريطة الموقع | HTML Sitemap',
-  description: 'خريطة HTML لجميع صفحات موقع وكالة رافقة (Rafeka Agency HTML sitemap).'
+export const metadata: Metadata = {
+  title: 'خريطة HTML | HTML Sitemap',
+  description: 'خريطة HTML لجميع صفحات موقع وكالة رافقة (Rafeka Agency HTML sitemap).',
+  alternates: { canonical: '/html-sitemap' }
 };
 
 const links = [
@@ -16,7 +18,7 @@ const links = [
   { path: '/services/digital-marketing', ar: 'التسويق الرقمي', en: 'Digital Marketing' },
   { path: '/services/social-media-management', ar: 'إدارة السوشيال ميديا', en: 'Social Media Management' },
   { path: '/services/brand-design', ar: 'تصميم الهوية', en: 'Brand Design' },
-  { path: '/sitemap', ar: 'خريطة الموقع', en: 'Sitemap' },
+  { path: '/html-sitemap', ar: 'خريطة HTML', en: 'HTML Sitemap' },
 ];
 
 function HtmlSitemapContent() {

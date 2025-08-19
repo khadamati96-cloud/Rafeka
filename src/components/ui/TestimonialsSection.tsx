@@ -138,7 +138,7 @@ const TestimonialsSection: React.FC = () => {
               fontStyle: 'italic',
             }}
           >
-            "{language === 'ar' ? currentTestimonial.contentAr : currentTestimonial.contentEn}"
+            &quot;{language === 'ar' ? currentTestimonial.contentAr : currentTestimonial.contentEn}&quot;
           </Text>
 
           {/* معلومات العميل */}

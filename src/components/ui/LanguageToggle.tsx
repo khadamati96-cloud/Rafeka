@@ -7,18 +7,7 @@ import { useHoverEffect } from './NavigationComponents';
 const LanguageToggle: React.FC = () => {
   const { language, toggleLanguage, isLoaded } = useLanguage();
 
-  // عدم إظهار المحتوى حتى يتم تحميل اللغة
-  if (!isLoaded) {
-    return (
-      <div style={{
-        width: '40px',
-        height: '40px',
-        borderRadius: 'var(--radius-md)',
-        backgroundColor: 'transparent',
-      }}></div>
-    );
-  }
-
+  // استدعاء الهوك دائماً لتجنب تحذير hooks
   const hoverProps = useHoverEffect(
     {
       cursor: 'pointer',
@@ -37,6 +26,18 @@ const LanguageToggle: React.FC = () => {
       transform: 'translateY(-1px)',
     }
   );
+
+  // Placeholder أثناء التحميل
+  if (!isLoaded) {
+    return (
+      <div style={{
+        width: '40px',
+        height: '40px',
+        borderRadius: 'var(--radius-md)',
+        backgroundColor: 'transparent',
+      }} />
+    );
+  }
 
   return (
     <button

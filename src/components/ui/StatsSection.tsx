@@ -75,7 +75,7 @@ const StatsSection: React.FC = () => {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [stats]);
 
   const animateNumber = (index: number, targetNumber: number) => {
     const duration = 2000; // مدة الأنيميشن

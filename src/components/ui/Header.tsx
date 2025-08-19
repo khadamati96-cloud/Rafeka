@@ -235,31 +235,31 @@ const Header: React.FC = () => {
               gap: 'var(--spacing-sm)',
             }}>
               <li>
-                <a
+                <Link
                   href="/"
                   className="sidebar-link"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {t('home')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/about"
                   className="sidebar-link"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {t('about')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/services"
                   className="sidebar-link"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {t('services')}
-                </a>
+                </Link>
               </li>
               <li>
                 <a

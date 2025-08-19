@@ -2,6 +2,7 @@
 
 import { useState, CSSProperties } from 'react';
 import { useLanguage } from '../../providers/LanguageProvider';
+import Link from 'next/link';
 
 // Hook لتأثيرات الهوفر
 export const useHoverEffect = (
@@ -30,21 +31,6 @@ interface NavLinkProps {
 
 export const NavLink: React.FC<NavLinkProps> = ({ href, children, onClick }) => {
   const { language, isLoaded } = useLanguage();
-  
-  // عدم إظهار المحتوى حتى يتم تحميل اللغة
-  if (!isLoaded) {
-    return (
-      <a href={href} onClick={onClick} style={{
-        display: 'inline-block',
-        padding: 'var(--spacing-sm) var(--spacing-md)',
-        color: 'transparent',
-        textDecoration: 'none',
-      }}>
-        {children}
-      </a>
-    );
-  }
-  
   const hoverProps = useHoverEffect(
     {
       color: 'var(--text-primary)',
@@ -66,19 +52,24 @@ export const NavLink: React.FC<NavLinkProps> = ({ href, children, onClick }) => 
     }
   );
 
+  if (!isLoaded) {
+    return (
+      <span style={{
+        display: 'inline-block',
+        padding: 'var(--spacing-sm) var(--spacing-md)',
+        opacity: 0,
+      }}>{children}</span>
+    );
+  }
+
   return (
-    <a 
-      href={href} 
+    <Link 
+      href={href}
       {...hoverProps}
-      onClick={(e) => {
-        if (onClick) {
-          e.preventDefault();
-          onClick();
-        }
-      }}
+      onClick={onClick}
     >
       {children}
-    </a>
+    </Link>
   );
 };
 

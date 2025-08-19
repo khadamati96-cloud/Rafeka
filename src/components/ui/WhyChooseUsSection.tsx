@@ -132,7 +132,7 @@ const WhyChooseUsSection: React.FC = () => {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [features]);
 
   return (
     <section 

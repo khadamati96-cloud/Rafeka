@@ -6,7 +6,7 @@ import { Text, Button } from './BrandComponents';
 import { useLanguage } from '../../providers/LanguageProvider';
 
 const HeroSection: React.FC = () => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
   const [animatedStats, setAnimatedStats] = useState({
