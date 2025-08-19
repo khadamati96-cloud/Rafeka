@@ -4,14 +4,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Text } from './BrandComponents';
 import { useLanguage } from '../../providers/LanguageProvider';
 
-const WhyChooseUsSection: React.FC = () => {
-  const { language } = useLanguage();
-  const [isVisible, setIsVisible] = useState(false);
-  const [visibleItems, setVisibleItems] = useState<boolean[]>([]);
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  const features: Array<{
+// Hoist features so reference remains stable
+const FEATURES: Array<{
     icon: React.ReactElement;
     titleAr: string;
     titleEn: string;
@@ -106,6 +100,14 @@ const WhyChooseUsSection: React.FC = () => {
     }
   ];
 
+const WhyChooseUsSection: React.FC = () => {
+  const { language } = useLanguage();
+  const [isVisible, setIsVisible] = useState(false);
+  const [visibleItems, setVisibleItems] = useState<boolean[]>([]);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const features = FEATURES;
+
   // مراقبة ظهور القسم
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -132,7 +134,7 @@ const WhyChooseUsSection: React.FC = () => {
     }
 
     return () => observer.disconnect();
-  }, [features]);
+  }, []); // features static
 
   return (
     <section 

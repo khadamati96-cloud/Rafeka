@@ -4,20 +4,8 @@ import { useLanguage } from '@/providers/LanguageProvider';
 import { Text, Button } from '@/components/ui/BrandComponents';
 import Link from 'next/link';
 
-export default function ServicesClient() {
-	const { language } = useLanguage();
-	const heroRef = useRef<HTMLElement | null>(null);
-	const servicesRef = useRef<HTMLElement | null>(null);
-	const whyUsRef = useRef<HTMLElement | null>(null);
-	const ctaRef = useRef<HTMLElement | null>(null);
-	const [isVisible, setIsVisible] = useState(false);
-	const [visibleItems, setVisibleItems] = useState<boolean[]>([]);
-	const [whyUsVisible, setWhyUsVisible] = useState(false);
-	const [ctaVisible, setCtaVisible] = useState(false);
-	const isMobile = typeof window !== 'undefined' ? window.innerWidth < 900 : false;
-
-	// Source data (condensed from original large file)
-	const servicesData = {
+// Extract static data outside component so references are stable and don't trigger useEffect re-runs
+const SERVICES_DATA = {
 		hero: {
 			titleAr: 'خدماتنا',
 			titleEn: 'Our Services',
@@ -110,7 +98,21 @@ export default function ServicesClient() {
 			subtitleEn: 'Get in touch now for a free consultation',
 			buttonAr: 'ابدأ الآن', buttonEn: 'Start Now'
 		}
-	};
+};
+
+export default function ServicesClient() {
+	const { language } = useLanguage();
+	const heroRef = useRef<HTMLElement | null>(null);
+	const servicesRef = useRef<HTMLElement | null>(null);
+	const whyUsRef = useRef<HTMLElement | null>(null);
+	const ctaRef = useRef<HTMLElement | null>(null);
+	const [isVisible, setIsVisible] = useState(false);
+	const [visibleItems, setVisibleItems] = useState<boolean[]>([]);
+	const [whyUsVisible, setWhyUsVisible] = useState(false);
+	const [ctaVisible, setCtaVisible] = useState(false);
+	const isMobile = typeof window !== 'undefined' ? window.innerWidth < 900 : false;
+
+	const servicesData = SERVICES_DATA; // alias for current naming
 
 	useEffect(() => {
 		const observerOptions: IntersectionObserverInit = { threshold: 0.25 };
@@ -138,7 +140,7 @@ export default function ServicesClient() {
 		}, observerOptions);
 		[heroRef, servicesRef, whyUsRef, ctaRef].forEach(r => r.current && obs.observe(r.current));
 		return () => obs.disconnect();
-	}, [servicesData.services.length]);
+	}, []); // static data moved outside so no dependency needed
 
 	const t = (ar: string, en: string) => language === 'ar' ? ar : en;
 

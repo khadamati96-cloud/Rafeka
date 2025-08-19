@@ -1,6 +1,7 @@
 // ========== مكونات الهوية البصرية ==========
 
 import React from 'react';
+import Image from 'next/image';
 import { BRAND_CLASSES } from '../../styles/brand-constants';
 
 // مكون الزر الأساسي
@@ -124,20 +125,21 @@ export const Logo: React.FC<LogoProps> = ({
   
   return (
     <>
-      {/* الشعار للشاشات الكبيرة */}
-      <img 
+      <Image 
         src={src}
         alt="رافقة"
         className={`${sizeClass} ${className} logo-desktop`}
-        {...props}
+        width={120}
+        height={120}
+        priority
       />
-      
-      {/* الشعار للجوال */}
-      <img 
+      <Image 
         src="/logo2.png"
         alt="رافقة"
         className={`${sizeClass} ${className} logo-mobile`}
-        {...props}
+        width={120}
+        height={120}
+        priority
       />
     </>
   );

@@ -4,13 +4,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Text } from './BrandComponents';
 import { useLanguage } from '../../providers/LanguageProvider';
 
-const StatsSection: React.FC = () => {
-  const { language } = useLanguage();
-  const [isVisible, setIsVisible] = useState(false);
-  const [animatedStats, setAnimatedStats] = useState([0, 0, 0, 0]);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  const stats = [
+// Hoist stats so reference is stable across renders
+const STATS = [
     {
       number: 544,
       suffix: '+',
@@ -51,7 +46,14 @@ const StatsSection: React.FC = () => {
       icon: '📱',
       color: '#DC2626'
     }
-  ];
+];
+
+const StatsSection: React.FC = () => {
+  const { language } = useLanguage();
+  const [isVisible, setIsVisible] = useState(false);
+  const [animatedStats, setAnimatedStats] = useState([0, 0, 0, 0]);
+  const sectionRef = useRef<HTMLElement>(null);
+  const stats = STATS;
 
   // مراقبة ظهور القسم وتحريك الأرقام
   useEffect(() => {
@@ -75,7 +77,7 @@ const StatsSection: React.FC = () => {
     }
 
     return () => observer.disconnect();
-  }, [stats]);
+  }, []); // stats is static
 
   const animateNumber = (index: number, targetNumber: number) => {
     const duration = 2000; // مدة الأنيميشن

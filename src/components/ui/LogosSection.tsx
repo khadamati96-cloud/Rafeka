@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { Text } from './BrandComponents';
 import { useLanguage } from '../../providers/LanguageProvider';
 
@@ -156,25 +157,26 @@ const LogosSection: React.FC = () => {
                 }, 100);
               }}
             >
-              <img
+              <Image
                 src={logo.src}
                 alt={logo.alt}
+                width={120}
+                height={60}
                 style={{
                   maxWidth: '120px',
-                  maxHeight: '60px',
-                  width: 'auto',
                   height: 'auto',
                   filter: 'grayscale(1) brightness(0.8)',
                   transition: 'all 0.3s ease',
+                  width: 'auto'
                 }}
                 onMouseEnter={(e) => {
                   if (window.innerWidth > 768) {
-                    e.currentTarget.style.filter = 'grayscale(0) brightness(1)';
+                    (e.currentTarget as HTMLElement).style.filter = 'grayscale(0) brightness(1)';
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (window.innerWidth > 768) {
-                    e.currentTarget.style.filter = 'grayscale(1) brightness(0.8)';
+                    (e.currentTarget as HTMLElement).style.filter = 'grayscale(1) brightness(0.8)';
                   }
                 }}
               />
