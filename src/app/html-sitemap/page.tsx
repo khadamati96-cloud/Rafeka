@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import HtmlSitemapClient from './HtmlSitemapClient';
+import HtmlSitemapClient from '@/app/html-sitemap/HtmlSitemapClient';
 
 export const metadata: Metadata = {
   title: 'خريطة HTML | HTML Sitemap',
