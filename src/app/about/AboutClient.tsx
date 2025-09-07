@@ -84,7 +84,7 @@ function AboutContent() {
       <section ref={visionRef} style={{ padding: 'var(--spacing-4xl) var(--spacing-lg)', paddingTop: isMobile ? 'calc(70px + var(--spacing-3xl))' : 'calc(70px + var(--spacing-4xl))', background: 'var(--bg-primary)', opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(30px)', transition: 'all .8s ease-out' }}>
         <div className="container" style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: 'var(--spacing-3xl)' }}>
-            <Text size="3xl" as="h2" style={{ fontWeight: 'bold', fontSize: 'clamp(2rem,4vw,3rem)', fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)', background: 'linear-gradient(135deg,var(--text-primary) 0%,var(--brand-red) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', marginBottom: 'var(--spacing-xl)' }}>
+            <Text size="3xl" as="h2" style={{ fontWeight: 'bold', fontSize: 'clamp(2rem,4vw,3rem)', fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)', background: 'linear-gradient(135deg,var(--brand-red-light) 0%, var(--brand-red) 45%, var(--brand-red-dark) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', marginBottom: 'var(--spacing-xl)' }}>
               {language === 'ar' ? aboutData.vision.titleAr : aboutData.vision.titleEn}
             </Text>
             <div style={{ maxWidth: 900, margin: '0 auto', padding: 'var(--spacing-xl)', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 20, position: 'relative' }}>
@@ -99,7 +99,7 @@ function AboutContent() {
       <section ref={missionRef} style={{ padding: 'var(--spacing-4xl) var(--spacing-lg)', background: 'var(--bg-primary)', opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 1s ease-out .4s' }}>
         <div className="container" style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: 'var(--spacing-3xl)' }}>
-            <Text size="3xl" as="h2" style={{ fontWeight: 'bold', fontSize: 'clamp(2rem,4vw,3rem)', fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)', background: 'linear-gradient(135deg,var(--text-primary) 0%,var(--brand-red) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', marginBottom: 'var(--spacing-lg)' }}>
+            <Text size="3xl" as="h2" style={{ fontWeight: 'bold', fontSize: 'clamp(2rem,4vw,3rem)', fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)', background: 'linear-gradient(135deg,var(--brand-red-light) 0%, var(--brand-red) 45%, var(--brand-red-dark) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', marginBottom: 'var(--spacing-lg)' }}>
               {language === 'ar' ? aboutData.mission.titleAr : aboutData.mission.titleEn}
             </Text>
             <Text size="xl" style={{ fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)', color: 'var(--brand-red)', fontWeight: 600, fontSize: 'clamp(1.25rem,3vw,1.5rem)' }}>
@@ -126,7 +126,7 @@ function AboutContent() {
       <section ref={expertiseRef} style={{ padding: 'var(--spacing-4xl) var(--spacing-lg)', background: 'var(--bg-primary)', opacity: progressVisible ? 1 : 0, transform: progressVisible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 1s ease-out' }}>
         <div className="container" style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: 'var(--spacing-3xl)' }}>
-            <Text size="3xl" as="h2" style={{ fontWeight: 'bold', fontSize: 'clamp(2rem,4vw,3rem)', fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)', background: 'linear-gradient(135deg,var(--text-primary) 0%, var(--brand-red) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', marginBottom: 'var(--spacing-lg)' }}>
+            <Text size="3xl" as="h2" style={{ fontWeight: 'bold', fontSize: 'clamp(2rem,4vw,3rem)', fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)', background: 'linear-gradient(135deg,var(--brand-red-light) 0%, var(--brand-red) 45%, var(--brand-red-dark) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', marginBottom: 'var(--spacing-lg)' }}>
               {language === 'ar' ? aboutData.expertise.titleAr : aboutData.expertise.titleEn}
             </Text>
             <Text size="lg" style={{ fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)', color: 'var(--text-secondary)', fontSize: 'clamp(1.125rem,2.5vw,1.25rem)', maxWidth: 800, margin: '0 auto', lineHeight: 1.7 }}>
