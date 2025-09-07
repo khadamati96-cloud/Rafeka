@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
 import { Text, Button } from './BrandComponents';
 import { useLanguage } from '../../providers/LanguageProvider';
@@ -8,66 +8,10 @@ import { useLanguage } from '../../providers/LanguageProvider';
 const HeroSection: React.FC = () => {
   const { language } = useLanguage();
   const router = useRouter();
-  const [isVisible, setIsVisible] = useState(false);
-  const [animatedStats, setAnimatedStats] = useState({
-    satisfaction: 0,
-    campaigns: 0
-  });
-  const sectionRef = useRef<HTMLElement>(null);
-
-  // مراقبة ظهور القسم
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  // تحريك الأرقام
-  useEffect(() => {
-    if (isVisible) {
-      // تحريك نسبة الرضا
-      const satisfactionAnimation = setInterval(() => {
-        setAnimatedStats(prev => {
-          if (prev.satisfaction < 98) {
-            return { ...prev, satisfaction: prev.satisfaction + 1 };
-          }
-          clearInterval(satisfactionAnimation);
-          return prev;
-        });
-      }, 30);
-
-      // تحريك عدد الحملات
-      const campaignsAnimation = setInterval(() => {
-        setAnimatedStats(prev => {
-          if (prev.campaigns < 766) {
-            return { ...prev, campaigns: prev.campaigns + 15 };
-          }
-          clearInterval(campaignsAnimation);
-          return { ...prev, campaigns: 766 };
-        });
-      }, 25);
-
-      return () => {
-        clearInterval(satisfactionAnimation);
-        clearInterval(campaignsAnimation);
-      };
-    }
-  }, [isVisible]);
+  // تمت إزالة الإحصائيات من الهيرو بناءً على الطلب
 
   return (
-    <section 
-      ref={sectionRef}
+  <section 
       className="hero-section"
       style={{
         minHeight: '80vh',
@@ -102,6 +46,16 @@ const HeroSection: React.FC = () => {
 
       {/* ميديا كويري للجوال */}
       <style>{`
+        /* Force hero about button to hug its text */
+        .hero-about-btn { 
+          width: auto !important; 
+          min-width: 0 !important; 
+          display: inline-flex !important; 
+          align-items: center; 
+          justify-content: center; 
+          padding: 4px 14px !important; 
+          white-space: nowrap !important; 
+        }
         @media (max-width: 768px) {
           .hero-section {
             padding-top: 3rem !important; /* was 4rem */
@@ -116,9 +70,15 @@ const HeroSection: React.FC = () => {
           }
           .hero-title {
             margin-bottom: 1rem !important;
+            margin-top: 6.0rem !important; /* دفع العنوان لأسفل قليلاً على الجوال */
+            font-size: clamp(1.9rem, 1vw, 1.5rem) !important; /* تصغير الخط على الجوال فقط */
+            line-height: 1.15 !important; /* توازن بعد التصغير */
           }
           .hero-description {
             margin-bottom: 1.5rem !important;
+          }
+          .hero-about-btn { 
+            padding: 4px 12px !important; /* slightly tighter on mobile */
           }
           .hero-mobile-bg {
             display: block !important;
@@ -181,33 +141,7 @@ const HeroSection: React.FC = () => {
         </Text>
         
         {/* النص التوضيحي */}
-        <Text 
-          size="lg" 
-          color="secondary"
-          className="hero-description"
-          style={{
-            marginBottom: 'var(--spacing-xl)',
-            lineHeight: '1.6',
-            maxWidth: '600px',
-            margin: '0 auto var(--spacing-xl) auto',
-            fontSize: 'clamp(1.125rem, 2.5vw, 1.5rem)',
-            fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-          }}
-        >
-          {language === 'ar' ? (
-            <>
-              في رافقة نصمم استراتيجيات إعلانية مبتكرة وجذابة
-              <br />
-              ترفع علامتك التجارية إلى آفاق جديدة
-            </>
-          ) : (
-            <>
-              At Rafeka we design innovative and attractive advertising strategies
-              <br />
-              that elevate your brand to new horizons
-            </>
-          )}
-        </Text>
+
         
         {/* زر من نحن */}
         <Button 
@@ -215,7 +149,7 @@ const HeroSection: React.FC = () => {
           className="hero-about-btn"
           style={{
             fontSize: 'var(--text-xl)',
-            padding: 'var(--spacing-sm) var(--spacing-lg)',
+            padding: '4px 14px', /* tighter padding; width now hugs text */
             fontWeight: '600',
             borderRadius: 'var(--radius-md)',
             transition: 'all 0.3s ease',
@@ -224,6 +158,11 @@ const HeroSection: React.FC = () => {
             overflow: 'hidden',
             border: 'none',
             marginBottom: 'var(--spacing-2xl)',
+            lineHeight: 1.15,
+            minWidth: '0',
+            width: 'auto',
+            display: 'inline-flex',
+            whiteSpace: 'nowrap'
           }}
           onClick={() => router.push('/about')}
           aria-label={language === 'ar' ? 'الانتقال إلى صفحة من نحن' : 'Go to About Us page'}
@@ -231,114 +170,7 @@ const HeroSection: React.FC = () => {
           {language === 'ar' ? 'من نحن' : 'About Us'}
         </Button>
 
-        {/* الإحصائيات */}
-        <div 
-          className="stats-grid"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: 'var(--spacing-xl)',
-            maxWidth: '600px',
-            margin: '0 auto',
-            width: '100%',
-          }}
-        >
-          {/* نسبة رضا العملاء */}
-          <div 
-            className="stat-card"
-            style={{
-              padding: 'var(--spacing-xl)',
-              borderRadius: 'var(--radius-lg)',
-              background: 'rgba(220, 38, 38, 0.08)',
-              border: '1px solid rgba(220, 38, 38, 0.2)',
-              transition: 'all 0.3s ease',
-              transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-              opacity: isVisible ? 1 : 0,
-              transitionDelay: '0.2s',
-              textAlign: 'center',
-              minHeight: '140px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <div style={{ marginBottom: 'var(--spacing-sm)' }}>
-              <Text 
-                size="3xl" 
-                color="brand" 
-                style={{
-                  fontWeight: 'bold',
-                  fontFamily: 'var(--font-english)',
-                  lineHeight: '1',
-                  fontSize: 'clamp(2rem, 5vw, 3rem)',
-                }}
-              >
-                {animatedStats.satisfaction}%
-              </Text>
-            </div>
-            <Text 
-              size="lg" 
-              color="primary"
-              style={{
-                fontWeight: '500',
-                fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-                fontSize: 'clamp(0.875rem, 3vw, 1rem)',
-                lineHeight: '1.3',
-              }}
-            >
-              {language === 'ar' ? 'نسبة رضا العملاء' : 'Customer Satisfaction'}
-            </Text>
-          </div>
-
-          {/* عدد الحملات الناجحة */}
-          <div 
-            className="stat-card"
-            style={{
-              padding: 'var(--spacing-xl)',
-              borderRadius: 'var(--radius-lg)',
-              background: 'rgba(220, 38, 38, 0.08)',
-              border: '1px solid rgba(220, 38, 38, 0.2)',
-              transition: 'all 0.3s ease',
-              transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-              opacity: isVisible ? 1 : 0,
-              transitionDelay: '0.4s',
-              textAlign: 'center',
-              minHeight: '140px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <div style={{ marginBottom: 'var(--spacing-sm)' }}>
-              <Text 
-                size="3xl" 
-                color="brand" 
-                style={{
-                  fontWeight: 'bold',
-                  fontFamily: 'var(--font-english)',
-                  lineHeight: '1',
-                  fontSize: 'clamp(2rem, 5vw, 3rem)',
-                }}
-              >
-                +{animatedStats.campaigns}
-              </Text>
-            </div>
-            <Text 
-              size="lg" 
-              color="primary"
-              style={{
-                fontWeight: '500',
-                fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-                fontSize: 'clamp(0.875rem, 3vw, 1rem)',
-                lineHeight: '1.3',
-              }}
-            >
-              {language === 'ar' ? 'حملات  تم تنفيذها' : 'Successful Campaigns'}
-            </Text>
-          </div>
-        </div>
+  {/* تم حذف الإحصائيات من الهيرو */}
       </div>
       
       {/* شعاع إضافي في الخلفية مع كسر في النهاية */}
