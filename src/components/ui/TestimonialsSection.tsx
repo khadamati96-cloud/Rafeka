@@ -141,47 +141,28 @@ const TestimonialsSection: React.FC = () => {
             &quot;{language === 'ar' ? currentTestimonial.contentAr : currentTestimonial.contentEn}&quot;
           </Text>
 
-          {/* معلومات العميل */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 'var(--spacing-md)',
-          }}>
-            <div style={{
-              width: '60px',
-              height: '60px',
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, var(--brand-red), var(--brand-red-light))',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '1.8rem',
-            }}>
-              {currentTestimonial.image}
-            </div>
-            <div style={{ textAlign: 'left' }}>
-              <Text 
-                size="lg"
-                style={{
-                  fontWeight: 'bold',
-                  color: 'var(--text-primary)',
-                  marginBottom: '4px',
-                  fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-                }}
-              >
-                {language === 'ar' ? currentTestimonial.nameAr : currentTestimonial.nameEn}
-              </Text>
-              <Text 
-                size="sm"
-                style={{
-                  color: 'var(--text-secondary)',
-                  fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-                }}
-              >
-                {language === 'ar' ? currentTestimonial.titleAr : currentTestimonial.titleEn}
-              </Text>
-            </div>
+          {/* معلومات العميل (بدون صورة) */}
+          <div style={{ textAlign:'center' }}>
+            <Text 
+              size="lg"
+              style={{
+                fontWeight: 'bold',
+                color: 'var(--text-primary)',
+                marginBottom: '4px',
+                fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
+              }}
+            >
+              {language === 'ar' ? currentTestimonial.nameAr : currentTestimonial.nameEn}
+            </Text>
+            <Text 
+              size="sm"
+              style={{
+                color: 'var(--text-secondary)',
+                fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
+              }}
+            >
+              {language === 'ar' ? currentTestimonial.titleAr : currentTestimonial.titleEn}
+            </Text>
           </div>
         </div>
 
