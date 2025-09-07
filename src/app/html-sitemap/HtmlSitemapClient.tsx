@@ -22,7 +22,7 @@ function Inner() {
     <div style={{ minHeight:'100vh', display:'flex', flexDirection:'column' }}>
       <Header />
       <main style={{ flex:1, padding:'var(--spacing-4xl) var(--spacing-lg)', maxWidth:1200, margin:'0 auto' }}>
-        <Text as='h1' size='3xl' style={{ fontWeight:'bold', marginBottom:'var(--spacing-2xl)', background:'linear-gradient(135deg,var(--text-primary),var(--brand-red))', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>
+  <Text as='h1' size='3xl' style={{ fontWeight:'bold', marginBottom:'var(--spacing-2xl)', background:'linear-gradient(135deg,var(--brand-red-light) 0%, var(--brand-red) 45%, var(--brand-red-dark) 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>
           {ar ? 'خريطة الموقع (HTML)' : 'HTML Sitemap'}
         </Text>
         <Text size='lg' color='secondary' style={{ marginBottom:'var(--spacing-3xl)', lineHeight:1.7 }}>

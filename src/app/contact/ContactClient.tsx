@@ -29,7 +29,7 @@ function ContactContent(){
         {/* Hero */}
         <section style={{padding:'clamp(3rem,6vw,5rem) var(--spacing-lg)',background:'linear-gradient(135deg, rgba(220,38,38,0.35) 0%, rgba(220,38,38,0.08) 45%, var(--bg-primary) 75%)',position:'relative',overflow:'hidden'}}>
           <div style={{maxWidth:1100,margin:'0 auto',textAlign:'center'}}>
-            <Text as="h1" size="4xl" style={{fontWeight:'bold',fontSize:'clamp(2.25rem,5vw,3.5rem)',background:'linear-gradient(135deg,var(--text-primary),var(--brand-red))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',marginBottom:'var(--spacing-xl)'}}>{t('تواصل معنا','Contact Us')}</Text>
+            <Text as="h1" size="4xl" style={{fontWeight:'bold',fontSize:'clamp(2.25rem,5vw,3.5rem)',background:'linear-gradient(135deg,var(--brand-red-light) 0%, var(--brand-red) 45%, var(--brand-red-dark) 100%)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',marginBottom:'var(--spacing-xl)'}}>{t('تواصل معنا','Contact Us')}</Text>
             <Text size="xl" color="secondary" style={{maxWidth:780,margin:'0 auto',fontSize:'clamp(1.05rem,2.2vw,1.35rem)',lineHeight:1.6}}>{t('نحن هنا لدعمك في كل مرحلة من رحلتك الرقمية. اختر الطريقة الأنسب وتواصل معنا الآن.','We are here to support you at every stage of your digital journey. Choose the best channel and reach out now.')}</Text>
           </div>
           <div style={{position:'absolute',inset:0,background:'radial-gradient(circle at 15% 20%, rgba(220,38,38,0.18), transparent 60%)'}} />

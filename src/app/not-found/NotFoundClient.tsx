@@ -14,7 +14,7 @@ function Inner() {
       <main style={{ flex:1, display:'flex', alignItems:'center', justifyContent:'center', padding:'var(--spacing-4xl) var(--spacing-lg)', position:'relative', overflow:'hidden' }}>
         <div style={{ position:'absolute', inset:0, background:'radial-gradient(circle at 30% 40%, rgba(220,38,38,0.10), transparent 70%)', pointerEvents:'none' }} />
         <div style={{ maxWidth:780, textAlign:'center', position:'relative', zIndex:2 }}>
-          <Text as='h1' size='4xl' style={{ fontWeight:'800', fontSize:'clamp(3rem,7vw,5rem)', marginBottom:'var(--spacing-lg)', background:'linear-gradient(135deg,var(--text-primary),var(--brand-red))', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>404</Text>
+          <Text as='h1' size='4xl' style={{ fontWeight:'800', fontSize:'clamp(3rem,7vw,5rem)', marginBottom:'var(--spacing-lg)', background:'linear-gradient(135deg,var(--brand-red-light) 0%, var(--brand-red) 45%, var(--brand-red-dark) 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>404</Text>
           <Text as='h2' size='2xl' style={{ fontWeight:700, marginBottom:'var(--spacing-lg)' }}>
             {ar ? 'الصفحة غير موجودة' : 'Page Not Found'}
           </Text>

@@ -170,7 +170,7 @@ export default function ServicesClient() {
 					<Text as="h1" size="4xl" style={{
 						fontWeight: 800,
 						fontSize: 'clamp(2.3rem,5vw,3.8rem)',
-						background: 'linear-gradient(135deg,var(--text-primary),var(--brand-red))',
+						background: 'linear-gradient(135deg,var(--brand-red-light) 0%, var(--brand-red) 45%, var(--brand-red-dark) 100%)',
 						WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: 'var(--spacing-lg)'
 					}}>{t(servicesData.hero.titleAr, servicesData.hero.titleEn)}</Text>
 					<Text size="xl" style={{
@@ -218,7 +218,7 @@ export default function ServicesClient() {
 				<div style={{ maxWidth: 1180, margin: '0 auto' }}>
 					<Text as="h2" size="3xl" style={{
 						fontWeight: 'bold', textAlign: 'center', marginBottom: 'var(--spacing-3xl)',
-						background: 'linear-gradient(135deg,var(--text-primary),var(--brand-red))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'
+						background: 'linear-gradient(135deg,var(--brand-red-light) 0%, var(--brand-red) 45%, var(--brand-red-dark) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'
 					}}>{t(servicesData.whyUs.titleAr, servicesData.whyUs.titleEn)}</Text>
 					<div style={{ display: 'grid', gap: 'var(--spacing-xl)', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))' }}>
 						{servicesData.whyUs.reasons.map((r, i) => (

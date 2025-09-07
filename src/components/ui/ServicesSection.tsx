@@ -21,13 +21,13 @@ const ServicesSection: React.FC = () => {
       descriptionEn: 'We design and develop advanced, responsive websites that reflect your brand identity using the latest technologies',
       icon: (
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-          <rect x="3" y="3" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="2"/>
-          <path d="M3 8H21" stroke="currentColor" strokeWidth="2"/>
+          <rect x="3" y="3" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.4"/>
+          <path d="M3 8H21" stroke="currentColor" strokeWidth="1.4"/>
           <circle cx="6.5" cy="5.5" r="0.5" fill="currentColor"/>
           <circle cx="8.5" cy="5.5" r="0.5" fill="currentColor"/>
           <circle cx="10.5" cy="5.5" r="0.5" fill="currentColor"/>
-          <path d="M8 11H16M8 13H14" stroke="currentColor" strokeWidth="1.5"/>
-          <path d="M3 19H21" stroke="currentColor" strokeWidth="2"/>
+          <path d="M8 11H16M8 13H14" stroke="currentColor" strokeWidth="1.2"/>
+          <path d="M3 19H21" stroke="currentColor" strokeWidth="1.4"/>
         </svg>
       ),
       gradient: 'linear-gradient(135deg, #DC2626 0%, #B91C1C 100%)',
@@ -42,12 +42,12 @@ const ServicesSection: React.FC = () => {
       descriptionEn: 'Innovative and strategic marketing approaches to increase reach and sales across all digital platforms',
       icon: (
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-          <path d="M3 12L21 12" stroke="currentColor" strokeWidth="2"/>
-          <path d="M3 6L21 6" stroke="currentColor" strokeWidth="2"/>
-          <path d="M3 18L21 18" stroke="currentColor" strokeWidth="2"/>
+          <path d="M3 12L21 12" stroke="currentColor" strokeWidth="1.4"/>
+          <path d="M3 6L21 6" stroke="currentColor" strokeWidth="1.4"/>
+          <path d="M3 18L21 18" stroke="currentColor" strokeWidth="1.4"/>
           <circle cx="12" cy="12" r="2" fill="currentColor"/>
-          <path d="M16 8L20 4M20 8L16 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-          <path d="M8 16L4 20M4 16L8 20" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          <path d="M16 8L20 4M20 8L16 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+          <path d="M8 16L4 20M4 16L8 20" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
           <circle cx="18" cy="6" r="1" fill="currentColor"/>
           <circle cx="6" cy="18" r="1" fill="currentColor"/>
         </svg>
@@ -64,11 +64,11 @@ const ServicesSection: React.FC = () => {
       descriptionEn: 'Comprehensive and professional management of your social media accounts with engaging and impactful content',
       icon: (
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-          <circle cx="18" cy="6" r="3" stroke="currentColor" strokeWidth="2"/>
-          <circle cx="6" cy="18" r="3" stroke="currentColor" strokeWidth="2"/>
-          <circle cx="12" cy="12" r="2" stroke="currentColor" strokeWidth="2"/>
-          <path d="M8.5 16.5L10.5 14.5" stroke="currentColor" strokeWidth="2"/>
-          <path d="M13.5 9.5L15.5 7.5" stroke="currentColor" strokeWidth="2"/>
+          <circle cx="18" cy="6" r="3" stroke="currentColor" strokeWidth="1.4"/>
+          <circle cx="6" cy="18" r="3" stroke="currentColor" strokeWidth="1.4"/>
+          <circle cx="12" cy="12" r="2" stroke="currentColor" strokeWidth="1.4"/>
+          <path d="M8.5 16.5L10.5 14.5" stroke="currentColor" strokeWidth="1.4"/>
+          <path d="M13.5 9.5L15.5 7.5" stroke="currentColor" strokeWidth="1.4"/>
           <path d="M9 15L15 9" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2"/>
           <circle cx="18" cy="18" r="1" fill="currentColor"/>
           <circle cx="6" cy="6" r="1" fill="currentColor"/>
@@ -86,9 +86,9 @@ const ServicesSection: React.FC = () => {
       descriptionEn: 'Complete and distinctive visual identity design that expresses your brand values and leaves an unforgettable impression',
       icon: (
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-          <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="2"/>
-          <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5"/>
-          <path d="M12 9V15M9 12H15" stroke="currentColor" strokeWidth="1"/>
+          <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="1.4"/>
+          <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.2"/>
+          <path d="M12 9V15M9 12H15" stroke="currentColor" strokeWidth="0.9"/>
         </svg>
       ),
       gradient: 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)',
@@ -193,7 +193,7 @@ const ServicesSection: React.FC = () => {
           className="services-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)', // 4 خدمات في سطر واحد للشاشات الكبيرة
+            gridTemplateColumns: 'repeat(4, 1fr)', // ستُعدل عبر الميديا كويري
             gap: 'var(--spacing-lg)',
             alignItems: 'stretch',
           }}
@@ -206,7 +206,7 @@ const ServicesSection: React.FC = () => {
               className="service-card"
               style={{
                 position: 'relative',
-                padding: 'var(--spacing-xl)',
+                padding: 'var(--spacing-lg) var(--spacing-lg)', // تقليل الحشو ليصبح الصندوق أقرب للمحتوى
                 borderRadius: '20px',
                 background: 'rgba(255, 255, 255, 0.02)',
                 border: '1px solid rgba(255, 255, 255, 0.08)',
@@ -306,16 +306,22 @@ const ServicesSection: React.FC = () => {
                 >
                   {language === 'ar' ? service.descriptionAr : service.descriptionEn}
                 </Text>
-                <div style={{
-                  marginTop: 'var(--spacing-lg)',
+                <div className="service-hint" style={{
+                  marginTop: 'var(--spacing-sm)',
                   textAlign: 'center',
                   opacity: hoveredService === service.id ? 1 : 0,
-                  transform: hoveredService === service.id ? 'translateY(0)' : 'translateY(20px)',
+                  transform: hoveredService === service.id ? 'translateY(0)' : 'translateY(12px)',
                   transition: 'all 0.3s ease',
-                  fontSize: '.75rem',
-                  letterSpacing: '.5px',
+                  fontSize: '.7rem',
+                  letterSpacing: '.4px',
                   fontWeight: 600,
-                  color: 'var(--text-primary)'
+                  color: 'var(--text-primary)',
+                  display: 'inline-block',
+                  padding: '6px 14px',
+                  borderRadius: '999px',
+                  background: 'rgba(255,255,255,0.06)',
+                  border: '1px solid rgba(255,255,255,0.12)',
+                  backdropFilter: 'blur(6px)'
                 }}>
                   {language === 'ar' ? 'اضغط للمزيد' : 'Tap / Click for details'}
                 </div>
@@ -406,6 +412,41 @@ const ServicesSection: React.FC = () => {
           animation: isVisible ? 'pulse-glow 8s ease-in-out infinite 2s' : 'none',
         }}
       />
+      {/* ميديا كويري لضبط الشبكة والحجم على الشاشات الأصغر */}
+      <style>{`
+        @media (max-width: 1200px) {
+          .services-grid { grid-template-columns: repeat(3, 1fr); gap: var(--spacing-lg); }
+        }
+        @media (max-width: 900px) {
+          .services-grid { grid-template-columns: repeat(2, 1fr); gap: var(--spacing-md); }
+          .service-card { padding: var(--spacing-lg) var(--spacing-md) !important; }
+          .service-card .service-icon svg { width:40px; height:40px; }
+        }
+        @media (max-width: 560px) {
+          .services-grid { grid-template-columns: 1fr; gap: 12px; }
+          .service-card { 
+            padding: 14px 16px 42px !important; /* مساحة كافية فقط للزر في الأسفل */
+            max-width: 300px; 
+            width: 100%; 
+            margin-left: auto; 
+            margin-right: auto; 
+            position: relative;
+            min-height: unset !important; /* إزالة أي ارتفاع مفروض */
+          }
+          .service-card .service-icon { margin-bottom: 12px; }
+          .service-card .service-icon svg { width:36px; height:36px; }
+          .service-card h3 { margin-bottom: 10px !important; /* احتفاظ بحجم النص الأصلي */ }
+          .service-card p { 
+            margin: 0 0 6px !important; 
+            line-height: 1.4 !important; 
+          }
+          .service-card .service-hint { 
+            display: none !important; /* إخفاء الزر على الموبايل حسب الطلب */
+          }
+          /* إزالة أي امتداد سفلي غير ضروري */
+          .service-card::after { content:''; display:block; height:0; }
+        }
+      `}</style>
     </section>
   );
 };

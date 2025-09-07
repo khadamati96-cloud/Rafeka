@@ -22,7 +22,7 @@ export default function WebDevelopmentClient(){
     <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify({ '@context':'https://schema.org','@type':'Service', name:'Web Development', alternateName:'تطوير المواقع', serviceType:'WebDevelopment', provider:{'@type':'Organization',name:'Rafeka Agency'}, areaServed:'Worldwide', availableChannel:{'@type':'ServiceChannel', serviceUrl:'/services/web-development'} })}} />
     <section style={{padding:'clamp(3rem,6vw,5rem) var(--spacing-lg)',background:'linear-gradient(135deg, rgba(220,38,38,0.35) 0%, rgba(220,38,38,0.08) 45%, var(--bg-primary) 75%)',textAlign:'center'}}>
       <div style={{maxWidth:1000,margin:'0 auto'}}>
-        <Text as='h1' size='4xl' style={{fontWeight:'bold',fontSize:'clamp(2.25rem,5vw,3.5rem)',background:'linear-gradient(135deg,var(--text-primary),var(--brand-red))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',marginBottom:'var(--spacing-xl)'}}>{t('تطوير المواقع الإلكترونية','Web Development')}</Text>
+  <Text as='h1' size='4xl' style={{fontWeight:'bold',fontSize:'clamp(2.25rem,5vw,3.5rem)',background:'linear-gradient(135deg,var(--brand-red-light) 0%, var(--brand-red) 45%, var(--brand-red-dark) 100%)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',marginBottom:'var(--spacing-xl)'}}>{t('تطوير المواقع الإلكترونية','Web Development')}</Text>
         <Text size='xl' color='secondary' style={{maxWidth:700,margin:'0 auto',fontSize:'clamp(1.05rem,2.2vw,1.35rem)',lineHeight:1.6}}>{t('نبني منصات عالية الأداء وقابلة للتوسع.','We build high-performance, secure and scalable platforms.')}</Text>
       </div>
     </section>
@@ -35,13 +35,13 @@ export default function WebDevelopmentClient(){
         </div>)}
       </div>
       <div style={{marginBottom:'var(--spacing-5xl)'}}>
-        <Text as='h2' size='3xl' style={{fontWeight:'bold',textAlign:'center',marginBottom:'var(--spacing-3xl)',background:'linear-gradient(135deg,var(--text-primary),var(--brand-red))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>{t('منهجية التنفيذ','Delivery Methodology')}</Text>
+  <Text as='h2' size='3xl' style={{fontWeight:'bold',textAlign:'center',marginBottom:'var(--spacing-3xl)',background:'linear-gradient(135deg,var(--brand-red-light) 0%, var(--brand-red) 45%, var(--brand-red-dark) 100%)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>{t('منهجية التنفيذ','Delivery Methodology')}</Text>
         <div style={{display:'grid',gap:'var(--spacing-lg)',gridTemplateColumns:'repeat(auto-fit,minmax(180px,1fr))'}}>
           {process.map((p,i)=><div key={i} style={{background:'rgba(255,255,255,0.03)',border:'1px solid rgba(255,255,255,0.1)',padding:'var(--spacing-lg)',borderRadius:16,textAlign:'center',transform:visible?'scale(1)':'scale(.85)',opacity:visible?1:0,transition:'all .8s ease',transitionDelay:`${0.2+i*0.08}s`}}><Text size='sm' style={{fontWeight:600}}>{p}</Text></div>)}
         </div>
       </div>
       <div style={{marginBottom:'var(--spacing-5xl)'}}>
-        <Text as='h2' size='3xl' style={{fontWeight:'bold',textAlign:'center',marginBottom:'var(--spacing-3xl)',background:'linear-gradient(135deg,var(--text-primary),var(--brand-red))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>{t('التقنيات','Technologies')}</Text>
+  <Text as='h2' size='3xl' style={{fontWeight:'bold',textAlign:'center',marginBottom:'var(--spacing-3xl)',background:'linear-gradient(135deg,var(--brand-red-light) 0%, var(--brand-red) 45%, var(--brand-red-dark) 100%)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>{t('التقنيات','Technologies')}</Text>
         <div style={{display:'grid',gap:'var(--spacing-xl)',gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))'}}>
           {Object.entries(stack).map(([g,items],i)=><div key={g} style={{background:'rgba(255,255,255,0.03)',border:'1px solid rgba(255,255,255,0.1)',padding:'var(--spacing-xl)',borderRadius:20,transform:visible?'translateY(0)':'translateY(40px)',opacity:visible?1:0,transition:'all .8s ease',transitionDelay:`${0.15+i*0.1}s`}}>
             <Text as='h3' size='lg' style={{fontWeight:700,marginBottom:'var(--spacing-md)'}}>{t(g==='frontend'?'الواجهة الأمامية':g==='perf'?'الأداء':'الأدوات', g==='frontend'?'Frontend':g==='perf'?'Performance':'Tooling')}</Text>
