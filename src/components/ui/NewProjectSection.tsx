@@ -150,7 +150,7 @@ const NewProjectSection: React.FC = () => {
               lineHeight: '1.2',
             }}
           >
-            {language === 'ar' ? 'مهتم بالتعاون معنا؟' : 'Interested in Working with Us?'}
+            {language === 'ar' ? 'مهتم بالتعاون معنا؟' : '?Interested in Working with Us'}
           </Text>
         </div>
 
