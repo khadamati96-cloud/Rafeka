@@ -328,42 +328,9 @@ const ServicesSection: React.FC = () => {
               </div>
               {hoveredService === service.id && (
                 <>
-                  <div 
-                    style={{
-                      position: 'absolute',
-                      top: '20%',
-                      left: '10%',
-                      width: '4px',
-                      height: '4px',
-                      background: 'var(--brand-red)',
-                      borderRadius: '50%',
-                      animation: 'float-particle 3s ease-in-out infinite',
-                    }}
-                  />
-                  <div 
-                    style={{
-                      position: 'absolute',
-                      top: '60%',
-                      right: '15%',
-                      width: '3px',
-                      height: '3px',
-                      background: 'var(--brand-red-light)',
-                      borderRadius: '50%',
-                      animation: 'float-particle 3s ease-in-out infinite 1s',
-                    }}
-                  />
-                  <div 
-                    style={{
-                      position: 'absolute',
-                      bottom: '30%',
-                      left: '20%',
-                      width: '2px',
-                      height: '2px',
-                      background: 'var(--brand-red)',
-                      borderRadius: '50%',
-                      animation: 'float-particle 3s ease-in-out infinite 2s',
-                    }}
-                  />
+                  <div className="fx-particle" style={{position:'absolute',top:'18%',left:'12%',width:4,height:4,background:'var(--brand-red)',borderRadius:'50%',animation:'float-particle 3s ease-in-out infinite'}} />
+                  <div className="fx-particle" style={{position:'absolute',top:'58%',right:'15%',width:3,height:3,background:'var(--brand-red-light)',borderRadius:'50%',animation:'float-particle 3s ease-in-out infinite 1s'}} />
+                  <div className="fx-particle" style={{position:'absolute',bottom:'32%',left:'22%',width:2,height:2,background:'var(--brand-red)',borderRadius:'50%',animation:'float-particle 3s ease-in-out infinite 2s'}} />
                 </>
               )}
             </Link>
@@ -425,26 +392,31 @@ const ServicesSection: React.FC = () => {
         @media (max-width: 560px) {
           .services-grid { grid-template-columns: 1fr; gap: 12px; }
           .service-card { 
-            padding: 14px 16px 42px !important; /* مساحة كافية فقط للزر في الأسفل */
+            padding: 14px 16px 40px !important;
             max-width: 300px; 
             width: 100%; 
             margin-left: auto; 
             margin-right: auto; 
             position: relative;
-            min-height: unset !important; /* إزالة أي ارتفاع مفروض */
+            min-height: unset !important; 
+            transform: none !important;
           }
           .service-card .service-icon { margin-bottom: 12px; }
           .service-card .service-icon svg { width:36px; height:36px; }
-          .service-card h3 { margin-bottom: 10px !important; /* احتفاظ بحجم النص الأصلي */ }
+          .service-card h3 { margin-bottom: 10px !important; }
           .service-card p { 
             margin: 0 0 6px !important; 
             line-height: 1.4 !important; 
+            transform: none !important;
           }
-          .service-card .service-hint { 
-            display: none !important; /* إخفاء الزر على الموبايل حسب الطلب */
+          .service-card .service-hint { display: none !important; }
+          .service-card .card-overlay-tint,
+          .service-card .card-overlay-glow,
+          .service-card .fx-particle { display:none !important; }
+          .service-card:active, .service-card:focus { 
+            background: linear-gradient(135deg, rgba(220,38,38,0.10) 0%, rgba(220,38,38,0.06) 55%, rgba(220,38,38,0.10) 100%) !important;
+            border-color: rgba(220,38,38,0.35) !important;
           }
-          /* إزالة أي امتداد سفلي غير ضروري */
-          .service-card::after { content:''; display:block; height:0; }
         }
       `}</style>
     </section>
