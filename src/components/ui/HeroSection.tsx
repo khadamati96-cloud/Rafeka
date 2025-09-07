@@ -77,7 +77,8 @@ const HeroSection: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
-        padding: 'var(--spacing-xl) var(--spacing-lg)',
+  /* Reduced bottom padding to tighten space before next section */
+  padding: 'var(--spacing-xl) var(--spacing-lg) var(--spacing-lg)',
       }}>
       {/* صورة الخلفية للموبايل فقط */}
       <div 
@@ -103,10 +104,10 @@ const HeroSection: React.FC = () => {
       <style>{`
         @media (max-width: 768px) {
           .hero-section {
-            padding-top: 4rem !important;
-            min-height: 70vh !important;
+            padding-top: 3rem !important; /* was 4rem */
+            min-height: 60vh !important; /* was 70vh */
             justify-content: flex-start !important;
-            padding-bottom: 2rem !important;
+            padding-bottom: 0.75rem !important; /* was 2rem – tighter gap */
           }
           .hero-container {
             margin-top: 1rem !important;
@@ -121,6 +122,20 @@ const HeroSection: React.FC = () => {
           }
           .hero-mobile-bg {
             display: block !important;
+            /* Adjustments to show the whole image more clearly */
+            background-size: contain !important; /* ensure full image is visible */
+            background-position: top center !important; /* keep important top content visible */
+            background-repeat: no-repeat !important;
+            top: 0 !important; /* start from top */
+            height: 60vh !important; /* smaller so it fits fully */
+            opacity: 0.45 !important; /* a bit more visible for clarity */
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.05));
+            /* Optional subtle scale for very small phones */
+          }
+          @media (max-width: 420px) {
+            .hero-mobile-bg {
+              height: 55vh !important;
+            }
           }
         }
       `}</style>
@@ -137,11 +152,17 @@ const HeroSection: React.FC = () => {
           as="h1"
           className="hero-title"
           style={{
-            fontWeight: 'bold',
+            fontWeight: 800, /* more bold (أعرض) */
             marginBottom: 'var(--spacing-lg)',
             lineHeight: '1.1',
-            fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+            fontSize: 'clamp(2.6rem, 6.2vw, 4.2rem)', /* slightly larger */
             fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
+            /* Gradient from white to neutral gray */
+            background: 'linear-gradient(135deg, #FFFFFF 0%, #D1D5DB 60%, #9CA3AF 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            letterSpacing: language === 'ar' ? '0' : '0.5px',
           }}
         >
           {language === 'ar' ? (

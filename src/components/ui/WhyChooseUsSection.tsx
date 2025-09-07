@@ -14,11 +14,11 @@ const FEATURES: Array<{
   }> = [
     {
       icon: (
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth="2"/>
-          <path d="M6 21V19C6 16.7909 7.79086 15 10 15H14C16.2091 15 18 16.7909 18 19V21" stroke="currentColor" strokeWidth="2"/>
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{display:'block'}}>
+          <circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth="1.25"/>
+          <path d="M6 21V19C6 16.7909 7.79086 15 10 15H14C16.2091 15 18 16.7909 18 19V21" stroke="currentColor" strokeWidth="1.25"/>
           <circle cx="12" cy="12" r="1" fill="currentColor"/>
-          <path d="M8 10L16 14M16 10L8 14" stroke="currentColor" strokeWidth="1" opacity="0.6"/>
+          <path d="M8 10L16 14M16 10L8 14" stroke="currentColor" strokeWidth="0.9" opacity="0.6"/>
         </svg>
       ),
       titleAr: 'محورنا العميل',
@@ -28,10 +28,10 @@ const FEATURES: Array<{
     },
     {
       icon: (
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-          <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="2"/>
-          <circle cx="12" cy="12" r="2" stroke="currentColor" strokeWidth="1.5"/>
-          <path d="M9 9L15 15M15 9L9 15" stroke="currentColor" strokeWidth="1"/>
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{display:'block'}}>
+          <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="1.25"/>
+          <circle cx="12" cy="12" r="2" stroke="currentColor" strokeWidth="1"/>
+          <path d="M9 9L15 15M15 9L9 15" stroke="currentColor" strokeWidth="0.85"/>
         </svg>
       ),
       titleAr: 'حلول مخصصة',
@@ -41,10 +41,10 @@ const FEATURES: Array<{
     },
     {
       icon: (
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-          <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-          <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2"/>
-          <path d="M12 6V8M12 16V18M6 12H8M16 12H18" stroke="currentColor" strokeWidth="1.5"/>
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{display:'block'}}>
+          <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round"/>
+          <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.25"/>
+          <path d="M12 6V8M12 16V18M6 12H8M16 12H18" stroke="currentColor" strokeWidth="1"/>
         </svg>
       ),
       titleAr: 'خبرة مثبتة',
@@ -54,9 +54,9 @@ const FEATURES: Array<{
     },
     {
       icon: (
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-          <path d="M12 2L14.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="2"/>
-          <path d="M12 8V16M8 12H16" stroke="currentColor" strokeWidth="1.5"/>
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{display:'block'}}>
+          <path d="M12 2L14.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="1.25"/>
+          <path d="M12 8V16M8 12H16" stroke="currentColor" strokeWidth="1"/>
           <circle cx="8" cy="8" r="1" fill="currentColor"/>
           <circle cx="16" cy="8" r="1" fill="currentColor"/>
           <circle cx="8" cy="16" r="1" fill="currentColor"/>
@@ -70,13 +70,13 @@ const FEATURES: Array<{
     },
     {
       icon: (
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-          <path d="M3 13L9 7L13 11L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-          <path d="M21 3V9M21 3H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{display:'block'}}>
+          <path d="M3 13L9 7L13 11L21 3" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round"/>
+          <path d="M21 3V9M21 3H15" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round"/>
           <circle cx="9" cy="7" r="1" fill="currentColor"/>
           <circle cx="13" cy="11" r="1" fill="currentColor"/>
           <circle cx="21" cy="3" r="1" fill="currentColor"/>
-          <path d="M3 21H21" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M3 21H21" stroke="currentColor" strokeWidth="1"/>
         </svg>
       ),
       titleAr: 'نركز على النتائج',
@@ -86,11 +86,11 @@ const FEATURES: Array<{
     },
     {
       icon: (
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-          <path d="M9.663 17H4C2.89543 17 2 16.1046 2 15V5C2 3.89543 2.89543 3 4 3H20C21.1046 3 22 3.89543 22 5V15C22 16.1046 21.1046 17 20 17H14.337" stroke="currentColor" strokeWidth="2"/>
-          <path d="M12 17L8 21L12 17Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-          <circle cx="12" cy="10" r="2" stroke="currentColor" strokeWidth="1.5"/>
-          <path d="M7 7H9M15 7H17M7 13H17" stroke="currentColor" strokeWidth="1"/>
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{display:'block'}}>
+          <path d="M9.663 17H4C2.89543 17 2 16.1046 2 15V5C2 3.89543 2.89543 3 4 3H20C21.1046 3 22 3.89543 22 5V15C22 16.1046 21.1046 17 20 17H14.337" stroke="currentColor" strokeWidth="1.25"/>
+          <path d="M12 17L8 21L12 17Z" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round"/>
+          <circle cx="12" cy="10" r="2" stroke="currentColor" strokeWidth="1"/>
+          <path d="M7 7H9M15 7H17M7 13H17" stroke="currentColor" strokeWidth="0.85"/>
         </svg>
       ),
       titleAr: 'استراتيجيات مبتكرة',
@@ -169,7 +169,8 @@ const WhyChooseUsSection: React.FC = () => {
               marginBottom: 'var(--spacing-lg)',
               fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
               fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-              background: 'linear-gradient(135deg, var(--text-primary) 0%, var(--brand-red) 100%)',
+              /* Unified red gradient (remove white to avoid pink tint) */
+              background: 'linear-gradient(135deg, var(--brand-red-light) 0%, var(--brand-red) 45%, var(--brand-red-dark) 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -265,7 +266,8 @@ const WhyChooseUsSection: React.FC = () => {
                   height: '4rem',
                   backgroundColor: '#dc2626',
                   borderRadius: '1rem',
-                  marginBottom: 'var(--spacing-lg)',
+                  /* Center the icon box horizontally */
+                  margin: '0 auto var(--spacing-lg)',
                   filter: 'drop-shadow(0 4px 8px rgba(220, 38, 38, 0.5))',
                   transform: visibleItems[index] ? 'scale(1)' : 'scale(0)',
                   transition: 'transform 0.6s ease',

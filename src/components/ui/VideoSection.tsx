@@ -105,7 +105,8 @@ const VideoSection: React.FC = () => {
               marginBottom: 'var(--spacing-lg)',
               fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
               fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-              background: 'linear-gradient(135deg, var(--text-primary) 0%, var(--brand-red) 100%)',
+              /* Match ServicesSection heading gradient (remove white to avoid pink look) */
+              background: 'linear-gradient(135deg, var(--brand-red-light) 0%, var(--brand-red) 45%, var(--brand-red-dark) 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',

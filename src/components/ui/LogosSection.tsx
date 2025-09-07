@@ -40,26 +40,24 @@ const LogosSection: React.FC = () => {
   return (
     <section 
       ref={sectionRef}
+      className="logos-section"
       style={{
         position: 'relative',
-        padding: 'var(--spacing-3xl) var(--spacing-lg)',
+        /* Reduced top padding to bring it closer to hero section */
+        padding: 'var(--spacing-2xl) var(--spacing-lg) var(--spacing-3xl)',
         background: 'var(--bg-primary)',
         overflow: 'hidden',
       }}
     >
-      {/* كسر الشعاع الأحمر من الهيرو */}
-      <div 
-        style={{
-          position: 'absolute',
-          top: '-50px',
-          left: 0,
-          width: '100%',
-          height: '100px',
-          background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.1) 0%, transparent 70%)',
-          clipPath: 'polygon(0 0, 100% 0, 80% 100%, 0% 100%)',
-          zIndex: 1,
-        }}
-      />
+      <style>{`
+        @media (max-width: 768px) {
+          .logos-section {
+            padding-top: var(--spacing-md) !important; /* tighter on mobile */
+            padding-bottom: var(--spacing-2xl) !important; /* keep bottom balanced */
+          }
+        }
+      `}</style>
+  {/* تمت إزالة كسر اللون بناءً على طلب العميل */}
 
       <div className="container" style={{ 
         maxWidth: '1200px',

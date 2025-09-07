@@ -11,8 +11,6 @@ const STATS = [
       suffix: '+',
       titleAr: 'عملاء سعداء',
       titleEn: 'Happy Clients',
-      descriptionAr: 'عدد العملاء الراضين الذين استفادوا من خدماتنا',
-      descriptionEn: 'Number of satisfied clients who benefited from our services',
       icon: '😊',
       color: '#22c55e'
     },
@@ -21,8 +19,6 @@ const STATS = [
       suffix: '+',
       titleAr: 'مشاريع مكتملة',
       titleEn: 'Completed Projects',
-      descriptionAr: 'إجمالي المشاريع التي تم تسليمها بنجاح في مختلف الصناعات',
-      descriptionEn: 'Total projects successfully delivered across various industries',
       icon: '🎯',
       color: '#3b82f6'
     },
@@ -31,8 +27,6 @@ const STATS = [
       suffix: '+',
       titleAr: 'مواقع جاهزة',
       titleEn: 'Ready Websites',
-      descriptionAr: 'إجمالي المواقع التي قمنا بتسليمها للعملاء',
-      descriptionEn: 'Total websites we have delivered to clients',
       icon: '🌐',
       color: '#8b5cf6'
     },
@@ -41,8 +35,6 @@ const STATS = [
       suffix: '+',
       titleAr: 'تطبيق موبايل',
       titleEn: 'Mobile Apps',
-      descriptionAr: 'إجمالي تطبيقات الموبايل والمشاريع التي تم إنجازها',
-      descriptionEn: 'Total mobile applications and projects completed',
       icon: '📱',
       color: '#DC2626'
     }
@@ -135,7 +127,8 @@ const StatsSection: React.FC = () => {
               marginBottom: 'var(--spacing-lg)',
               fontSize: 'clamp(2rem, 5vw, 3rem)',
               fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-              background: 'linear-gradient(135deg, var(--text-primary) 0%, var(--brand-red) 100%)',
+              /* Unified red gradient (remove white to avoid pink tint) */
+              background: 'linear-gradient(135deg, var(--brand-red-light) 0%, var(--brand-red) 45%, var(--brand-red-dark) 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -143,18 +136,6 @@ const StatsSection: React.FC = () => {
             }}
           >
             {language === 'ar' ? 'أرقـام رافـقة' : 'Rafeka Numbers'}
-            {/* تأثير لامع */}
-            <div 
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: '-100%',
-                width: '100%',
-                height: '100%',
-                background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)',
-                animation: isVisible ? 'shine 3s ease-in-out infinite' : 'none',
-              }}
-            />
           </Text>
         </div>
 
@@ -257,19 +238,7 @@ const StatsSection: React.FC = () => {
               </Text>
 
               {/* وصف الإحصائية */}
-              <Text 
-                size="base" 
-                color="secondary"
-                style={{
-                  fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-                  fontSize: 'clamp(0.875rem, 1.5vw, 1rem)',
-                  lineHeight: '1.6',
-                  color: 'var(--text-secondary)',
-                  opacity: 0.8,
-                }}
-              >
-                {language === 'ar' ? stat.descriptionAr : stat.descriptionEn}
-              </Text>
+              {/* تم حذف الوصف حسب الطلب */}
 
               {/* خط سفلي متحرك */}
               <div 

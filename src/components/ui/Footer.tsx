@@ -85,7 +85,8 @@ const Footer: React.FC = () => {
               fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
               color: 'var(--text-primary)',
               marginBottom: 'var(--spacing-md)',
-              background: 'linear-gradient(135deg, var(--text-primary) 0%, var(--brand-red) 100%)',
+              /* Unified red gradient (remove white start) */
+              background: 'linear-gradient(135deg, var(--brand-red-light) 0%, var(--brand-red) 45%, var(--brand-red-dark) 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',

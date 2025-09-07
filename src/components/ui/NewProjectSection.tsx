@@ -141,7 +141,8 @@ const NewProjectSection: React.FC = () => {
               fontWeight: 'bold',
               fontSize: 'clamp(2rem, 5vw, 3.5rem)',
               fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
-              background: 'linear-gradient(135deg, var(--text-primary) 0%, var(--brand-red) 100%)',
+              /* Unified pure red gradient (remove white to avoid pink tint) */
+              background: 'linear-gradient(135deg, var(--brand-red-light) 0%, var(--brand-red) 45%, var(--brand-red-dark) 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
