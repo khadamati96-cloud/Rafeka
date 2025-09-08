@@ -15,7 +15,8 @@ const HeroSection: React.FC = () => {
       className="hero-section"
       style={{
         minHeight: '80vh',
-        background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.3) 0%, rgba(220, 38, 38, 0.1) 30%, var(--bg-primary) 50%)',
+        /* خلفية سوداء كاملة */
+        background: '#000000',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -70,7 +71,7 @@ const HeroSection: React.FC = () => {
           }
           .hero-title {
             margin-bottom: 1rem !important;
-            margin-top: 6.0rem !important; /* دفع العنوان لأسفل قليلاً على الجوال */
+            margin-top: 9.0rem !important; /* دفع العنوان لأسفل قليلاً على الجوال */
             font-size: clamp(1.9rem, 1vw, 1.5rem) !important; /* تصغير الخط على الجوال فقط */
             line-height: 1.15 !important; /* توازن بعد التصغير */
           }
@@ -172,8 +173,36 @@ const HeroSection: React.FC = () => {
 
   {/* تم حذف الإحصائيات من الهيرو */}
       </div>
+      {/* صورة كاملة العرض أسفل زر من نحن */}
+      <div 
+        className="hero-full-width-image"
+        style={{
+          width: '200vw',
+          position: 'relative',
+          left: '110%',
+          transform: 'translateX(-50%)',
+          marginTop: '0',
+          marginBottom: '0',
+          lineHeight: 0,
+          zIndex: 3
+        }}
+      >
+        <img 
+          src="/9999.jpg" 
+          alt={language === 'ar' ? 'صورة توضيحية' : 'Showcase image'}
+          style={{
+            width: '100%',
+            display: 'block',
+            height: 'auto',
+            objectFit: 'cover',
+            margin: 0,
+            padding: 0,
+            border: 'none'
+          }}
+        />
+      </div>
       
-      {/* شعاع إضافي في الخلفية مع كسر في النهاية */}
+  {/* خلفية خفيفة إضاءة فوق الأسود */}
       <div 
         style={{
           position: 'absolute',
@@ -181,7 +210,7 @@ const HeroSection: React.FC = () => {
           left: 0,
           width: '100%',
           height: '100%',
-          background: 'radial-gradient(ellipse at top left, rgba(220, 38, 38, 0.05) 0%, transparent 50%)',
+      background: 'radial-gradient(circle at 35% 30%, rgba(255,255,255,0.06) 0%, transparent 60%)',
           pointerEvents: 'none',
           zIndex: -1,
         }}
