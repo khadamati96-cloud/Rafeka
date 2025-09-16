@@ -49,7 +49,7 @@ const FEATURES: Array<{
       ),
       titleAr: 'خبرة مثبتة',
       titleEn: 'Proven Experience',
-      descriptionAr: 'وكالة رفيقة تقدم تسويقًا رقميًا ناجحًا باستخدام أحدث الاتجاهات والتقنيات',
+      descriptionAr: 'وكالة رافقة تقدم تسويقًا رقميًا ناجحًا باستخدام أحدث الاتجاهات والتقنيات',
       descriptionEn: 'Rafeka agency delivers successful digital marketing using the latest trends and technologies'
     },
     {

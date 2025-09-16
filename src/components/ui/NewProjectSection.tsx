@@ -240,47 +240,57 @@ const NewProjectSection: React.FC = () => {
           </button>
         </div>
 
-        {/* نقاط صغيرة متحركة */}
-        <div 
+        {/* نقاط صغيرة متحركة (مخفية على الشاشات الصغيرة لمنع التداخل) */}
+        <div
+          className="np-dot"
           style={{
-            position: 'absolute',
             top: '20%',
             right: '10%',
             width: '8px',
             height: '8px',
             background: 'var(--brand-red)',
-            borderRadius: '50%',
             opacity: 0.6,
-            animation: isVisible ? 'pulse-dot 3s ease-in-out infinite' : 'none',
+            animation: isVisible ? 'pulse-dot 3s ease-in-out infinite' : 'none'
           }}
         />
-        <div 
+        <div
+          className="np-dot"
           style={{
-            position: 'absolute',
             bottom: '25%',
             left: '15%',
             width: '6px',
             height: '6px',
             background: 'var(--brand-red-light)',
-            borderRadius: '50%',
             opacity: 0.4,
-            animation: isVisible ? 'pulse-dot 3s ease-in-out infinite 1.5s' : 'none',
+            animation: isVisible ? 'pulse-dot 3s ease-in-out infinite 1.5s' : 'none'
           }}
         />
-        <div 
+        <div
+          className="np-dot"
           style={{
-            position: 'absolute',
             top: '60%',
             right: '20%',
             width: '10px',
             height: '10px',
             background: 'var(--brand-red)',
-            borderRadius: '50%',
             opacity: 0.3,
-            animation: isVisible ? 'pulse-dot 4s ease-in-out infinite 0.5s' : 'none',
+            animation: isVisible ? 'pulse-dot 4s ease-in-out infinite 0.5s' : 'none'
           }}
         />
       </div>
+      {/* ستايل خاص لعناصر الزينة لضبطها على الشاشات الصغيرة */}
+      <style jsx>{`
+        .np-dot {
+          position: absolute;
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: 0; /* خلف المحتوى */
+        }
+        /* إخفاء النقاط على الشاشات الصغيرة لمنع تغطية النص */
+        @media (max-width: 640px) {
+          .np-dot { display: none; }
+        }
+      `}</style>
     </section>
   );
 };
