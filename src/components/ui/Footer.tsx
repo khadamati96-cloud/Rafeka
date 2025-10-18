@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { Text } from './BrandComponents';
 import { useLanguage } from '../../providers/LanguageProvider';
 
@@ -55,7 +56,7 @@ const Footer: React.FC = () => {
       name: 'Behance',
 	url: 'https://www.behance.net/RAFEKA',
       icon: (
-        <img src="/behance.png" alt="Behance" style={{width:40,height:40,objectFit:'contain',display:'block'}} />
+        <Image src="/behance.png" alt="Behance" width={40} height={40} style={{objectFit:'contain',display:'block'}} />
       )
     }
   ];
@@ -90,7 +91,13 @@ const Footer: React.FC = () => {
               backgroundClip: 'text',
             }}
           >
-            {language === 'ar' ? 'وكالة رافقة' : 'Rafeka Agency'}
+            {(
+              {
+                ar: 'وكالة رافقة',
+                en: 'Rafeka Agency',
+                tr: 'Rafeka Ajansı',
+              } as const
+            )[language]}
           </Text>
           
           <Text 
@@ -104,10 +111,13 @@ const Footer: React.FC = () => {
               lineHeight: '1.6',
             }}
           >
-            {language === 'ar' 
-              ? 'نحول أفكارك إلى واقع رقمي مبهر'
-              : 'Transforming your ideas into stunning digital reality'
-            }
+            {(
+              {
+                ar: 'نحول أفكارك إلى واقع رقمي مبهر',
+                en: 'Transforming your ideas into stunning digital reality',
+                tr: 'Fikirlerinizi etkileyici dijital bir gerçekliğe dönüştürüyoruz',
+              } as const
+            )[language]}
           </Text>
         </div>
 
@@ -179,10 +189,13 @@ const Footer: React.FC = () => {
               fontSize: 'clamp(0.875rem, 1.5vw, 1rem)',
             }}
           >
-            {language === 'ar' 
-              ? `© ${new Date().getFullYear()} وكالة رافقة • جميع الحقوق محفوظة`
-              : `© ${new Date().getFullYear()} Rafeka Agency • All rights reserved`
-            }
+            {(
+              {
+                ar: `© ${new Date().getFullYear()} وكالة رافقة • جميع الحقوق محفوظة`,
+                en: `© ${new Date().getFullYear()} Rafeka Agency • All rights reserved`,
+                tr: `© ${new Date().getFullYear()} Rafeka Ajansı • Tüm hakları saklıdır`,
+              } as const
+            )[language]}
           </Text>
         </div>
       </div>

@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Text } from './BrandComponents';
 import { useLanguage } from '../../providers/LanguageProvider';
 import Link from 'next/link';
+import type { Language } from '../../lib/translations';
 
 const ServicesSection: React.FC = () => {
   const { language } = useLanguage();
@@ -11,14 +12,28 @@ const ServicesSection: React.FC = () => {
   const [hoveredService, setHoveredService] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
-  const services = [
+  const services: Array<{
+    id: number;
+    href: string;
+    title: Record<Language, string>;
+    description: Record<Language, string>;
+    icon: React.ReactNode;
+    gradient: string;
+    delay: string;
+  }> = [
     {
       id: 1,
       href: '/services/web-development',
-      titleAr: 'تطوير المواقع الإلكترونية',
-      titleEn: 'Web Development',
-      descriptionAr: 'نصمم ونطور مواقع إلكترونية متطورة وسريعة الاستجابة تعكس هوية علامتك التجارية بأحدث التقنيات',
-      descriptionEn: 'We design and develop advanced, responsive websites that reflect your brand identity using the latest technologies',
+      title: {
+        ar: 'تطوير المواقع الإلكترونية',
+        en: 'Web Development',
+        tr: 'Web Geliştirme',
+      },
+      description: {
+        ar: 'نصمم ونطور مواقع إلكترونية متطورة وسريعة الاستجابة تعكس هوية علامتك التجارية بأحدث التقنيات',
+        en: 'We design and develop advanced, responsive websites that reflect your brand identity using the latest technologies.',
+        tr: 'Marka kimliğinizi yansıtan, en yeni teknolojilerle geliştirilen gelişmiş ve duyarlı web siteleri tasarlıyor ve geliştiriyoruz.',
+      },
       icon: (
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
           <rect x="3" y="3" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.4"/>
@@ -36,10 +51,16 @@ const ServicesSection: React.FC = () => {
     {
       id: 2,
       href: '/services/digital-marketing',
-      titleAr: 'التسويق الرقمي',
-      titleEn: 'Digital Marketing',
-      descriptionAr: 'استراتيجيات تسويقية مبتكرة ومدروسة لزيادة الوصول والمبيعات عبر جميع المنصات الرقمية',
-      descriptionEn: 'Innovative and strategic marketing approaches to increase reach and sales across all digital platforms',
+      title: {
+        ar: 'التسويق الرقمي',
+        en: 'Digital Marketing',
+        tr: 'Dijital Pazarlama',
+      },
+      description: {
+        ar: 'استراتيجيات تسويقية مبتكرة ومدروسة لزيادة الوصول والمبيعات عبر جميع المنصات الرقمية',
+        en: 'Innovative and strategic marketing approaches to increase reach and sales across all digital platforms.',
+        tr: 'Tüm dijital platformlarda erişimi ve satışları artırmak için yenilikçi ve stratejik pazarlama yaklaşımları sunuyoruz.',
+      },
       icon: (
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
           <path d="M3 12L21 12" stroke="currentColor" strokeWidth="1.4"/>
@@ -58,10 +79,16 @@ const ServicesSection: React.FC = () => {
     {
       id: 3,
       href: '/services/social-media-management',
-      titleAr: 'إدارة وسائل التواصل الاجتماعي',
-      titleEn: 'Social Media Management',
-      descriptionAr: 'إدارة شاملة واحترافية لحساباتك على منصات التواصل الاجتماعي مع محتوى جذاب ومؤثر',
-      descriptionEn: 'Comprehensive and professional management of your social media accounts with engaging and impactful content',
+      title: {
+        ar: 'إدارة وسائل التواصل الاجتماعي',
+        en: 'Social Media Management',
+        tr: 'Sosyal Medya Yönetimi',
+      },
+      description: {
+        ar: 'إدارة شاملة واحترافية لحساباتك على منصات التواصل الاجتماعي مع محتوى جذاب ومؤثر',
+        en: 'Comprehensive and professional management of your social media accounts with engaging and impactful content.',
+        tr: 'Sosyal medya hesaplarınızı etkileyici ve sonuç odaklı içeriklerle kapsamlı ve profesyonel şekilde yönetiyoruz.',
+      },
       icon: (
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
           <circle cx="18" cy="6" r="3" stroke="currentColor" strokeWidth="1.4"/>
@@ -80,10 +107,16 @@ const ServicesSection: React.FC = () => {
     {
       id: 4,
       href: '/services/brand-design',
-      titleAr: 'تصميم وتطوير العلامات التجارية',
-      titleEn: 'Brand Design & Development',
-      descriptionAr: 'تصميم هوية بصرية متكاملة ومميزة تعبر عن قيم علامتك التجارية وتترك انطباعاً لا يُنسى',
-      descriptionEn: 'Complete and distinctive visual identity design that expresses your brand values and leaves an unforgettable impression',
+      title: {
+        ar: 'تصميم وتطوير العلامات التجارية',
+        en: 'Brand Design & Development',
+        tr: 'Marka Tasarımı ve Geliştirme',
+      },
+      description: {
+        ar: 'تصميم هوية بصرية متكاملة ومميزة تعبر عن قيم علامتك التجارية وتترك انطباعاً لا يُنسى',
+        en: 'Complete and distinctive visual identity design that expresses your brand values and leaves an unforgettable impression.',
+        tr: 'Marka değerlerinizi yansıtan, unutulmaz bir izlenim bırakan bütüncül ve özgün görsel kimlikler tasarlıyoruz.',
+      },
       icon: (
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
           <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="1.4"/>
@@ -167,7 +200,13 @@ const ServicesSection: React.FC = () => {
               backgroundClip: 'text',
             }}
           >
-            {language === 'ar' ? 'خدماتنا' : 'Our Services'}
+            {(
+              {
+                ar: 'خدماتنا',
+                en: 'Our Services',
+                tr: 'Hizmetlerimiz',
+              } as const
+            )[language]}
           </Text>
           
           <Text 
@@ -181,10 +220,13 @@ const ServicesSection: React.FC = () => {
               lineHeight: '1.6',
             }}
           >
-            {language === 'ar' 
-              ? 'نقدم مجموعة شاملة من الخدمات الرقمية المتطورة لتعزيز حضورك الرقمي وتحقيق أهدافك التجارية'
-              : 'We offer a comprehensive range of advanced digital services to enhance your digital presence and achieve your business goals'
-            }
+            {(
+              {
+                ar: 'نقدم مجموعة شاملة من الخدمات الرقمية المتطورة لتعزيز حضورك الرقمي وتحقيق أهدافك التجارية',
+                en: 'We offer a comprehensive range of advanced digital services to enhance your digital presence and achieve your business goals.',
+                tr: 'Dijital varlığınızı güçlendirmek ve iş hedeflerinize ulaşmak için gelişmiş dijital hizmetlerin kapsamlı bir yelpazesini sunuyoruz.',
+              } as const
+            )[language]}
           </Text>
         </div>
 
@@ -202,7 +244,7 @@ const ServicesSection: React.FC = () => {
             <Link
               key={service.id}
               href={service.href}
-              aria-label={language === 'ar' ? service.titleAr : service.titleEn}
+              aria-label={service.title[language]}
               className="service-card"
               style={{
                 position: 'relative',
@@ -290,7 +332,7 @@ const ServicesSection: React.FC = () => {
                     lineHeight: '1.3',
                   }}
                 >
-                  {language === 'ar' ? service.titleAr : service.titleEn}
+                  {service.title[language]}
                 </Text>
                 <Text 
                   size="lg" 
@@ -304,7 +346,7 @@ const ServicesSection: React.FC = () => {
                     transition: 'transform 0.3s ease',
                   }}
                 >
-                  {language === 'ar' ? service.descriptionAr : service.descriptionEn}
+                  {service.description[language]}
                 </Text>
                 <div className="service-hint" style={{
                   marginTop: 'var(--spacing-sm)',
@@ -323,7 +365,13 @@ const ServicesSection: React.FC = () => {
                   border: '1px solid rgba(255,255,255,0.12)',
                   backdropFilter: 'blur(6px)'
                 }}>
-                  {language === 'ar' ? 'اضغط للمزيد' : 'Tap / Click for details'}
+                  {(
+                    {
+                      ar: 'اضغط للمزيد',
+                      en: 'Tap / Click for details',
+                      tr: 'Detaylar için dokunun / tıklayın',
+                    } as const
+                  )[language]}
                 </div>
               </div>
               {hoveredService === service.id && (

@@ -83,7 +83,13 @@ const LogosSection: React.FC = () => {
               fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
             }}
           >
-            {language === 'ar' ? 'العلامات التجارية التي تثق بنا' : 'Trusted by Leading Brands'}
+            {(
+              {
+                ar: 'العلامات التجارية التي تثق بنا',
+                en: 'Trusted by Leading Brands',
+                tr: 'Bize Güvenen Önde Gelen Markalar',
+              } as const
+            )[language]}
           </Text>
           <Text 
             size="lg" 
@@ -92,7 +98,13 @@ const LogosSection: React.FC = () => {
               fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
             }}
           >
-            {language === 'ar' ? 'نعمل مع أفضل الشركات في العالم' : 'Working with the world\'s best companies'}
+            {(
+              {
+                ar: 'نعمل مع أفضل الشركات في العالم',
+                en: "Working with the world's best companies",
+                tr: 'Dünyanın önde gelen şirketleriyle çalışıyoruz',
+              } as const
+            )[language]}
           </Text>
         </div>
 

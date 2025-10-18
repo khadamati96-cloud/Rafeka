@@ -14,7 +14,22 @@ import { useLanguage } from '@/providers/LanguageProvider';
 import React from 'react';
 
 export default function HomeContent() {
-  useLanguage(); // ensure provider hook hydration
+  const { language } = useLanguage(); // ensure provider hook hydration
+  const schemaByLanguage = {
+    ar: {
+      name: 'رافقة الرئيسية',
+      description: 'وكالة رافقة - حلول رقمية شاملة.',
+    },
+    en: {
+      name: 'Rafeka Home',
+      description: 'Rafeka Agency - Comprehensive digital solutions.',
+    },
+    tr: {
+      name: 'Rafeka Ana Sayfa',
+      description: 'Rafeka Ajansı - Kapsamlı dijital çözümler.',
+    },
+  } as const;
+  const schemaContent = schemaByLanguage[language];
   return (
     <>
       <script
@@ -23,9 +38,9 @@ export default function HomeContent() {
           __html: JSON.stringify({
             '@context':'https://schema.org',
             '@type':'WebPage',
-            name:'Rafeka Home',
-            inLanguage:'ar',
-            description:'وكالة رافقة - حلول رقمية شاملة.',
+            name: schemaContent.name,
+            inLanguage: language,
+            description: schemaContent.description,
             url:'/'
           })
         }}

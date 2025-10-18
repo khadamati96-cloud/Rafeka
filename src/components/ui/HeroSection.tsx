@@ -4,11 +4,42 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { Text, Button } from './BrandComponents';
 import { useLanguage } from '../../providers/LanguageProvider';
+import type { Language } from '../../lib/translations';
 
 const HeroSection: React.FC = () => {
   const { language } = useLanguage();
   const router = useRouter();
   // تمت إزالة الإحصائيات من الهيرو بناءً على الطلب
+
+  const headingContent: Record<Language, React.ReactNode> = {
+    ar: (
+      <>
+        ارفع و عزز
+        <br />
+        علامتك التجارية
+      </>
+    ),
+    en: (
+      <>
+        Elevate & Enhance
+        <br />
+        Your Brand
+      </>
+    ),
+    tr: (
+      <>
+        Markanızı Yükseltin
+        <br />
+        ve Güçlendirin
+      </>
+    ),
+  };
+
+  const aboutLabel: Record<Language, { text: string; aria: string }> = {
+    ar: { text: 'من نحن', aria: 'الانتقال إلى صفحة من نحن' },
+    en: { text: 'About Us', aria: 'Go to About Us page' },
+    tr: { text: 'Hakkımızda', aria: 'Hakkımızda sayfasına git' },
+  };
 
   return (
   <section 
@@ -125,19 +156,7 @@ const HeroSection: React.FC = () => {
             letterSpacing: language === 'ar' ? '0' : '0.5px',
           }}
         >
-          {language === 'ar' ? (
-            <>
-              ارفع و عزز
-              <br />
-              علامتك التجارية
-            </>
-          ) : (
-            <>
-              Elevate & Enhance
-              <br />
-              Your Brand
-            </>
-          )}
+          {headingContent[language]}
         </Text>
         
         {/* النص التوضيحي */}
@@ -165,9 +184,9 @@ const HeroSection: React.FC = () => {
             whiteSpace: 'nowrap'
           }}
           onClick={() => router.push('/about')}
-          aria-label={language === 'ar' ? 'الانتقال إلى صفحة من نحن' : 'Go to About Us page'}
+          aria-label={aboutLabel[language].aria}
         >
-          {language === 'ar' ? 'من نحن' : 'About Us'}
+          {aboutLabel[language].text}
         </Button>
 
   {/* تم حذف الإحصائيات من الهيرو */}

@@ -1,16 +1,15 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Text } from './BrandComponents';
 import { useLanguage } from '../../providers/LanguageProvider';
+import type { Language } from '../../lib/translations';
 
 // Hoist features so reference remains stable
 const FEATURES: Array<{
     icon: React.ReactElement;
-    titleAr: string;
-    titleEn: string;
-    descriptionAr: string;
-    descriptionEn: string;
+    title: Record<Language, string>;
+    description: Record<Language, string>;
   }> = [
     {
       icon: (
@@ -21,10 +20,16 @@ const FEATURES: Array<{
           <path d="M8 10L16 14M16 10L8 14" stroke="currentColor" strokeWidth="0.9" opacity="0.6"/>
         </svg>
       ),
-      titleAr: 'محورنا العميل',
-      titleEn: 'Client-Focused',
-      descriptionAr: 'العملاء أولويتنا، نركز على التواصل والشفافية والتعاون لتحقيق النجاح المستدام',
-      descriptionEn: 'Our clients are our priority, we focus on communication, transparency and collaboration to achieve sustainable success'
+      title: {
+        ar: 'محورنا العميل',
+        en: 'Client-Focused',
+        tr: 'Müşteri Odaklı',
+      },
+      description: {
+        ar: 'العملاء أولويتنا، نركز على التواصل والشفافية والتعاون لتحقيق النجاح المستدام',
+        en: 'Our clients are our priority; we focus on communication, transparency, and collaboration to achieve sustainable success.',
+        tr: 'Müşterilerimiz önceliğimizdir; sürdürülebilir başarı için iletişime, şeffaflığa ve iş birliğine odaklanıyoruz.',
+      },
     },
     {
       icon: (
@@ -34,10 +39,16 @@ const FEATURES: Array<{
           <path d="M9 9L15 15M15 9L9 15" stroke="currentColor" strokeWidth="0.85"/>
         </svg>
       ),
-      titleAr: 'حلول مخصصة',
-      titleEn: 'Custom Solutions',
-      descriptionAr: 'نقوم بإنشاء استراتيجيات مخصصة لتلبية احتياجات وأهداف كل عميل',
-      descriptionEn: 'We create customized strategies to meet the needs and goals of each client'
+      title: {
+        ar: 'حلول مخصصة',
+        en: 'Custom Solutions',
+        tr: 'Özel Çözümler',
+      },
+      description: {
+        ar: 'نقوم بإنشاء استراتيجيات مخصصة لتلبية احتياجات وأهداف كل عميل',
+        en: 'We create tailored strategies to meet the unique needs and goals of every client.',
+        tr: 'Her müşteri için ihtiyaç ve hedeflerine uygun stratejiler oluşturuyoruz.',
+      },
     },
     {
       icon: (
@@ -47,10 +58,16 @@ const FEATURES: Array<{
           <path d="M12 6V8M12 16V18M6 12H8M16 12H18" stroke="currentColor" strokeWidth="1"/>
         </svg>
       ),
-      titleAr: 'خبرة مثبتة',
-      titleEn: 'Proven Experience',
-      descriptionAr: 'وكالة رافقة تقدم تسويقًا رقميًا ناجحًا باستخدام أحدث الاتجاهات والتقنيات',
-      descriptionEn: 'Rafeka agency delivers successful digital marketing using the latest trends and technologies'
+      title: {
+        ar: 'خبرة مثبتة',
+        en: 'Proven Experience',
+        tr: 'Kanıtlanmış Deneyim',
+      },
+      description: {
+        ar: 'وكالة رافقة تقدم تسويقًا رقميًا ناجحًا باستخدام أحدث الاتجاهات والتقنيات',
+        en: 'Rafeka delivers successful digital marketing by leveraging the latest trends and technologies.',
+        tr: 'Rafeka ajansı, en güncel trend ve teknolojileri kullanarak başarılı dijital pazarlama sunar.',
+      },
     },
     {
       icon: (
@@ -63,10 +80,16 @@ const FEATURES: Array<{
           <circle cx="16" cy="16" r="1" fill="currentColor"/>
         </svg>
       ),
-      titleAr: 'إبداع متميز',
-      titleEn: 'Distinguished Creativity',
-      descriptionAr: 'نمزج بين الاستراتيجية والإبداع لنصنع حملات جذابة تقوي علامتك التجارية',
-      descriptionEn: 'We blend strategy and creativity to create engaging campaigns that strengthen your brand'
+      title: {
+        ar: 'إبداع متميز',
+        en: 'Distinguished Creativity',
+        tr: 'Özgün Yaratıcılık',
+      },
+      description: {
+        ar: 'نمزج بين الاستراتيجية والإبداع لنصنع حملات جذابة تقوي علامتك التجارية',
+        en: 'We blend strategy and creativity to craft engaging campaigns that strengthen your brand.',
+        tr: 'Strateji ve yaratıcılığı harmanlayarak markanızı güçlendiren etkileyici kampanyalar oluşturuyoruz.',
+      },
     },
     {
       icon: (
@@ -79,10 +102,16 @@ const FEATURES: Array<{
           <path d="M3 21H21" stroke="currentColor" strokeWidth="1"/>
         </svg>
       ),
-      titleAr: 'نركز على النتائج',
-      titleEn: 'Results-Focused',
-      descriptionAr: 'نحقق نتائج قابلة للقياس باستخدام البيانات لتحسين الأداء وضمان العائد الاستثماري',
-      descriptionEn: 'We achieve measurable results using data to improve performance and ensure ROI'
+      title: {
+        ar: 'نركز على النتائج',
+        en: 'Results-Focused',
+        tr: 'Sonuç Odaklı',
+      },
+      description: {
+        ar: 'نحقق نتائج قابلة للقياس باستخدام البيانات لتحسين الأداء وضمان العائد الاستثماري',
+        en: 'We achieve measurable outcomes using data to enhance performance and guarantee ROI.',
+        tr: 'Performansı iyileştirmek ve yatırım getirisini sağlamak için verilerden yararlanarak ölçülebilir sonuçlar elde ediyoruz.',
+      },
     },
     {
       icon: (
@@ -93,10 +122,16 @@ const FEATURES: Array<{
           <path d="M7 7H9M15 7H17M7 13H17" stroke="currentColor" strokeWidth="0.85"/>
         </svg>
       ),
-      titleAr: 'استراتيجيات مبتكرة',
-      titleEn: 'Innovative Strategies',
-      descriptionAr: 'نعتمد على الابتكار والإبداع لتطوير استراتيجيات مدفوعة بالنمو',
-      descriptionEn: 'We rely on innovation and creativity to develop growth-driven strategies'
+      title: {
+        ar: 'استراتيجيات مبتكرة',
+        en: 'Innovative Strategies',
+        tr: 'Yenilikçi Stratejiler',
+      },
+      description: {
+        ar: 'نعتمد على الابتكار والإبداع لتطوير استراتيجيات مدفوعة بالنمو',
+        en: 'We rely on innovation and creativity to craft growth-driven strategies.',
+        tr: 'Büyümeye odaklanan stratejiler geliştirmek için yenilik ve yaratıcılığa güveniyoruz.',
+      },
     }
   ];
 
@@ -106,7 +141,7 @@ const WhyChooseUsSection: React.FC = () => {
   const [visibleItems, setVisibleItems] = useState<boolean[]>([]);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const features = FEATURES;
+  const features = useMemo(() => FEATURES, []);
 
   // مراقبة ظهور القسم
   useEffect(() => {
@@ -134,7 +169,7 @@ const WhyChooseUsSection: React.FC = () => {
     }
 
     return () => observer.disconnect();
-  }, []); // features static
+  }, [features]);
 
   return (
     <section 
@@ -176,7 +211,13 @@ const WhyChooseUsSection: React.FC = () => {
               backgroundClip: 'text',
             }}
           >
-            {language === 'ar' ? 'لماذا تختارنا' : 'Why Choose Us'}
+            {(
+              {
+                ar: 'لماذا تختارنا',
+                en: 'Why Choose Us',
+                tr: 'Neden Bizi Tercih Etmelisiniz',
+              } as const
+            )[language]}
           </Text>
           
           <Text 
@@ -191,10 +232,13 @@ const WhyChooseUsSection: React.FC = () => {
               fontWeight: '600',
             }}
           >
-            {language === 'ar' 
-              ? 'شريكك الموثوق في النجاح الرقمي'
-              : 'Your Trusted Partner in Digital Success'
-            }
+            {(
+              {
+                ar: 'شريكك الموثوق في النجاح الرقمي',
+                en: 'Your Trusted Partner in Digital Success',
+                tr: 'Dijital başarıda güvendiğiniz ortağınız',
+              } as const
+            )[language]}
           </Text>
         </div>
 
@@ -299,7 +343,7 @@ const WhyChooseUsSection: React.FC = () => {
                   color: 'var(--text-primary)',
                 }}
               >
-                {language === 'ar' ? feature.titleAr : feature.titleEn}
+                {feature.title[language]}
               </Text>
 
               {/* الوصف */}
@@ -315,7 +359,7 @@ const WhyChooseUsSection: React.FC = () => {
                   opacity: 0.9,
                 }}
               >
-                {language === 'ar' ? feature.descriptionAr : feature.descriptionEn}
+                {feature.description[language]}
               </Text>
 
               {/* خط سفلي متحرك */}

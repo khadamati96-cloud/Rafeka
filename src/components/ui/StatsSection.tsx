@@ -1,40 +1,59 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { Text } from './BrandComponents';
 import { useLanguage } from '../../providers/LanguageProvider';
+import type { Language } from '../../lib/translations';
 
 // Hoist stats so reference is stable across renders
-const STATS = [
+const STATS: Array<{
+    number: number;
+    suffix: string;
+    title: Record<Language, string>;
+    icon: string;
+    color: string;
+  }> = [
     {
       number: 544,
       suffix: '+',
-      titleAr: 'عملاء سعداء',
-      titleEn: 'Happy Clients',
+      title: {
+        ar: 'عملاء سعداء',
+        en: 'Happy Clients',
+        tr: 'Mutlu Müşteriler',
+      },
       icon: '😊',
       color: '#22c55e'
     },
     {
       number: 621,
       suffix: '+',
-      titleAr: 'مشاريع مكتملة',
-      titleEn: 'Completed Projects',
+      title: {
+        ar: 'مشاريع مكتملة',
+        en: 'Completed Projects',
+        tr: 'Tamamlanan Projeler',
+      },
       icon: '🎯',
       color: '#3b82f6'
     },
     {
       number: 119,
       suffix: '+',
-      titleAr: 'مواقع جاهزة',
-      titleEn: 'Ready Websites',
+      title: {
+        ar: 'مواقع جاهزة',
+        en: 'Ready Websites',
+        tr: 'Hazır Web Siteleri',
+      },
       icon: '🌐',
       color: '#8b5cf6'
     },
     {
       number: 44,
       suffix: '+',
-      titleAr: 'تطبيق موبايل',
-      titleEn: 'Mobile Apps',
+      title: {
+        ar: 'تطبيق موبايل',
+        en: 'Mobile Apps',
+        tr: 'Mobil Uygulamalar',
+      },
       icon: '📱',
       color: '#DC2626'
     }
@@ -45,33 +64,10 @@ const StatsSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [animatedStats, setAnimatedStats] = useState([0, 0, 0, 0]);
   const sectionRef = useRef<HTMLElement>(null);
-  const stats = STATS;
+  const hasAnimatedRef = useRef(false);
+  const stats = useMemo(() => STATS, []);
 
-  // مراقبة ظهور القسم وتحريك الأرقام
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          // تحريك كل رقم على حدة
-          stats.forEach((stat, index) => {
-            setTimeout(() => {
-              animateNumber(index, stat.number);
-            }, index * 300);
-          });
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []); // stats is static
-
-  const animateNumber = (index: number, targetNumber: number) => {
+  const animateNumber = useCallback((index: number, targetNumber: number) => {
     const duration = 2000; // مدة الأنيميشن
     const steps = 60; // عدد الخطوات
     const stepValue = targetNumber / steps;
@@ -91,7 +87,32 @@ const StatsSection: React.FC = () => {
         clearInterval(timer);
       }
     }, duration / steps);
-  };
+  }, []);
+
+  // مراقبة ظهور القسم وتحريك الأرقام
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || hasAnimatedRef.current) {
+          return;
+        }
+        hasAnimatedRef.current = true;
+        setIsVisible(true);
+        stats.forEach((stat, index) => {
+          setTimeout(() => {
+            animateNumber(index, stat.number);
+          }, index * 300);
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [animateNumber, stats]);
 
   return (
     <section 
@@ -135,7 +156,13 @@ const StatsSection: React.FC = () => {
               position: 'relative',
             }}
           >
-            {language === 'ar' ? 'أرقـام رافـقة' : 'Rafeka Numbers'}
+            {(
+              {
+                ar: 'أرقـام رافـقة',
+                en: 'Rafeka Numbers',
+                tr: 'Rafeka Sayıları',
+              } as const
+            )[language]}
           </Text>
         </div>
 
@@ -234,7 +261,7 @@ const StatsSection: React.FC = () => {
                   color: 'var(--text-primary)',
                 }}
               >
-                {language === 'ar' ? stat.titleAr : stat.titleEn}
+                {stat.title[language]}
               </Text>
 
               {/* وصف الإحصائية */}

@@ -1,7 +1,5 @@
 // ========== نظام الترجمة ==========
 
-export type Language = 'ar' | 'en';
-
 export const translations = {
   ar: {
     // الهيدر
@@ -37,6 +35,24 @@ export const translations = {
     language: 'English',
     switchLanguage: 'العربية',
   },
+  tr: {
+    // Başlık
+    home: 'Ana Sayfa',
+    about: 'Hakkımızda',
+    services: 'Hizmetlerimiz',
+    portfolio: 'Portföyümüz',
+    partnerships: 'Ortaklıklar',
+    contact: 'İletişim',
+    contactUs: 'Bizimle İletişime Geçin',
+
+    // Ana Sayfa
+    mainTitle: 'RAFEKA',
+
+    // Genel
+    language: 'Türkçe',
+    switchLanguage: 'العربية',
+  },
 } as const;
 
+export type Language = keyof typeof translations;
 export type TranslationKey = keyof typeof translations.ar;

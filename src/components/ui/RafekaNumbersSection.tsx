@@ -130,7 +130,13 @@ const RafekaNumbersSection: React.FC = () => {
               lineHeight: 1.3
             }}
           >
-            {language === 'ar' ? 'نسبة رضا العملاء' : 'Customer Satisfaction'}
+            {(
+              {
+                ar: 'نسبة رضا العملاء',
+                en: 'Customer Satisfaction',
+                tr: 'Müşteri Memnuniyeti',
+              } as const
+            )[language]}
           </Text>
         </div>
 
@@ -178,7 +184,13 @@ const RafekaNumbersSection: React.FC = () => {
               lineHeight: 1.3
             }}
           >
-            {language === 'ar' ? 'حملات تم تنفيذها' : 'Successful Campaigns'}
+            {(
+              {
+                ar: 'حملات تم تنفيذها',
+                en: 'Successful Campaigns',
+                tr: 'Başarılı Kampanyalar',
+              } as const
+            )[language]}
           </Text>
         </div>
       </div>

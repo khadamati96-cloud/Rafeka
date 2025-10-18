@@ -1,31 +1,20 @@
 'use client';
 
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { useLanguage } from '../../providers/LanguageProvider';
-import { useHoverEffect } from './NavigationComponents';
 
 const LanguageToggle: React.FC = () => {
-  const { language, toggleLanguage, isLoaded } = useLanguage();
+  const { language, setLanguage, languages, isLoaded } = useLanguage();
 
-  // استدعاء الهوك دائماً لتجنب تحذير hooks
-  const hoverProps = useHoverEffect(
-    {
-      cursor: 'pointer',
-      padding: 'var(--spacing-sm)',
-      borderRadius: 'var(--radius-md)',
-      backgroundColor: 'transparent',
-      transition: 'all var(--transition-normal)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: '20px',
-      border: 'none',
-    },
-    {
-      backgroundColor: 'var(--bg-secondary)',
-      transform: 'translateY(-1px)',
-    }
-  );
+  const labels: Record<typeof language, string> = {
+    ar: 'العربية',
+    en: 'English',
+    tr: 'Türkçe',
+  };
+
+  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setLanguage(event.target.value as typeof language);
+  };
 
   // Placeholder أثناء التحميل
   if (!isLoaded) {
@@ -40,43 +29,42 @@ const LanguageToggle: React.FC = () => {
   }
 
   return (
-    <button
-      onClick={toggleLanguage}
-      {...hoverProps}
+    <div
       style={{
-        ...hoverProps.style,
-        color: 'var(--text-primary)',
+        display: 'flex',
+        alignItems: 'center',
+        padding: '0 var(--spacing-sm)',
+        borderRadius: 'var(--radius-md)',
+        backgroundColor: '#111',
+        border: '1px solid rgba(255,255,255,0.12)',
       }}
-      aria-label={language === 'ar' ? 'Switch to English' : 'التبديل للعربية'}
     >
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+      <select
+        value={language}
+        onChange={handleChange}
+        aria-label="Change language"
+        style={{
+          backgroundColor: 'transparent',
+          border: 'none',
+          color: '#fff',
+          fontFamily: 'inherit',
+          fontSize: 'var(--text-sm)',
+          padding: 'var(--spacing-sm)',
+          cursor: 'pointer',
+          outline: 'none',
+          direction: 'ltr',
+          appearance: 'none',
+          WebkitAppearance: 'none',
+          MozAppearance: 'none',
+        }}
       >
-        <circle
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="var(--text-primary)"
-          strokeWidth="2"
-          fill="none"
-        />
-        <path
-          d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-          stroke="var(--text-primary)"
-          strokeWidth="2"
-          fill="none"
-        />
-        <path
-          d="M2 12h20"
-          stroke="var(--text-primary)"
-          strokeWidth="2"
-        />
-      </svg>
-    </button>
+        {languages.map((lang) => (
+          <option key={lang} value={lang} style={{ color: '#000' }}>
+            {labels[lang] ?? lang.toUpperCase()}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };
 

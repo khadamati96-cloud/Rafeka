@@ -109,16 +109,16 @@ export const Container: React.FC<ContainerProps> = ({
 };
 
 // مكون الشعار
-export interface LogoProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+export interface LogoProps {
   size?: 'normal' | 'large';
   type?: 'logo' | 'name';
+  className?: string;
 }
 
 export const Logo: React.FC<LogoProps> = ({
   size = 'normal',
   type = 'logo',
-  className = '',
-  ...props
+  className = ''
 }) => {
   const sizeClass = size === 'large' ? BRAND_CLASSES.logoLarge : BRAND_CLASSES.logo;
   const src = type === 'logo' ? '/logo.png' : '/name.png';

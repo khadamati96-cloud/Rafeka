@@ -10,42 +10,78 @@ const TestimonialsSection: React.FC = () => {
 
   const testimonials = [
     {
-      nameAr: 'جوير علي',
-      nameEn: 'Jaweer Ali',
-      titleAr: 'مدير متجر إلكتروني',
-      titleEn: 'E-commerce Manager',
-      contentAr: 'حولت رافقة متجرنا الإلكتروني إلى منصة أنيقة وسهلة الاستخدام. ارتفعت مبيعاتنا بنسبة 35٪ خلال ثلاثة أشهر فقط! فريقهم محترف ومبدع وسريع الاستجابة.',
-      contentEn: 'Rafeka transformed our e-commerce store into an elegant and user-friendly platform. Our sales increased by 35% in just three months! Their team is professional, creative, and responsive.',
+      name: {
+        ar: 'جوير علي',
+        en: 'Jaweer Ali',
+        tr: 'Jaweer Ali',
+      },
+      title: {
+        ar: 'مدير متجر إلكتروني',
+        en: 'E-commerce Manager',
+        tr: 'E-ticaret Yöneticisi',
+      },
+      content: {
+        ar: 'حولت رافقة متجرنا الإلكتروني إلى منصة أنيقة وسهلة الاستخدام. ارتفعت مبيعاتنا بنسبة 35٪ خلال ثلاثة أشهر فقط! فريقهم محترف ومبدع وسريع الاستجابة.',
+        en: 'Rafeka transformed our e-commerce store into an elegant and user-friendly platform. Our sales increased by 35% in just three months! Their team is professional, creative, and responsive.',
+        tr: 'Rafeka, e-ticaret mağazamızı şık ve kullanıcı dostu bir platforma dönüştürdü. Sadece üç ayda satışlarımız %35 arttı! Ekipleri profesyonel, yaratıcı ve hızlı çözüm üretiyor.',
+      },
       rating: 5,
       image: '👨‍💼'
     },
     {
-      nameAr: 'يزن عبدالله',
-      nameEn: 'Yazan Abdallah',
-      titleAr: 'مدير تسويق رقمي',
-      titleEn: 'Digital Marketing Manager',
-      contentAr: 'استراتيجيات السيو التي نفذتها رافقة غيرت قواعد اللعبة لنا. شهدنا زيادة بنسبة 50٪ في الزيارات العضوية وأصبحنا الآن في صدارة نتائج البحث. نوصي بخدماتهم بشدة!',
-      contentEn: 'The SEO strategies implemented by Rafeka were game-changing for us. We saw a 50% increase in organic traffic and are now at the top of search results. We highly recommend their services!',
+      name: {
+        ar: 'يزن عبدالله',
+        en: 'Yazan Abdallah',
+        tr: 'Yazan Abdallah',
+      },
+      title: {
+        ar: 'مدير تسويق رقمي',
+        en: 'Digital Marketing Manager',
+        tr: 'Dijital Pazarlama Müdürü',
+      },
+      content: {
+        ar: 'استراتيجيات السيو التي نفذتها رافقة غيرت قواعد اللعبة لنا. شهدنا زيادة بنسبة 50٪ في الزيارات العضوية وأصبحنا الآن في صدارة نتائج البحث. نوصي بخدماتهم بشدة!',
+        en: 'The SEO strategies implemented by Rafeka were game-changing for us. We saw a 50% increase in organic traffic and are now at the top of search results. We highly recommend their services!',
+        tr: 'Rafeka’nın uyguladığı SEO stratejileri bizim için oyunun kurallarını değiştirdi. Organik trafikte %50 artış gördük ve arama sonuçlarında zirveye çıktık. Hizmetlerini şiddetle tavsiye ederiz!',
+      },
       rating: 5,
       image: '👨‍💻'
     },
     {
-      nameAr: 'هبة جابر',
-      nameEn: 'Hiba Gaber',
-      titleAr: 'مديرة علامة تجارية',
-      titleEn: 'Brand Manager',
-      contentAr: 'تفاعلنا على وسائل التواصل ارتفع بشكل كبير بفضل رافقة. حملتهم المبتكرة زادت التفاعل بنسبة 70٪ وعززت الطلبات عبر الإنترنت.',
-      contentEn: 'Our social media engagement increased significantly thanks to Rafeka. Their innovative campaign increased engagement by 70% and boosted online orders.',
+      name: {
+        ar: 'هبة جابر',
+        en: 'Hiba Gaber',
+        tr: 'Hiba Gaber',
+      },
+      title: {
+        ar: 'مديرة علامة تجارية',
+        en: 'Brand Manager',
+        tr: 'Marka Yöneticisi',
+      },
+      content: {
+        ar: 'تفاعلنا على وسائل التواصل ارتفع بشكل كبير بفضل رافقة. حملتهم المبتكرة زادت التفاعل بنسبة 70٪ وعززت الطلبات عبر الإنترنت.',
+        en: 'Our social media engagement increased significantly thanks to Rafeka. Their innovative campaign increased engagement by 70% and boosted online orders.',
+        tr: 'Rafeka sayesinde sosyal medya etkileşimimiz önemli ölçüde arttı. Yenilikçi kampanyaları etkileşimi %70 artırdı ve çevrim içi siparişleri güçlendirdi.',
+      },
       rating: 5,
       image: '👩‍💼'
     },
     {
-      nameAr: 'إسراء صبري',
-      nameEn: 'Esraa Sabry',
-      titleAr: 'مؤسسة شركة ناشئة',
-      titleEn: 'Startup Founder',
-      contentAr: 'العمل مع رافقة كان رائعًا. إبداعهم في المحتوى فاق توقعاتنا وزاد التفاعل على موقعنا بنسبة 60٪. فهمهم لصناعتنا وجمهورنا مذهل.',
-      contentEn: 'Working with Rafeka was amazing. Their creativity in content exceeded our expectations and increased engagement on our site by 60%. Their understanding of our industry and audience is remarkable.',
+      name: {
+        ar: 'إسراء صبري',
+        en: 'Esraa Sabry',
+        tr: 'Esraa Sabry',
+      },
+      title: {
+        ar: 'مؤسسة شركة ناشئة',
+        en: 'Startup Founder',
+        tr: 'Girişim Kurucusu',
+      },
+      content: {
+        ar: 'العمل مع رافقة كان رائعًا. إبداعهم في المحتوى فاق توقعاتنا وزاد التفاعل على موقعنا بنسبة 60٪. فهمهم لصناعتنا وجمهورنا مذهل.',
+        en: 'Working with Rafeka was amazing. Their creativity in content exceeded our expectations and increased engagement on our site by 60%. Their understanding of our industry and audience is remarkable.',
+        tr: 'Rafeka ile çalışmak harikaydı. İçerikteki yaratıcılıkları beklentilerimizin ötesine geçti ve sitemizdeki etkileşimi %60 artırdı. Sektörümüzü ve kitlemizi çok iyi anlıyorlar.',
+      },
       rating: 5,
       image: '👩‍🚀'
     }
@@ -87,7 +123,13 @@ const TestimonialsSection: React.FC = () => {
               marginBottom: 'var(--spacing-md)',
             }}
           >
-            {language === 'ar' ? 'شهادات العملاء' : 'Client Testimonials'}
+            {(
+              {
+                ar: 'شهادات العملاء',
+                en: 'Client Testimonials',
+                tr: 'Müşteri Referansları',
+              } as const
+            )[language]}
           </Text>
           <Text 
             size="lg"
@@ -96,7 +138,13 @@ const TestimonialsSection: React.FC = () => {
               color: 'var(--text-secondary)',
             }}
           >
-            {language === 'ar' ? 'نتائج حقيقية، وآراء حقيقية' : 'Real Results, Real Opinions'}
+            {(
+              {
+                ar: 'نتائج حقيقية، وآراء حقيقية',
+                en: 'Real Results, Real Opinions',
+                tr: 'Gerçek Sonuçlar, Gerçek Görüşler',
+              } as const
+            )[language]}
           </Text>
         </div>
 
@@ -138,7 +186,7 @@ const TestimonialsSection: React.FC = () => {
               fontStyle: 'italic',
             }}
           >
-            &quot;{language === 'ar' ? currentTestimonial.contentAr : currentTestimonial.contentEn}&quot;
+            &quot;{currentTestimonial.content[language]}&quot;
           </Text>
 
           {/* معلومات العميل (بدون صورة) */}
@@ -152,7 +200,7 @@ const TestimonialsSection: React.FC = () => {
                 fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
               }}
             >
-              {language === 'ar' ? currentTestimonial.nameAr : currentTestimonial.nameEn}
+              {currentTestimonial.name[language]}
             </Text>
             <Text 
               size="sm"
@@ -161,7 +209,7 @@ const TestimonialsSection: React.FC = () => {
                 fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
               }}
             >
-              {language === 'ar' ? currentTestimonial.titleAr : currentTestimonial.titleEn}
+              {currentTestimonial.title[language]}
             </Text>
           </div>
         </div>

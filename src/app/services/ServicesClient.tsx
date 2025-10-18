@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useLanguage } from '@/providers/LanguageProvider';
 import { Text, Button } from '@/components/ui/BrandComponents';
 import Link from 'next/link';
@@ -9,20 +9,24 @@ const SERVICES_DATA = {
 		hero: {
 			titleAr: 'خدماتنا',
 			titleEn: 'Our Services',
+			titleTr: 'Hizmetlerimiz',
 			subtitleAr: 'حلول رقمية متكاملة تدفع أعمالك نحو المستقبل',
 			subtitleEn: 'Comprehensive digital solutions that drive your business toward the future',
+			subtitleTr: 'İşinizi geleceğe taşıyan kapsamlı dijital çözümler',
 			introAr: 'نقدّم باقة من الخدمات الرقمية المبتكرة التي تجمع بين الإبداع، والتقنية، والخبرة لضمان نجاح أعمالك وتحقيق أهدافك.',
-			introEn: 'We offer a suite of innovative digital services that combine creativity, technology, and expertise to ensure your business success.'
+			introEn: 'We offer a suite of innovative digital services that combine creativity, technology, and expertise to ensure your business success.',
+			introTr: 'Yaratıcılığı, teknolojiyi ve uzmanlığı birleştirerek işinizin başarısını güvence altına alan yenilikçi dijital hizmetler sunuyoruz.'
 		},
 		services: [
 			{
-				titleAr: 'تطوير المواقع والتطبيقات', titleEn: 'Web & App Development',
+				titleAr: 'تطوير المواقع والتطبيقات', titleEn: 'Web & App Development', titleTr: 'Web ve Uygulama Geliştirme',
 				descriptionAr: 'مواقع احترافية وتطبيقات ذكية بتجربة استخدام سلسة.',
 				descriptionEn: 'Professional websites & smart applications with a seamless UX.',
+				descriptionTr: 'Kurumsal web siteleri ve akıllı uygulamalar için sorunsuz bir kullanıcı deneyimi sunuyoruz.',
 				features: [
-					{ ar: 'مواقع شركات ومتاجر إلكترونية', en: 'Corporate websites & e-commerce' },
-					{ ar: 'تطبيقات موبايل (iOS / Android)', en: 'Mobile applications (iOS / Android)' },
-					{ ar: 'أنظمة إدارة محتوى مخصصة', en: 'Custom CMS platforms' }
+					{ ar: 'مواقع شركات ومتاجر إلكترونية', en: 'Corporate websites & e-commerce', tr: 'Kurumsal web siteleri ve e-ticaret' },
+					{ ar: 'تطبيقات موبايل (iOS / Android)', en: 'Mobile applications (iOS / Android)', tr: 'Mobil uygulamalar (iOS / Android)' },
+					{ ar: 'أنظمة إدارة محتوى مخصصة', en: 'Custom CMS platforms', tr: 'Özel içerik yönetim sistemleri' }
 				],
 				icon: (
 					<svg width="50" height="50" viewBox="0 0 24 24" fill="none">
@@ -32,13 +36,14 @@ const SERVICES_DATA = {
 				)
 			},
 			{
-				titleAr: 'التسويق الرقمي', titleEn: 'Digital Marketing',
+				titleAr: 'التسويق الرقمي', titleEn: 'Digital Marketing', titleTr: 'Dijital Pazarlama',
 				descriptionAr: 'استراتيجيات تسويق مدروسة تعزّز ظهورك وتزيد التحويل.',
 				descriptionEn: 'Strategic marketing to elevate visibility & conversions.',
+				descriptionTr: 'Görünürlüğünüzü ve dönüşümlerinizi artıran stratejik pazarlama yaklaşımları.',
 				features: [
-					{ ar: 'حملات إعلانية (Google / Meta / TikTok)', en: 'Ad campaigns (Google / Meta / TikTok)' },
-					{ ar: 'تحسين محركات البحث (SEO)', en: 'Search engine optimization (SEO)' },
-					{ ar: 'تسويق عبر البريد الإلكتروني', en: 'Email marketing automation' }
+					{ ar: 'حملات إعلانية (Google / Meta / TikTok)', en: 'Ad campaigns (Google / Meta / TikTok)', tr: 'Reklam kampanyaları (Google / Meta / TikTok)' },
+					{ ar: 'تحسين محركات البحث (SEO)', en: 'Search engine optimization (SEO)', tr: 'Arama motoru optimizasyonu (SEO)' },
+					{ ar: 'تسويق عبر البريد الإلكتروني', en: 'Email marketing automation', tr: 'E-posta pazarlama otomasyonu' }
 				],
 				icon: (
 					<svg width="50" height="50" viewBox="0 0 24 24" fill="none">
@@ -47,13 +52,14 @@ const SERVICES_DATA = {
 				)
 			},
 			{
-				titleAr: 'الهوية البصرية والتصميم', titleEn: 'Brand & Visual Identity',
+				titleAr: 'الهوية البصرية والتصميم', titleEn: 'Brand & Visual Identity', titleTr: 'Marka ve Görsel Kimlik',
 				descriptionAr: 'بناء هوية متسقة تعكس شخصية علامتك.',
 				descriptionEn: 'Building cohesive & defensible brand systems.',
+				descriptionTr: 'Markanızın karakterini yansıtan tutarlı ve güçlü marka sistemleri oluşturuyoruz.',
 				features: [
-					{ ar: 'تصميم شعارات ومواد دعائية', en: 'Logo & collateral design' },
-					{ ar: 'تصاميم واجهات المستخدم', en: 'UI / UX design' },
-					{ ar: 'محتوى للسوشيال ميديا', en: 'Social content design' }
+					{ ar: 'تصميم شعارات ومواد دعائية', en: 'Logo & collateral design', tr: 'Logo ve basılı materyal tasarımı' },
+					{ ar: 'تصاميم واجهات المستخدم', en: 'UI / UX design', tr: 'UI / UX tasarımı' },
+					{ ar: 'محتوى للسوشيال ميديا', en: 'Social content design', tr: 'Sosyal medya içerik tasarımı' }
 				],
 				icon: (
 					<svg width="50" height="50" viewBox="0 0 24 24" fill="none">
@@ -62,13 +68,14 @@ const SERVICES_DATA = {
 				)
 			},
 			{
-				titleAr: 'حلول الذكاء الاصطناعي', titleEn: 'AI Solutions',
+				titleAr: 'حلول الذكاء الاصطناعي', titleEn: 'AI Solutions', titleTr: 'Yapay Zekâ Çözümleri',
 				descriptionAr: 'دمج تقنيات الذكاء الاصطناعي لتعزيز الكفاءة.',
 				descriptionEn: 'Embedding modern AI to boost efficiency & decision quality.',
+				descriptionTr: 'Verimliliği artırmak ve karar kalitesini yükseltmek için modern yapay zekâyı entegre ediyoruz.',
 				features: [
-					{ ar: 'تحليلات و تنبؤ بالبيانات', en: 'Predictive & data analytics' },
-						{ ar: 'شات بوت ودعم آلي', en: 'Chatbots & automated support' },
-					{ ar: 'أتمتة مهام وعمليات', en: 'Workflow & task automation' }
+					{ ar: 'تحليلات و تنبؤ بالبيانات', en: 'Predictive & data analytics', tr: 'Tahmine dayalı ve veri analitiği' },
+						{ ar: 'شات بوت ودعم آلي', en: 'Chatbots & automated support', tr: 'Chatbotlar ve otomatik destek' },
+					{ ar: 'أتمتة مهام وعمليات', en: 'Workflow & task automation', tr: 'İş akışı ve görev otomasyonu' }
 				],
 				icon: (
 					<svg width="50" height="50" viewBox="0 0 24 24" fill="none">
@@ -79,24 +86,25 @@ const SERVICES_DATA = {
 			}
 		],
 		whyUs: {
-			titleAr: 'لماذا نحن؟', titleEn: 'Why Choose Us?',
+			titleAr: 'لماذا نحن؟', titleEn: 'Why Choose Us?', titleTr: 'Neden Bizi Tercih Etmelisiniz?',
 			reasons: [
-				{ titleAr: 'حلول مخصصة لكل عميل', titleEn: 'Tailored solutions per client', icon: (
+				{ titleAr: 'حلول مخصصة لكل عميل', titleEn: 'Tailored solutions per client', titleTr: 'Her müşteri için özelleştirilmiş çözümler', icon: (
 					<svg width="36" height="36" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2"/><path d="M4 12H2M22 12H20M12 2V4M12 20V22" stroke="currentColor" strokeWidth="2"/></svg>
 				)},
-				{ titleAr: 'التزام بالمواعيد والجودة', titleEn: 'On-time & quality delivery', icon: (
+				{ titleAr: 'التزام بالمواعيد والجودة', titleEn: 'On-time & quality delivery', titleTr: 'Zamanında ve yüksek kaliteli teslimat', icon: (
 					<svg width="36" height="36" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/><path d="M8 12L11 15L16 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
 				)},
-				{ titleAr: 'شراكة طويلة الأمد', titleEn: 'Long-term partnership focus', icon: (
+				{ titleAr: 'شراكة طويلة الأمد', titleEn: 'Long-term partnership focus', titleTr: 'Uzun vadeli ortaklık odağı', icon: (
 					<svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M12 21C12 21 5 16 5 10.5C5 7 7.5 5 9.75 5C11.25 5 12 6 12 6C12 6 12.75 5 14.25 5C16.5 5 19 7 19 10.5C19 16 12 21 12 21Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
 				)}
 			]
 		},
 		cta: {
-			titleAr: 'جاهز لبدء مشروعك؟', titleEn: 'Ready to start your project?',
+			titleAr: 'جاهز لبدء مشروعك؟', titleEn: 'Ready to start your project?', titleTr: 'Projenize başlamaya hazır mısınız?',
 			subtitleAr: 'تواصل معنا الآن واحصل على استشارة مجانية',
 			subtitleEn: 'Get in touch now for a free consultation',
-			buttonAr: 'ابدأ الآن', buttonEn: 'Start Now'
+			subtitleTr: 'Ücretsiz danışmanlık için hemen iletişime geçin',
+			buttonAr: 'ابدأ الآن', buttonEn: 'Start Now', buttonTr: 'Hemen Başlayın'
 		}
 };
 
@@ -112,7 +120,22 @@ export default function ServicesClient() {
 	const [ctaVisible, setCtaVisible] = useState(false);
 	const isMobile = typeof window !== 'undefined' ? window.innerWidth < 900 : false;
 
-	const servicesData = SERVICES_DATA; // alias for current naming
+	const servicesData = useMemo(() => SERVICES_DATA, []);
+	const services = servicesData.services;
+	const schemaMeta = {
+		ar: {
+			name: 'خدمات رافقة',
+			description: 'صفحة الخدمات تشمل التطوير والتسويق والهوية والذكاء الاصطناعي.',
+		},
+		en: {
+			name: 'Rafeka Services',
+			description: 'Services page covering development, marketing, branding, and AI solutions.',
+		},
+		tr: {
+			name: 'Rafeka Hizmetleri',
+			description: 'Geliştirme, pazarlama, marka ve yapay zekâ çözümlerini kapsayan hizmetler sayfası.',
+		},
+	} as const;
 
 	useEffect(() => {
 		const observerOptions: IntersectionObserverInit = { threshold: 0.25 };
@@ -125,9 +148,9 @@ export default function ServicesClient() {
 					setIsVisible(true);
 					// animate services cards sequentially
 					setTimeout(() => {
-						const total = servicesData.services.length;
+						const total = services.length;
 						setVisibleItems(Array(total).fill(false));
-						servicesData.services.forEach((_, i) => {
+						services.forEach((_, i) => {
 							setTimeout(() => setVisibleItems(prev => {
 								const copy = [...prev]; copy[i] = true; return copy;
 							}), i * 120);
@@ -140,9 +163,13 @@ export default function ServicesClient() {
 		}, observerOptions);
 		[heroRef, servicesRef, whyUsRef, ctaRef].forEach(r => r.current && obs.observe(r.current));
 		return () => obs.disconnect();
-	}, []); // static data moved outside so no dependency needed
+	}, [services]);
 
-	const t = (ar: string, en: string) => language === 'ar' ? ar : en;
+	const t = (ar: string, en: string, tr?: string) => {
+		if (language === 'ar') return ar;
+		if (language === 'tr') return tr ?? en;
+		return en;
+	};
 
 	return (
 		<div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -151,9 +178,14 @@ export default function ServicesClient() {
 				dangerouslySetInnerHTML={{
 					__html: JSON.stringify({
 						'@context': 'https://schema.org', '@type': 'CollectionPage',
-						name: 'Rafeka Services',
-						description: 'صفحة الخدمات تشمل التطوير والتسويق والهوية والذكاء الاصطناعي.',
-						hasPart: servicesData.services.map(s => ({ '@type': 'Service', name: s.titleEn, alternateName: s.titleAr }))
+						name: schemaMeta[language].name,
+						description: schemaMeta[language].description,
+						inLanguage: language,
+						hasPart: servicesData.services.map(s => ({
+							'@type': 'Service',
+							name: s.titleEn,
+							alternateName: [s.titleAr, s.titleTr].filter(Boolean),
+						}))
 					})
 				}}
 			/>
@@ -172,15 +204,15 @@ export default function ServicesClient() {
 						fontSize: 'clamp(2.3rem,5vw,3.8rem)',
 						background: 'linear-gradient(135deg,var(--brand-red-light) 0%, var(--brand-red) 45%, var(--brand-red-dark) 100%)',
 						WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: 'var(--spacing-lg)'
-					}}>{t(servicesData.hero.titleAr, servicesData.hero.titleEn)}</Text>
+					}}>{t(servicesData.hero.titleAr, servicesData.hero.titleEn, servicesData.hero.titleTr)}</Text>
 					<Text size="xl" style={{
 						color: 'var(--brand-red)', fontWeight: 600,
 						fontSize: 'clamp(1.2rem,2.8vw,1.75rem)', marginBottom: 'var(--spacing-xl)'
-					}}>{t(servicesData.hero.subtitleAr, servicesData.hero.subtitleEn)}</Text>
+					}}>{t(servicesData.hero.subtitleAr, servicesData.hero.subtitleEn, servicesData.hero.subtitleTr)}</Text>
 					<Text size="lg" style={{
 						maxWidth: 880, margin: '0 auto', lineHeight: 1.75, color: 'var(--text-secondary)',
 						fontSize: 'clamp(1.05rem,2.3vw,1.3rem)'
-					}}>{t(servicesData.hero.introAr, servicesData.hero.introEn)}</Text>
+					}}>{t(servicesData.hero.introAr, servicesData.hero.introEn, servicesData.hero.introTr)}</Text>
 				</div>
 			</section>
 			{/* Services Grid */}
@@ -196,13 +228,13 @@ export default function ServicesClient() {
 							transition: 'all .75s cubic-bezier(.175,.885,.32,1.275)', transitionDelay: `${i * 0.08}s`
 						}}>
 							<div style={{ marginBottom: 'var(--spacing-md)', color: 'var(--text-primary)' }}>{service.icon}</div>
-							<Text as="h3" size="xl" style={{ fontWeight: 700, marginBottom: 'var(--spacing-sm)' }}>{t(service.titleAr, service.titleEn)}</Text>
-							<Text size="sm" style={{ lineHeight: 1.6, color: 'var(--text-secondary)', marginBottom: 'var(--spacing-md)' }}>{t(service.descriptionAr, service.descriptionEn)}</Text>
+							<Text as="h3" size="xl" style={{ fontWeight: 700, marginBottom: 'var(--spacing-sm)' }}>{t(service.titleAr, service.titleEn, service.titleTr)}</Text>
+							<Text size="sm" style={{ lineHeight: 1.6, color: 'var(--text-secondary)', marginBottom: 'var(--spacing-md)' }}>{t(service.descriptionAr, service.descriptionEn, service.descriptionTr)}</Text>
 							<ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
 								{service.features.map((f, fi) => (
 									<li key={fi} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, fontSize: '.85rem', color: 'var(--text-secondary)' }}>
 										<span style={{ color: 'var(--brand-red)', fontSize: '1.2rem', lineHeight: 1 }}>•</span>
-										{t(f.ar, f.en)}
+										{t(f.ar, f.en, f.tr)}
 									</li>
 								))}
 							</ul>
@@ -219,7 +251,7 @@ export default function ServicesClient() {
 					<Text as="h2" size="3xl" style={{
 						fontWeight: 'bold', textAlign: 'center', marginBottom: 'var(--spacing-3xl)',
 						background: 'linear-gradient(135deg,var(--brand-red-light) 0%, var(--brand-red) 45%, var(--brand-red-dark) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'
-					}}>{t(servicesData.whyUs.titleAr, servicesData.whyUs.titleEn)}</Text>
+					}}>{t(servicesData.whyUs.titleAr, servicesData.whyUs.titleEn, servicesData.whyUs.titleTr)}</Text>
 					<div style={{ display: 'grid', gap: 'var(--spacing-xl)', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))' }}>
 						{servicesData.whyUs.reasons.map((r, i) => (
 							<div key={i} style={{
@@ -228,7 +260,7 @@ export default function ServicesClient() {
 								opacity: whyUsVisible ? 1 : 0, transform: whyUsVisible ? 'translateY(0)' : 'translateY(20px)', transition: 'all .7s ease', transitionDelay: `${i * 0.12}s`
 							}}>
 								<div style={{ color: 'var(--text-primary)' }}>{r.icon}</div>
-								<Text size="sm" style={{ fontWeight: 600 }}>{t(r.titleAr, r.titleEn)}</Text>
+								<Text size="sm" style={{ fontWeight: 600 }}>{t(r.titleAr, r.titleEn, r.titleTr)}</Text>
 							</div>
 						))}
 					</div>
@@ -240,15 +272,19 @@ export default function ServicesClient() {
 				background: 'linear-gradient(135deg, rgba(220,38,38,.12) 0%, var(--bg-primary) 60%)',
 				textAlign: 'center', opacity: ctaVisible ? 1 : 0, transform: ctaVisible ? 'translateY(0)' : 'translateY(40px)', transition: 'all .9s ease'
 			}}>
-				<Text as="h2" size="3xl" style={{ fontWeight: 800, marginBottom: 'var(--spacing-lg)' }}>{t(servicesData.cta.titleAr, servicesData.cta.titleEn)}</Text>
-				<Text size="lg" style={{ maxWidth: 760, margin: '0 auto var(--spacing-2xl)', lineHeight: 1.7, color: 'var(--text-secondary)' }}>{t(servicesData.cta.subtitleAr, servicesData.cta.subtitleEn)}</Text>
+				<Text as="h2" size="3xl" style={{ fontWeight: 800, marginBottom: 'var(--spacing-lg)' }}>{t(servicesData.cta.titleAr, servicesData.cta.titleEn, servicesData.cta.titleTr)}</Text>
+				<Text size="lg" style={{ maxWidth: 760, margin: '0 auto var(--spacing-2xl)', lineHeight: 1.7, color: 'var(--text-secondary)' }}>{t(servicesData.cta.subtitleAr, servicesData.cta.subtitleEn, servicesData.cta.subtitleTr)}</Text>
 				<div style={{ display: 'flex', gap: 20, justifyContent: 'center', flexWrap: 'wrap' }}>
 					<Link href="/contact" style={{ textDecoration: 'none' }}>
-						<Button variant="primary" style={{ padding: 'var(--spacing-md) var(--spacing-xl)', fontWeight: 600 }}>{t(servicesData.cta.buttonAr, servicesData.cta.buttonEn)}</Button>
+						<Button variant="primary" style={{ padding: 'var(--spacing-md) var(--spacing-xl)', fontWeight: 600 }}>{t(servicesData.cta.buttonAr, servicesData.cta.buttonEn, servicesData.cta.buttonTr)}</Button>
 					</Link>
 					{/* زر واتساب مباشر */}
 					<a
-						href={`https://wa.me/905380330087?text=${encodeURIComponent(language === 'ar' ? 'مرحبا، أود البدء الآن.' : 'Hello, I want to start now.')}`}
+						href={`https://wa.me/905380330087?text=${encodeURIComponent(({
+							ar: 'مرحبا، أود البدء الآن.',
+							en: 'Hello, I want to start now.',
+							tr: 'Merhaba, hemen başlamak istiyorum.',
+						} as const)[language])}`}
 						target="_blank"
 						rel="noopener noreferrer"
 						style={{ textDecoration: 'none' }}
@@ -262,14 +298,26 @@ export default function ServicesClient() {
 								alignItems: 'center',
 								gap: '8px'
 							}}
-							aria-label={language === 'ar' ? 'تواصل واتساب' : 'WhatsApp Chat'}
+							aria-label={(
+								{
+									ar: 'تواصل عبر واتساب',
+									en: 'WhatsApp Chat',
+									tr: 'WhatsApp ile sohbet edin',
+								} as const
+							)[language]}
 						>
 							<span style={{ fontSize: '18px' }}>💬</span>
-							{language === 'ar' ? 'واتساب' : 'WhatsApp'}
+							{(
+								{
+									ar: 'واتساب',
+									en: 'WhatsApp',
+									tr: 'WhatsApp',
+								} as const
+							)[language]}
 						</Button>
 					</a>
 					<Link href="/" style={{ textDecoration: 'none' }}>
-						<Button variant="secondary" style={{ padding: 'var(--spacing-md) var(--spacing-xl)', fontWeight: 600 }}>{t('الصفحة الرئيسية','Home')}</Button>
+						<Button variant="secondary" style={{ padding: 'var(--spacing-md) var(--spacing-xl)', fontWeight: 600 }}>{t('الصفحة الرئيسية','Home','Ana Sayfa')}</Button>
 					</Link>
 				</div>
 			</section>

@@ -17,14 +17,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteBaseUrl),
   title: {
-    default: 'Rafeka Agency | وكالة رافقة',
+    default: 'Rafeka Agency',
     template: '%s | Rafeka Agency'
   },
   description: 'Rafeka Agency (وكالة رافقة) تقدم حلول تطوير الويب، التسويق الرقمي، إدارة السوشيال ميديا، التصميم والهوية، وحلول ذكاء اصطناعي حديثة تدعم نمو علامتك. Web development, digital marketing, branding, social media & AI solutions.',
   keywords: defaultKeywords,
   openGraph: {
-    title: 'Rafeka Agency | وكالة رافقة',
-    description: 'حلول رقمية متكاملة: تطوير مواقع، تسويق رقمي، سوشيال ميديا، تصميم وهوية، ذكاء اصطناعي.',
+    title: 'Rafeka Agency',
+    description: 'حلول رقمية متكاملة: تطوير مواقع، تسويق رقمي، سوشيال ميديا، تصميم وهوية، ذكاء اصطناعي. Comprehensive digital solutions for growth.',
     url: siteBaseUrl,
     siteName: 'Rafeka Agency',
     locale: 'ar',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Rafeka Agency | وكالة رافقة',
+    title: 'Rafeka Agency',
     description: 'Digital & Arabic-first agency: Web, Marketing, Branding, AI.',
   },
   alternates: {
@@ -57,9 +57,10 @@ export default function RootLayout({
         <meta name="theme-color" content="#0b0b0d" />
   <meta name="google-site-verification" content="5WEzqvhh1bipI7ov9AkJftopFw9jmHwZZWL-9XVKA6g" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="alternate" hrefLang="ar" href={siteBaseUrl + '/'} />
-        <link rel="alternate" hrefLang="en" href={siteBaseUrl + '/'} />
-        <link rel="alternate" hrefLang="x-default" href={siteBaseUrl + '/'} />
+  <link rel="alternate" hrefLang="ar" href={siteBaseUrl + '/'} />
+  <link rel="alternate" hrefLang="en" href={siteBaseUrl + '/'} />
+  <link rel="alternate" hrefLang="tr" href={siteBaseUrl + '/'} />
+  <link rel="alternate" hrefLang="x-default" href={siteBaseUrl + '/'} />
         {/* Organization & Website JSON-LD */}
         <script
           type="application/ld+json"
@@ -69,7 +70,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Organization',
               name: 'Rafeka Agency',
-              alternateName: 'وكالة رافقة',
+              alternateName: ['وكالة رافقة', 'Rafeka Agency'],
               url: siteBaseUrl,
               logo: siteBaseUrl + '/logo.png',
               sameAs: [
@@ -88,7 +89,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
               name: 'Rafeka Agency',
-              alternateName: 'وكالة رافقة',
+              alternateName: ['وكالة رافقة', 'Rafeka Agency'],
               url: siteBaseUrl,
               potentialAction: {
                 '@type': 'SearchAction',
@@ -115,7 +116,7 @@ export default function RootLayout({
               (function() {
                 try {
                   var saved = localStorage.getItem('language');
-                  var lang = (saved === 'ar' || saved === 'en') ? saved : 'ar';
+                  var lang = (saved === 'ar' || saved === 'en' || saved === 'tr') ? saved : 'ar';
                   document.documentElement.lang = lang;
                   document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
                   document.documentElement.setAttribute('data-lang', lang);

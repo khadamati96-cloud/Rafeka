@@ -112,7 +112,13 @@ const VideoSection: React.FC = () => {
               backgroundClip: 'text',
             }}
           >
-            {language === 'ar' ? 'شاهد خدماتنا في العمل' : 'Watch Our Services in Action'}
+            {(
+              {
+                ar: 'شاهد خدماتنا في العمل',
+                en: 'Watch Our Services in Action',
+                tr: 'Hizmetlerimizi İş Başında İzleyin',
+              } as const
+            )[language]}
           </Text>
           
           <Text 
@@ -126,10 +132,13 @@ const VideoSection: React.FC = () => {
               lineHeight: '1.6',
             }}
           >
-            {language === 'ar' 
-              ? 'اكتشف كيف نحول أفكارك إلى واقع رقمي مبهر'
-              : 'Discover how we transform your ideas into stunning digital reality'
-            }
+            {(
+              {
+                ar: 'اكتشف كيف نحول أفكارك إلى واقع رقمي مبهر',
+                en: 'Discover how we transform your ideas into stunning digital reality',
+                tr: 'Fikirlerinizi nasıl etkileyici dijital deneyimlere dönüştürdüğümüzü keşfedin.',
+              } as const
+            )[language]}
           </Text>
         </div>
 
@@ -182,7 +191,13 @@ const VideoSection: React.FC = () => {
               {videoError ? (
                 <div>
                   <div style={{ fontSize: '3rem', marginBottom: 'var(--spacing-md)' }}>⚠️</div>
-                  <div>{language === 'ar' ? 'عذراً، حدث خطأ في تحميل الفيديو' : 'Sorry, video loading error occurred'}</div>
+                  <div>{(
+                    {
+                      ar: 'عذراً، حدث خطأ في تحميل الفيديو',
+                      en: 'Sorry, video loading error occurred',
+                      tr: 'Üzgünüz, video yüklenirken bir hata oluştu.',
+                    } as const
+                  )[language]}</div>
                   <button
                     onClick={() => {
                       setVideoError(false);
@@ -200,7 +215,13 @@ const VideoSection: React.FC = () => {
                       fontFamily: language === 'ar' ? 'var(--font-arabic)' : 'var(--font-english)',
                     }}
                   >
-                    {language === 'ar' ? 'إعادة المحاولة' : 'Retry'}
+                    {(
+                      {
+                        ar: 'إعادة المحاولة',
+                        en: 'Retry',
+                        tr: 'Tekrar Dene',
+                      } as const
+                    )[language]}
                   </button>
                 </div>
               ) : (
@@ -216,7 +237,13 @@ const VideoSection: React.FC = () => {
                       margin: '0 auto var(--spacing-md) auto',
                     }}
                   />
-                  {language === 'ar' ? 'جاري التحميل الآمن...' : 'Secure loading...'}
+                  {(
+                    {
+                      ar: 'جاري التحميل الآمن...',
+                      en: 'Secure loading...',
+                      tr: 'Güvenli yükleme...',
+                    } as const
+                  )[language]}
                 </div>
               )}
             </div>

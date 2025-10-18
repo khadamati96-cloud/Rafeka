@@ -29,9 +29,12 @@ const NewProjectSection: React.FC = () => {
 
   const handleStartProject = () => {
     const phone = '905380330087'; // بدون علامة + لرابط wa.me
-    const message = language === 'ar'
-      ? 'مرحباً، أود تحديد مكالمة لمناقشة مشروع جديد.'
-      : 'Hello, I would like to schedule a call to discuss a new project.';
+    const messageByLanguage: Record<typeof language, string> = {
+      ar: 'مرحباً، أود تحديد مكالمة لمناقشة مشروع جديد.',
+      en: 'Hello, I would like to schedule a call to discuss a new project.',
+      tr: 'Merhaba, yeni bir projeyi görüşmek için bir çağrı planlamak istiyorum.',
+    };
+    const message = messageByLanguage[language];
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
@@ -120,8 +123,13 @@ const NewProjectSection: React.FC = () => {
             color: 'var(--brand-red)',
             fontWeight: '600',
           }}>
-            
-            {language === 'ar' ? 'متاحون لمشروع جديد' : 'Available for New Project'}
+            {(
+              {
+                ar: 'متاحون لمشروع جديد',
+                en: 'Available for a New Project',
+                tr: 'Yeni projeye hazırız',
+              } as const
+            )[language]}
           </div>
         </div>
 
@@ -150,7 +158,13 @@ const NewProjectSection: React.FC = () => {
               lineHeight: '1.2',
             }}
           >
-            {language === 'ar' ? 'مهتم بالتعاون معنا؟' : '?Interested in Working with Us'}
+            {(
+              {
+                ar: 'مهتم بالتعاون معنا؟',
+                en: 'Interested in Working with Us?',
+                tr: 'Bizimle çalışmak ister misiniz?',
+              } as const
+            )[language]}
           </Text>
         </div>
 
@@ -173,10 +187,13 @@ const NewProjectSection: React.FC = () => {
               lineHeight: '1.7',
             }}
           >
-            {language === 'ar' 
-              ? 'دعنا نتواصل ونناقش كيف يمكننا أن نساعدك في تحقيق أهدافك. نحن متخصصون لتحويل رؤيتك إلى واقع'
-              : 'Let\'s connect and discuss how we can help you achieve your goals. We specialize in transforming your vision into reality'
-            }
+            {(
+              {
+                ar: 'دعنا نتواصل ونناقش كيف يمكننا أن نساعدك في تحقيق أهدافك. نحن متخصصون لتحويل رؤيتك إلى واقع',
+                en: "Let's connect and discuss how we can help you achieve your goals. We specialize in transforming your vision into reality",
+                tr: 'Hadi iletişime geçelim ve hedeflerinize ulaşmanıza nasıl yardımcı olabileceğimizi konuşalım. Vizyonunuzu gerçeğe dönüştürmede uzmanız.',
+              } as const
+            )[language]}
           </Text>
         </div>
 
@@ -189,7 +206,13 @@ const NewProjectSection: React.FC = () => {
         }}>
           <button
             onClick={handleStartProject}
-            aria-label={language === 'ar' ? 'حدد موعد مكالمة عبر واتساب' : 'Schedule a WhatsApp call'}
+            aria-label={(
+              {
+                ar: 'حدد موعد مكالمة عبر واتساب',
+                en: 'Schedule a WhatsApp call',
+                tr: 'WhatsApp üzerinden arama planlayın',
+              } as const
+            )[language]}
             style={{
               background: 'linear-gradient(135deg, var(--brand-red) 0%, rgba(220, 38, 38, 0.8) 100%)',
               border: '2px solid transparent',
@@ -235,7 +258,13 @@ const NewProjectSection: React.FC = () => {
             />
             
             <span style={{ position: 'relative', zIndex: 2 }}>
-              {language === 'ar' ? 'حدد موعداً لمكالمة' : 'Schedule a Call'}
+              {(
+                {
+                  ar: 'حدد موعداً لمكالمة',
+                  en: 'Schedule a Call',
+                  tr: 'Görüşme Planlayın',
+                } as const
+              )[language]}
             </span>
           </button>
         </div>

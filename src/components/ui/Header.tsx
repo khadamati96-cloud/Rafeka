@@ -10,12 +10,18 @@ import { useLanguage } from '../../providers/LanguageProvider';
 const Header: React.FC = () => {
   const { t, dir, isLoaded, language } = useLanguage();
   const whatsappNumber = '905380330087';
+  const contactMessages: Record<typeof language, string> = {
+    ar: 'مرحبا، أود التحدث معكم بخصوص خدماتكم.',
+    en: 'Hello, I would like to talk about your services.',
+    tr: 'Merhaba, hizmetleriniz hakkında konuşmak istiyorum.',
+  };
+  const whatsappAriaLabels: Record<typeof language, string> = {
+    ar: 'تواصل عبر واتساب',
+    en: 'Contact via WhatsApp',
+    tr: 'WhatsApp üzerinden iletişime geçin',
+  };
   const handleWhatsApp = () => {
-    const msg = encodeURIComponent(
-      language === 'ar'
-        ? 'مرحبا، أود التحدث معكم بخصوص خدماتكم.'
-        : 'Hello, I would like to talk about your services.'
-    );
+    const msg = encodeURIComponent(contactMessages[language]);
     const url = `https://wa.me/${whatsappNumber}?text=${msg}`;
     if (typeof window !== 'undefined') {
       window.open(url, '_blank', 'noopener,noreferrer');
@@ -126,7 +132,7 @@ const Header: React.FC = () => {
                   whiteSpace: 'nowrap',
                 }}
                 onClick={handleWhatsApp}
-                aria-label={language === 'ar' ? 'تواصل عبر واتساب' : 'Contact via WhatsApp'}
+                aria-label={whatsappAriaLabels[language]}
               >
                 {t('contactUs')}
               </Button>
@@ -304,7 +310,7 @@ const Header: React.FC = () => {
                 handleWhatsApp();
                 setIsMobileMenuOpen(false);
               }}
-              aria-label={language === 'ar' ? 'تواصل عبر واتساب' : 'Contact via WhatsApp'}
+              aria-label={whatsappAriaLabels[language]}
             >
               {t('contactUs')}
             </Button>
