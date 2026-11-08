@@ -140,7 +140,7 @@ function ContactContent(){
         availableLanguage: ['Arabic', 'English', 'Turkish'],
       },
     ],
-  }), [select]);
+  }), [select, contactData]);
 
   const [mounted,setMounted] = React.useState(false);
   React.useEffect(()=>{ setMounted(true); },[]);

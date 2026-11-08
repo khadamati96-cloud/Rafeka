@@ -133,7 +133,10 @@ function AboutContent() {
   }), []);
 
   const missionItemsCount = aboutData.mission.items.length;
-  const expertiseTargets = aboutData.expertise.skills.map(skill => skill.percentage);
+  const expertiseTargets = React.useMemo(
+    () => aboutData.expertise.skills.map(skill => skill.percentage),
+    [aboutData]
+  );
 
   React.useEffect(() => {
     setProgressValues(Array.from({ length: expertiseTargets.length }, () => 0));
@@ -224,7 +227,7 @@ function AboutContent() {
     });
 
     return () => observer.disconnect();
-  }, [isVisible, missionItemsCount]);
+  }, [isVisible, missionItemsCount, expertiseTargets]);
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
